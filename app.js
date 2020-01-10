@@ -7,10 +7,11 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
 
-const userRouter = require('./routes/userRouter');
-const adminRouter = require('./routes/adminRouter');
 const postRouter = require('./routes/postRouter');
 const basicRouter = require('./routes/basicRouter');
+const userRouter = require('./routes/userRouter');
+const userAuthRouter = require('./routes/userAuthRouter');
+const adminRouter = require('./routes/adminRouter');
 const adminAuthRouter = require('./routes/adminAuthRouter');
 const adminPostRouter = require('./routes/adminPostsRouter');
 
@@ -101,6 +102,7 @@ app.use((req, res, next) => {
 }); */
 
 app.use('/users', userRouter);
+app.use('/users/auth', userAuthRouter);
 app.use('/admin', adminRouter);
 app.use('/admin/posts', adminPostRouter);
 app.use('/admin/auth', adminAuthRouter);
