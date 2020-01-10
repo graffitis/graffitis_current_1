@@ -88,6 +88,9 @@ exports.createPage = (req, res) => {
 };
 
 exports.newPost = (req, res) => {
+
+  console.log(req.body)
+
   const newPost = new Post({
     cover: req.body.cover,
     title: req.body.title,
