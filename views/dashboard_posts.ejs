@@ -1,0 +1,292 @@
+<%- include ('partials/header') %>
+<main id="content" role="main">
+  <!-- Breadcrumb Section -->
+  <div class="bg-primary">
+    <div class="container space-top-1 pb-3">
+      <div class="row">
+        <div class="col-lg-5 order-lg-2 text-lg-right mb-4 mb-lg-0">
+          <div
+            class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start">
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
+              <li class="breadcrumb-item">
+                <a class="breadcrumb-link" href="/">Home</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a class="breadcrumb-link" href="/admin/dashboard">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Posts
+              </li>
+            </ol>
+            <!-- End Breadcrumb -->
+
+            <!-- Breadcrumb Nav Toggle Button -->
+            <div class="d-lg-none">
+              <button type="button" class="navbar-toggler btn u-hamburger u-hamburger--white"
+                aria-label="Toggle navigation" aria-expanded="false" aria-controls="breadcrumbNavBar"
+                data-toggle="collapse" data-target="#breadcrumbNavBar">
+                <span id="breadcrumbHamburgerTrigger" class="u-hamburger__box">
+                  <span class="u-hamburger__inner"></span>
+                </span>
+              </button>
+            </div>
+            <!-- End Breadcrumb Nav Toggle Button -->
+          </div>
+        </div>
+
+        <div class="col-lg-7 order-lg-1">
+          <!-- User Info -->
+          <div class="media d-block d-sm-flex align-items-sm-center">
+            <div class="u-lg-avatar position-relative mb-3 mb-sm-0 mr-3">
+              <img class="img-fluid rounded-circle" src="<%= user.pic %>" alt="Image Description" />
+              <span class="badge badge-md badge-outline-success badge-pos badge-pos--bottom-right rounded-circle">
+                <span class="fas fa-check"></span>
+              </span>
+            </div>
+            <div class="media-body">
+              <h1 class="h3 text-white font-weight-medium mb-1">
+                <%= user.name %>
+              </h1>
+              <span class="d-block text-white-70"><i class="fas fa-at" style="margin-right:0.3em;"></i><%=
+                user.email %></span>
+              <span class="d-block text-white-70"><i class="fas fa-code-branch"
+                  style="margin-right:0.3em;"></i><%= user._id %></span>
+            </div>
+          </div>
+          <!-- End User Info -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container space-bottom-1 space-bottom-lg-0">
+      <div class="d-lg-flex justify-content-lg-between align-items-lg-center">
+        <!-- Navbar -->
+        <div class="u-header u-header-left-aligned-nav u-header--bg-transparent-lg u-header--white-nav-links z-index-4">
+          <div class="u-header__section bg-transparent">
+            <nav class="js-breadcrumb-menu navbar navbar-expand-lg u-header__navbar u-header__navbar--no-space">
+              <div id="breadcrumbNavBar" class="collapse navbar-collapse u-header__navbar-collapse">
+                <ul class="navbar-nav u-header__navbar-nav">
+                  <!-- General -->
+                  <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover"
+                    data-animation-in="slideInUp" data-animation-out="fadeOut">
+                    <a id="generalDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle"
+                      href="javascript:;" aria-haspopup="true" aria-expanded="false"
+                      aria-labelledby="generalDropdownMenu">
+                      General
+                    </a>
+
+                    <ul id="generalDropdownMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu--spacer"
+                      style="min-width: 230px;" aria-labelledby="generalDropdown">
+                      <li>
+                        <a class="nav-link u-header__sub-menu-nav-link" href="dashboard.html">Dashboard</a>
+                      </li>
+                      <li>
+                        <a class="nav-link u-header__sub-menu-nav-link" href="profile.html">Profile</a>
+                      </li>
+                      <li>
+                        <a class="nav-link u-header__sub-menu-nav-link" href="my-tasks.html">My tasks</a>
+                      </li>
+                      <li>
+                        <a class="nav-link u-header__sub-menu-nav-link" href="projects.html">Projects</a>
+                      </li>
+                      <li>
+                        <a class="nav-link u-header__sub-menu-nav-link" href="members.html">Members</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <!-- General -->
+
+                  <!-- Account Settings -->
+                  <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover"
+                    data-animation-in="slideInUp" data-animation-out="fadeOut">
+                    <a id="accountSettingsDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle"
+                      href="javascript:;" aria-haspopup="true" aria-expanded="false"
+                      aria-labelledby="accountSettingsDropdownMenu">
+                      Account settings
+                    </a>
+
+                    <ul id="accountSettingsDropdownMenu"
+                      class="hs-sub-menu u-header__sub-menu u-header__sub-menu--spacer" style="min-width: 230px;"
+                      aria-labelledby="accountSettingsDropdown">
+                      <li>
+                        <a class="nav-link u-header__sub-menu-nav-link" href="edit-profile.html">Edit profile</a>
+                      </li>
+                      <li>
+                        <a class="nav-link u-header__sub-menu-nav-link" href="change-password.html">Change password</a>
+                      </li>
+                      <li>
+                        <a class="nav-link u-header__sub-menu-nav-link" href="notifications.html">Notifications</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <!-- Account Settings -->
+
+                  <!-- Billing -->
+                  <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover"
+                    data-animation-in="slideInUp" data-animation-out="fadeOut">
+                    <a id="billingDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle"
+                      href="javascript:;" aria-haspopup="true" aria-expanded="false"
+                      aria-labelledby="billingDropdownMenu">
+                      Billing
+                    </a>
+
+                    <ul id="billingDropdownMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu--spacer"
+                      style="min-width: 230px;" aria-labelledby="billingDropdown">
+                      <li>
+                        <a class="nav-link u-header__sub-menu-nav-link" href="activity.html">Activity</a>
+                      </li>
+                      <li>
+                        <a class="nav-link u-header__sub-menu-nav-link" href="payment-methods.html">Payment methods</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <!-- Billing -->
+
+                  <!-- Accessibility -->
+                  <li class="nav-item hs-has-sub-menu u-header__nav-item" data-event="hover"
+                    data-animation-in="slideInUp" data-animation-out="fadeOut">
+                    <a id="accessibilityDropdown" class="nav-link u-header__nav-link u-header__nav-link-toggle"
+                      href="javascript:;" aria-haspopup="true" aria-expanded="false"
+                      aria-labelledby="accessibilityDropdownMenu">
+                      Accessibility
+                    </a>
+
+                    <ul id="accessibilityDropdownMenu" class="hs-sub-menu u-header__sub-menu u-header__sub-menu--spacer"
+                      style="min-width: 230px;" aria-labelledby="accessibilityDropdown">
+                      <li>
+                        <a class="nav-link u-header__sub-menu-nav-link" href="invite-friends.html">Invite friends</a>
+                      </li>
+                      <li>
+                        <a class="nav-link u-header__sub-menu-nav-link" href="api-token.html">API Token</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <!-- Accessibility -->
+
+                  <!-- Others -->
+                  <li class="nav-item u-header__nav-item">
+                    <a class="nav-link u-header__nav-link" href="plans.html">Plans</a>
+                  </li>
+                  <!-- Others -->
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <!-- End Navbar -->
+
+
+        <div class="ml-lg-auto">
+          <!-- Button -->
+          <a class="btn btn-sm btn-white text-nowrap transition-3d-hover" href="/admin/posts/new"
+            data-modal-target="#requestPaymentModal">
+            <i class="fas fa-paragraph" style="margin-right:0.4em;"></i>Scrivi un Post
+          </a>
+          <!-- End Button -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Breadcrumb Section -->
+  <div class="bg-light">
+    <div class="container space-2">
+      <div class="table-responsive-md u-datatable">
+        <table class="js-datatable table table-bordered u-datatable__striped u-datatable__content"
+                         data-dt-info="#datatableInfo"
+                         data-dt-search="#datatableSearch"
+                         data-dt-entries="#datatableEntries"
+                         data-dt-page-length="12"
+                         data-dt-is-responsive="false"
+                         data-dt-is-show-paging="true"
+
+                         data-dt-pagination="datatablePagination"
+                         data-dt-pagination-classes="pagination mb-0"
+                         data-dt-pagination-items-classes="page-item"
+                         data-dt-pagination-links-classes="page-link"
+
+                         data-dt-pagination-next-classes="page-item"
+                         data-dt-pagination-next-link-classes="page-link"
+                         data-dt-pagination-next-link-markup='<span aria-hidden="true">&raquo;</span>'
+
+                         data-dt-pagination-prev-classes="page-item"
+                         data-dt-pagination-prev-link-classes="page-link"
+                         data-dt-pagination-prev-link-markup='<span aria-hidden="true">&laquo;</span>'>
+          <thead>
+            <tr class="text-uppercase font-size-1">
+              <th scope="col" class="font-weight-medium">
+                <div class="d-flex justify-content-between align-items-center">
+                  Titolo
+                  <div class="ml-2">
+                    <span class="fas fa-angle-up u-datatable__thead-icon"></span>
+                    <span class="fas fa-angle-down u-datatable__thead-icon"></span>
+                  </div>
+                </div>
+              </th>
+              <th scope="col" class="font-weight-medium">
+                <div class="d-flex justify-content-between align-items-center">
+                  Categoria
+                  <div class="ml-2">
+                    <span class="fas fa-angle-up u-datatable__thead-icon"></span>
+                    <span class="fas fa-angle-down u-datatable__thead-icon"></span>
+                  </div>
+                </div>
+              </th>
+              <th scope="col" class="font-weight-medium">
+                <div class="d-flex justify-content-between align-items-center">
+                  Autore
+                  <div class="ml-2">
+                    <span class="fas fa-angle-up u-datatable__thead-icon"></span>
+                    <span class="fas fa-angle-down u-datatable__thead-icon"></span>
+                  </div>
+                </div>
+              </th>
+              <th scope="col" class="font-weight-medium">
+                <div class="d-flex justify-content-between align-items-center">
+                  Data Creazione
+                  <div class="ml-2">
+                    <span class="fas fa-angle-up u-datatable__thead-icon"></span>
+                    <span class="fas fa-angle-down u-datatable__thead-icon"></span>
+                  </div>
+                </div>
+              </th>
+              <th scope="col" class="font-weight-medium">
+                <div class="d-flex justify-content-between align-items-center">
+                  Stato
+                  <div class="ml-2">
+                    <span class="fas fa-angle-up u-datatable__thead-icon"></span>
+                    <span class="fas fa-angle-down u-datatable__thead-icon"></span>
+                  </div>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="font-size-1">
+            <% posts.forEach((post) => { %>
+            <tr>
+              <td class="align-middle"><span><a href="/admin/posts/<%= post._id %>"><%= post.title %></a> </span>
+              </td>
+              <td class="align-middle text-secondary">
+                <%= post.category %>
+              </td>
+              <td class="align-middle text-secondary  "><%= post.author %></td>
+              <td class="align-middle text-secondary"><%= post.edited.toLocaleDateString("it-IT") %></td>
+              <% if(post.status === 1) { %>
+              <td class="align-middle text-success"><i class="fas fa-globe"></i> Online</td>
+              <% } else if(post.status === 0) { %>
+              <td class="align-middle text-warning"><i class="fas fa-glasses"></i> Pronto</td>
+              <%} else { %>
+              <td class="align-middle text-danger"><i class="fas fa-pencil-alt"></i> Bozza</td>
+              <%}%>
+
+                        </tr>
+                    <% }); %>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
+</main>
+<%- include ('partials/footer') %>

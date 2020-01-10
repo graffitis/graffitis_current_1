@@ -1,0 +1,67 @@
+<%- include ('partials/header') %>
+<main id="content" role="main">
+  <!-- Hero Section -->
+  <div class="container space-2">
+    <div class="w-md-80 w-lg-75 text-center mx-md-auto">
+      <div class="space-bottom-2">
+        <h1 class="display-4 font-size-md-down-5 font-weight-semi-bold">
+          <%= category %>
+        </h1>
+        <p class="lead font-weight-normal">
+          #TODO:Inserire testi di sottotitolo ove necessario
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4 mb-5">
+      <% posts.forEach((item, index) => { %>
+      <!-- Blog Card -->
+      <article class="card shadow h-100 transition-3d-hover">
+        <img
+          style="height:14em;object-fit: cover;"
+          class="card-img-top"
+          src="<%= item.cover %>"
+          alt="Image Description"
+        />
+        <div class="card-body p-5">
+          <a
+            class="d-inline-block text-muted font-weight-medium text-uppercase small mb-2"
+            href="/posts/categories/<%= item.category %>"
+            ><%= item.category %></a
+          >
+          <h2 class="h5 font-weight-medium">
+            <a href="/posts/<%= item._id %>"><%= item.title %></a>
+          </h2>
+          <p>
+            <% item.desc = item.desc.slice(0, 60) + "..."; %><%= item.desc %>
+          </p>
+        </div>
+
+        <div class="card-footer border-0 pt-0 pb-5 px-0 mx-5">
+          <div class="media align-items-center">
+            <div
+              class="u-sm-avatar u-sm-avatar--bordered rounded-circle ml-n2"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="<%= item.author %>"
+            >
+              <img
+                class="img-fluid rounded-circle"
+                src="<%= item.authorPic %>"
+                alt="Image Description"
+              />
+            </div>
+            <div
+              class="media-body d-flex justify-content-end text-muted font-size-1 ml-2"
+            >
+              <%= item.edited.toLocaleDateString("it-IT") %>
+            </div>
+          </div>
+        </div>
+      </article>
+      <!-- End Blog Card -->
+      <% }) %>
+    </div>
+  </div>
+</main>
+<%- include ('partials/footer') %>

@@ -1,0 +1,175 @@
+<!-- ========== FOOTER ========== -->
+<footer class="container space-1 text-center">
+  <!-- Logo -->
+  <a class="d-inline-flex align-items-center mb-3" href="/" aria-label="Front">
+    <!-- <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      x="0px"
+      y="0px"
+      width="36px"
+      height="36px"
+      viewBox="0 0 46 46"
+      xml:space="preserve"
+      style="margin-bottom: 0;"
+    >
+      <path
+        fill="#3F7DE0"
+        opacity=".65"
+        d="M23,41L23,41c-9.9,0-18-8-18-18v0c0-9.9,8-18,18-18h11.3C38,5,41,8,41,11.7V23C41,32.9,32.9,41,23,41z"
+      />
+      <path
+        class="fill-info"
+        opacity=".5"
+        d="M28,35.9L28,35.9c-9.9,0-18-8-18-18v0c0-9.9,8-18,18-18l11.3,0C43,0,46,3,46,6.6V18C46,27.9,38,35.9,28,35.9z"
+      />
+      <path
+        class="fill-primary"
+        opacity=".7"
+        d="M18,46L18,46C8,46,0,38,0,28v0c0-9.9,8-18,18-18h11.3c3.7,0,6.6,3,6.6,6.6V28C35.9,38,27.9,46,18,46z"
+      />
+      <path
+        class="fill-white"
+        d="M17.4,34V18.3h10.2v2.9h-6.4v3.4h4.8v2.9h-4.8V34H17.4z"
+      />
+    </svg> -->
+    <span class="brand brand-primary">Graffitis</span>
+  </a>
+  <!-- End Logo -->
+
+  <p class="mb-2">
+    Progetto open-source su
+    <a
+      target="blank"
+      class="badge badge-secondary"
+      href="https://github.com/graffitis/graffitis-platform"
+      ><i class="fab fa-github" style="margin-right: 0.2em;"></i>
+      graffitis-platform</a
+    >
+  </p>
+  <p>
+    © 2020 GRAFFITIS · Reparto Tecnico Redazione ·
+    <a href="https://www.itiscuneo.gov.it" target="blank"
+      >ITIS Delpozzo Cuneo</a
+    >
+  </p>
+</footer>
+<!-- ========== END FOOTER ========== -->
+
+<!-- JS Global Compulsory -->
+<script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
+<script src="../../assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
+<script src="../../assets/vendor/popper.js/dist/umd/popper.min.js"></script>
+<script src="../../assets/vendor/bootstrap/bootstrap.min.js"></script>
+
+<!-- JS Implementing Plugins -->
+<script src="../../assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+<script src="../../assets/vendor/svg-injector/dist/svg-injector.min.js"></script>
+<script src="../../assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="../../assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="../../assets/vendor/fancybox/jquery.fancybox.min.js"></script>
+<script src="../../assets/vendor/typed.js/lib/typed.min.js"></script>
+<script src="../../assets/vendor/slick-carousel/slick/slick.js"></script>
+<script src="../../assets/vendor/dzsparallaxer/dzsparallaxer.js"></script>
+<script src="../../assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="../../assets/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="../../assets/vendor/summernote/dist/summernote-lite.js"></script>
+<script src="../../assets/vendor/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js"></script>
+
+<!-- JS Front -->
+<script src="../../assets/js/hs.core.js"></script>
+<script src="../../assets/js/components/hs.header.js"></script>
+<script src="../../assets/js/components/hs.unfold.js"></script>
+<script src="../../assets/js/components/hs.focus-state.js"></script>
+<script src="../../assets/js/components/hs.malihu-scrollbar.js"></script>
+<script src="../../assets/js/components/hs.validation.js"></script>
+<script src="../../assets/js/components/hs.fancybox.js"></script>
+<script src="../../assets/js/components/hs.slick-carousel.js"></script>
+<script src="../../assets/js/components/hs.show-animation.js"></script>
+<script src="../../assets/js/components/hs.svg-injector.js"></script>
+<script src="../../assets/js/components/hs.validation.js"></script>
+<script src="../../assets/js/components/hs.datatables.js"></script>
+<script src="../../assets/js/components/hs.summernote-editor.js"></script>
+<script src="../../assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="../../assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="../../assets/js/components/hs.focus-state.js"></script>
+<script src="../../assets/js/components/hs.sticky-block.js"></script>
+<script src="../../assets/js/components/hs.go-to.js"></script>
+
+<!-- JS Plugins Init. -->
+<script>
+  $(window).on('load', function() {
+    // initialization of HSMegaMenu component
+    $('.js-mega-menu').HSMegaMenu({
+      event: 'hover',
+      pageContainer: $('.container'),
+      breakpoint: 767.98,
+      hideTimeOut: 0
+    });
+
+    // initialization of svg injector module
+    $.HSCore.components.HSSVGIngector.init('.js-svg-injector');
+  });
+
+  $.HSCore.components.HSStickyBlock.init('.js-sticky-block');
+
+  $(document).on('ready', function() {
+    // initialization of text editors
+    $.HSCore.components.HSSummernoteEditor.init('.js-summernote-editor');
+  });
+
+  $(document).on('ready', function() {
+    // initialization of datatables
+    $.HSCore.components.HSDatatables.init('.js-datatable');
+  });
+
+  $(document).on('ready', function() {
+    // initialization of header
+    $.HSCore.components.HSHeader.init($('#header'));
+
+    // initialization of unfold component
+    $.HSCore.components.HSUnfold.init($('[data-unfold-target]'), {
+      afterOpen: function() {
+        $(this)
+          .find('input[type="search"]')
+          .focus();
+      }
+    });
+
+    // initialization of malihu scrollbar
+    $.HSCore.components.HSMalihuScrollBar.init($('.js-scrollbar'));
+
+    // initialization of forms
+    $.HSCore.components.HSFocusState.init();
+
+    // initialization of form validation
+    $.HSCore.components.HSValidation.init('.js-validate', {
+      rules: {
+        confirmPassword: {
+          equalTo: '#signupPassword'
+        }
+      }
+    });
+
+    // initialization of show animations
+    $.HSCore.components.HSShowAnimation.init('.js-animation-link');
+
+    // initialization of fancybox
+    $.HSCore.components.HSFancyBox.init('.js-fancybox');
+
+    // initialization of text animation (typing)
+    var typed = new Typed('.u-text-animation.u-text-animation--typing', {
+      strings: ['more professional.', 'perfect in every way.', 'astonishing.'],
+      typeSpeed: 60,
+      loop: true,
+      backSpeed: 25,
+      backDelay: 1500
+    });
+
+    // initialization of slick carousel
+    $.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
+
+    // initialization of go to
+    $.HSCore.components.HSGoTo.init('.js-go-to');
+  });
+</script>

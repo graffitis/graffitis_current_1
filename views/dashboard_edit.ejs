@@ -1,0 +1,288 @@
+<%- include ('partials/header') %>
+<main id="content" role="main">
+  <div class="bg-primary">
+  <!-- Breadcrumb Section -->
+    <div class="container space-top-1 pb-3">
+      <div class="row">
+        <div class="col-lg-5 order-lg-2 text-lg-right mb-4 mb-lg-0">
+          <div
+            class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start"
+          >
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
+              <li class="breadcrumb-item">
+                <a class="breadcrumb-link" href="/">Home</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a class="breadcrumb-link" href="/admin/dashboard">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a class="breadcrumb-link" href="/admin/posts">Posts</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Modifica un Post
+              </li>
+            </ol>
+            <!-- End Breadcrumb -->
+
+            <!-- Breadcrumb Nav Toggle Button -->
+            <div class="d-lg-none">
+              <button
+                type="button"
+                class="navbar-toggler btn u-hamburger u-hamburger--white"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+                aria-controls="breadcrumbNavBar"
+                data-toggle="collapse"
+                data-target="#breadcrumbNavBar"
+              >
+                <span id="breadcrumbHamburgerTrigger" class="u-hamburger__box">
+                  <span class="u-hamburger__inner"></span>
+                </span>
+              </button>
+            </div>
+            <!-- End Breadcrumb Nav Toggle Button -->
+          </div>
+        </div>
+
+        <div class="col-lg-7 order-lg-1">
+          <!-- User Info -->
+          <div class="media d-block d-sm-flex align-items-sm-center">
+            <div class="u-lg-avatar position-relative mb-3 mb-sm-0 mr-3">
+              <img
+                class="img-fluid rounded-circle"
+                src="<%= user.pic %>"
+                alt="Image Description"
+              />
+              <span
+                class="badge badge-md badge-outline-success badge-pos badge-pos--bottom-right rounded-circle"
+              >
+                <span class="fas fa-check"></span>
+              </span>
+            </div>
+            <div class="media-body">
+              <h1 class="h3 text-white font-weight-medium mb-1">
+                <%= user.name %>
+              </h1>
+              <span class="d-block text-white-70"
+                ><i class="fas fa-at" style="margin-right:0.3em;"></i><%=
+                user.email %></span
+              >
+              <span class="d-block text-white-70"
+                ><i class="fas fa-code-branch" style="margin-right:0.3em;"></i
+                ><%= user._id %></span
+              >
+            </div>
+          </div>
+          <!-- End User Info -->
+        </div>
+      </div>
+    </div>
+  </div>
+    <form action="/admin/posts/<%= post._id %>" method="POST" id="post_create">
+  <!-- End Breadcrumb Section -->
+  <div class="bg-light">
+    <div class="container space-2">
+        <div class="form-group">
+          <label for="title">Titolo</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            name="title"
+            placeholder="Inserisci il titolo dell'articolo..."
+            value="<%= post.title %>"
+          />
+          <small id="titleHelp" class="form-text text-muted"
+            >Questo titolo sarà visualizzato sulle pagine delle rubriche e sulla
+            pagina dell'articolo con un carattere di dimensioni maggiori</small
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="cover">Immagine di Copertina</label>
+          <input
+            type="text"
+            class="form-control"
+            id="cover"
+            name="cover"
+            placeholder="Inserisci un URL di un'immagine"
+            value="<%= post.cover %>"
+          />
+          <small id="coverHelp" class="form-text text-muted"
+            >L'immagina sarà presente in tutte le visuali dell'articolo</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="desc">Descrizione</label>
+          <input
+            type="text"
+            class="form-control"
+            id="desc"
+            name="desc"
+            placeholder="Inserisci una breve descrizione dell'articolo"
+            value="<%= post.desc %>"
+          />
+          <small id="descHelp" class="form-text text-muted"
+            >Questa breve descrizione verrà posta nella visuale compatta degli
+            articoli nella pagina Home e della Rubrica</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="category">Categoria</label>
+          <input
+            type="text"
+            class="form-control"
+            id="category"
+            name="category"
+            placeholder="Inserisci la categoria dell'articolo..."
+            value="<%= post.category %>"
+          />
+          <small id="categoryHelp" class="form-text text-muted"
+            >Ci servirà a catalogare il tuo articolo e suddividere tutti i
+            manoscritti in modo ordinato</small
+          >
+        </div>
+        <div class="form-group space-top-1">
+          <label for="body">Corpo dell'Articolo</label>
+          <div class="u-summernote-editor">
+            <textarea
+              id="body"
+              class="js-summernote-editor"
+              data-height="300"
+              name="body"
+              form="post_create"
+
+            ><%- post.body %>"</textarea>
+          </div>
+        </div>
+        <div class="form-group mb-6 space-top-1">
+          <label for="tags" class="form-label">
+            Tags
+          </label>
+
+          <!-- Tags Input -->
+          <div class="u-tagsinput">
+            <input
+              id="tags"
+              type="text"
+              name="tags"
+              data-role="tagsinput"
+              value="<%= post.tags %>"
+            />
+          </div>
+          <small id="tagsHelp" class="form-text text-muted"
+            >Grazie a questi tag miglioreremo l'indicizzazione del tuo articolo
+            nella dashboard dei lettori</small
+          >
+          <!-- End Tags Input -->
+        </div>
+
+        <div class="form-group ">
+          <label for="status" class="form-label">
+            Stato Articolo
+          </label>
+          
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            
+            <label class="btn btn-sm btn-secondary active">
+              <input
+                type="radio"
+                name="status"
+                id="option1"
+                autocomplete="off"
+                value="1"
+                
+              />
+              <i class="fas fa-globe"></i> Online
+            </label>
+            <label class="btn btn-sm btn-secondary">
+              <input
+                type="radio"
+                name="status"
+                id="option2"
+                autocomplete="off"
+                value="0"
+              />
+              <i class="fas fa-glasses"></i> Pronto
+            </label>
+            <label class="btn btn-sm btn-secondary">
+              <input
+                type="radio"
+                name="status"
+                id="option3"
+                autocomplete="off"
+                value="-1"
+                checked
+              />
+              <i class="fas fa-pencil-alt"></i> Bozza
+            </label>
+            
+          </div>
+          <small id="tagsHelp" class="form-text text-muted mb-6"
+            >ONLINE > L'articolo è subito visibile al pubblico <br> PRONTO > L'articolo è pronto per la pubblicazione <br> BOZZA > L'articolo è in stesura </small>
+          <div class="form-group ">
+            <label for="status" class="form-label">
+              Ordine di Pubblicazione
+            </label>
+            
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              
+              <label class="btn btn-sm btn-secondary active">
+                <input
+                  type="radio"
+                  name="updateFlag"
+                  id="aggiorna"
+                  autocomplete="off"
+                  value="1"
+                  
+                />
+                <i class="fas fa-arrow-circle-up"></i> Aggiorna
+              </label>
+          
+              <label class="btn btn-sm btn-secondary">
+                <input
+                  type="radio"
+                  name="updateFlag"
+                  id="mantieni"
+                  autocomplete="off"
+                  value="-1"
+                  checked
+                />
+                <i class="fas fa-minus-circle"></i> Mantieni
+              </label>
+            </div>
+            <small id="tagsHelp" class="form-text text-muted mb-6"
+            >AGGIORNA > L'articolo comparirà in prima pagina avendo come data quella dell'ultima modifica <br> MANTIENI > L'articolo continuerà ad avere come data quella della prima stesura</small>
+            
+          
+        </div>
+
+        <hr class="hr mb-6 mt-6">
+
+        <!-- Buttons -->
+        <button
+          type="submit"
+          class="btn btn-sm btn-primary transition-3d-hover mr-1"
+        >
+          <i class="fas fa-cloud-upload-alt"></i> Salva e Applica Stato
+        </button>
+      </form>
+        <!-- #TODO: corregere layout pulsanti azione -->
+        <form action="/admin/posts/<%= post._id %>" method="POST" enctype="application/x-www-form-urlencoded">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit" class="btn btn-sm btn-danger transition-3d-hover">
+            <i class="far fa-trash-alt"></i> Elimina Post
+          </button>
+        </form>
+        <a href="/admin/posts">
+          <button class="btn btn-sm btn-soft-secondary transition-3d-hover">
+            Annulla
+          </button>
+        </a>
+
+        <!-- End Buttons -->
+    </div>
+  </div>
+</main>
+<%- include ('partials/footer') %>
