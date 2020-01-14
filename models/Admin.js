@@ -4,7 +4,14 @@ var adminSchema = new mongoose.Schema({
   googleId: String,
   name: String,
   email: String,
-  pic: String
+  pic: String,
+  role: Number
+  /* 
+    ROLES: 
+      super  > 2
+      admin  > 1
+      user   > 0
+  */
 });
 
 var Admin = mongoose.model('Admin', adminSchema);

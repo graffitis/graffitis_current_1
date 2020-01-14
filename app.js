@@ -14,6 +14,8 @@ const userAuthRouter = require('./routes/userAuthRouter');
 const adminRouter = require('./routes/adminRouter');
 const adminAuthRouter = require('./routes/adminAuthRouter');
 const adminPostRouter = require('./routes/adminPostsRouter');
+const superRouter = require('./routes/superRouter');
+const superCatsRouter = require('./routes/superCatsRouter');
 
 const passportSetup = require('./config/passport-setup');
 const passport = require('passport');
@@ -106,6 +108,8 @@ app.use('/users/auth', userAuthRouter);
 app.use('/admin', adminRouter);
 app.use('/admin/posts', adminPostRouter);
 app.use('/admin/auth', adminAuthRouter);
+app.use('/super/cats', superCatsRouter)
+app.use('/super', superRouter);
 app.use('/posts', postRouter);
 app.use('/', basicRouter);
 

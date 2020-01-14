@@ -43,23 +43,27 @@
         <!-- End Blog Card -->
         <% posts.forEach((post) => { %>
         <!-- Blog Card -->
-        <article class="card shadow mb-5">
-          <img
-            style="height:25em;object-fit: cover;"
-            class="card-img-top"
-            src="<%= post.cover %>"
-            alt="Image Description"
-          />
+        <% let test = null; %>
+        <% if (post.special) { %>
+        <%  test = ' border-bottom-3 border-warning' %>
+        <% } %>
+        <article class="card shadow mb-5 transition-3d-hover <%= test %>">
+          <img style="height:25em;object-fit: cover;" class="card-img-top" src="<%= post.cover %>"
+            alt="Image Description" />
 
-          <div class="card-body p-5">
-            <a
-              class="d-inline-block text-secondary font-weight-medium text-uppercase small mb-2"
-              href="/posts/categories/<%= post.category %>"
-              ><%= post.category %></a
-            >
+          <div class="card-body  p-5">
+            <a class="d-inline-block text-secondary font-weight-medium text-uppercase small mb-2"
+              href="/posts/categories/<%= post.category %>"><%= post.category %></a>
+
+
 
             <h2 class="h5 font-weight-medium">
               <a href="/posts/<%= post._id %>"><%= post.title %></a>
+              <% if (post.special) { %>
+              <a href="/posts/categories/specials">
+                <span class="badge badge-warning text-white ml-1"><i class="fas fa-star mr-1"></i>Edizione
+                  Speciale</span></a>
+              <% } %>
             </h2>
 
             <p>
@@ -67,25 +71,15 @@
             </p>
 
             <div class="media align-items-center pt-5">
-              <div
-                class="u-sm-avatar u-sm-avatar--bordered rounded-circle ml-n2"
-                data-toggle="tooltip"
-                data-placement="top"
-                title="<%= post.author %>"
-              >
-                <img
-                  class="img-fluid rounded-circle"
-                  src="<%= post.authorPic %>"
-                  alt="Image Description"
-                />
+              <div class="u-sm-avatar u-sm-avatar--bordered rounded-circle ml-n2" data-toggle="tooltip"
+                data-placement="top" title="<%= post.author %>">
+                <img class="img-fluid rounded-circle" src="<%= post.authorPic %>" alt="Image Description" />
               </div>
-              <div
-                class="media-body d-flex justify-content-end text-muted font-size-1 ml-2"
-              >
-              
-              <% let minuti = ('0'+post.edited.getMinutes()).slice(-2) %>
-              
-              <%= post.edited.toLocaleDateString("it-IT") %> @ <%= post.edited.getHours() %>:<%= minuti %>
+              <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
+
+                <% let minuti = ('0'+post.edited.getMinutes()).slice(-2) %>
+
+                <%= post.edited.toLocaleDateString("it-IT") %> @ <%= post.edited.getHours() %>:<%= minuti %>
               </div>
             </div>
           </div>
@@ -133,63 +127,37 @@
       </div>
 
       <div id="stickyBlockStartPoint" class="col-md-5 col-lg-4">
-        <div
-          class="js-sticky-block pl-lg-4"
-          data-parent="#stickyBlockStartPoint"
-          data-sticky-view="md"
-          data-start-point="#stickyBlockStartPoint"
-          data-end-point="#stickyBlockEndPoint"
-          data-offset-top="16"
-          data-offset-bottom="16"
-        >
-          <h3 class="h6 font-weight-semi-bold mb-4">Useful links</h3>
+        <div class="js-sticky-block pl-lg-4" data-parent="#stickyBlockStartPoint" data-sticky-view="md"
+          data-start-point="#stickyBlockStartPoint" data-end-point="#stickyBlockEndPoint" data-offset-top="16"
+          data-offset-bottom="16">
+          <h3 class="h6 font-weight-semi-bold mb-4">Dalla Redazione</h3>
 
           <!-- List Group -->
           <ul class="list-group list-group-flush list-group-borderless mb-5">
             <li>
-              <a
-                class="list-group-item list-group-item-action d-flex align-items-center"
-                href="#"
-              >
-                All
-                <span class="badge bg-soft-secondary badge-pill ml-2">30+</span>
+              <a class="list-group-item list-group-item-action d-flex align-items-center" href="/posts">
+                Tutti i post
+                <span class="badge bg-soft-secondary badge-pill ml-2"><%= posts.length %></span>
+                <small class="fas fa-angle-right ml-auto"></small>
+              </a>
+            </li>
+
+            <li>
+              <a class="list-group-item list-group-item-action d-flex align-items-center" href="#">
+                Consigliati
                 <small class="fas fa-angle-right ml-auto"></small>
               </a>
             </li>
             <li>
-              <a
-                class="list-group-item list-group-item-action d-flex align-items-center"
-                href="#"
-              >
-                Top rated
+              <a class="list-group-item list-group-item-action d-flex align-items-center" href="#">
+                Oggi
+
                 <small class="fas fa-angle-right ml-auto"></small>
               </a>
             </li>
             <li>
-              <a
-                class="list-group-item list-group-item-action d-flex align-items-center"
-                href="#"
-              >
-                Featured
-                <small class="fas fa-angle-right ml-auto"></small>
-              </a>
-            </li>
-            <li>
-              <a
-                class="list-group-item list-group-item-action d-flex align-items-center"
-                href="#"
-              >
-                Daily news
-                <span class="badge bg-soft-secondary badge-pill ml-2">18</span>
-                <small class="fas fa-angle-right ml-auto"></small>
-              </a>
-            </li>
-            <li>
-              <a
-                class="list-group-item list-group-item-action d-flex align-items-center"
-                href="#"
-              >
-                New
+              <a class="list-group-item list-group-item-action d-flex align-items-center" href="#">
+                Novità
                 <small class="fas fa-angle-right ml-auto"></small>
               </a>
             </li>
@@ -197,30 +165,20 @@
           <!-- End List Group -->
 
           <div class="border-top pt-5 mt-5">
-            <h3 class="h6 font-weight-semi-bold mb-4">Related stories</h3>
+            <h3 class="h6 font-weight-semi-bold mb-4">Stories</h3>
 
             <!-- Blog Card -->
             <article>
               <div class="row justify-content-between">
                 <div class="col-6">
-                  <a
-                    class="d-inline-block text-muted font-weight-medium text-uppercase small"
-                    href="#"
-                    >Product</a
-                  >
+                  <a class="d-inline-block text-muted font-weight-medium text-uppercase small" href="#">Product</a>
                   <h4 class="h6 font-weight-medium mb-0">
-                    <a href="single-article.html"
-                      >InVision design forward fund</a
-                    >
+                    <a href="single-article.html">InVision design forward fund</a>
                   </h4>
                 </div>
 
                 <div class="col-5">
-                  <img
-                    class="img-fluid"
-                    src="../../assets/img/500x280/img18.jpg"
-                    alt="Image Description"
-                  />
+                  <img class="img-fluid" src="../../assets/img/500x280/img18.jpg" alt="Image Description" />
                 </div>
               </div>
             </article>
@@ -230,22 +188,14 @@
             <article class="border-top pt-5 mt-5">
               <div class="row justify-content-between">
                 <div class="col-6">
-                  <a
-                    class="d-inline-block text-muted font-weight-medium text-uppercase small"
-                    href="#"
-                    >Business</a
-                  >
+                  <a class="d-inline-block text-muted font-weight-medium text-uppercase small" href="#">Business</a>
                   <h4 class="h6 font-weight-medium mb-0">
                     <a href="single-article.html">What CFR really is about</a>
                   </h4>
                 </div>
 
                 <div class="col-5">
-                  <img
-                    class="img-fluid"
-                    src="../../assets/img/500x280/img13.jpg"
-                    alt="Image Description"
-                  />
+                  <img class="img-fluid" src="../../assets/img/500x280/img13.jpg" alt="Image Description" />
                 </div>
               </div>
             </article>
@@ -255,24 +205,14 @@
             <article class="border-top pt-5 mt-5">
               <div class="row justify-content-between">
                 <div class="col-6">
-                  <a
-                    class="d-inline-block text-muted font-weight-medium text-uppercase small"
-                    href="#"
-                    >Business</a
-                  >
+                  <a class="d-inline-block text-muted font-weight-medium text-uppercase small" href="#">Business</a>
                   <h4 class="h6 font-weight-medium mb-0">
-                    <a href="single-article.html"
-                      >Enjoy $1,000 worth of perks with Front for Business</a
-                    >
+                    <a href="single-article.html">Enjoy $1,000 worth of perks with Front for Business</a>
                   </h4>
                 </div>
 
                 <div class="col-5">
-                  <img
-                    class="img-fluid"
-                    src="../../assets/img/500x280/img19.jpg"
-                    alt="Image Description"
-                  />
+                  <img class="img-fluid" src="../../assets/img/500x280/img19.jpg" alt="Image Description" />
                 </div>
               </div>
             </article>

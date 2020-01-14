@@ -25,24 +25,26 @@ passport.use(
     (accessToken, refreshtoken, profile, done) => {
       // Passport callback function
       // Looking for the user in our DB
-      Admin.findOne({ googleId: profile.id }).then(currentAdmin => {
-        if (currentAdmin) {
+      Admin.findOne({ googleId: profile.id }).then(user => {
+        if (user) {
           // Already have the user
-          currentAdmin.pic = profile._json.picture;
+          user.pic = profile._json.picture;
           console.log(
-            'Loggin in previously existent user ' + currentAdmin.name
+            'LOGGIN IN > ' + user.name
           );
-          done(null, currentAdmin);
+          done(null, user);
         } else {
-          // Otherwise create user in our DB
+          // #TODO: Cambiare opzione dopo registrazione admin il 15/01
+          // Otherwise create user in our DB - in DEV period only, in production redirecto to contacts or home
           const newAdmin = new Admin({
             googleId: profile.id,
             name: profile.displayName,
             email: profile.emails[0].value,
-            pic: profile._json.picture
+            pic: profile._json.picture,
+            role: 0
           });
           newAdmin.save().then(data => {
-            console.log('New User Created ' + data);
+            console.log('SIGNIN UP > ' + data);
             done(null, data);
           });
         }
@@ -50,3 +52,4 @@ passport.use(
     }
   )
 );
+

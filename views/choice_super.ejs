@@ -1,0 +1,146 @@
+<%- include ('partials/header') %>
+<main id="content" role="main">
+    <!-- Breadcrumb Section -->
+    <div class="bg-primary">
+        <div class="container space-top-1 pb-3">
+            <div class="row">
+                <div class="col-lg-5 order-lg-2 text-lg-right mb-4 mb-lg-0">
+                    <div
+                        class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start">
+                        <!-- Breadcrumb -->
+                        <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
+                            <li class="breadcrumb-item">
+                                <a class="breadcrumb-link" href="/">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                <i class="fas fa-laptop-code"></i> SuperUser
+                            </li>
+                        </ol>
+                        <!-- End Breadcrumb -->
+
+                        <!-- Breadcrumb Nav Toggle Button -->
+                        <div class="d-lg-none">
+                            <button type="button" class="navbar-toggler btn u-hamburger u-hamburger--white"
+                                aria-label="Toggle navigation" aria-expanded="false" aria-controls="breadcrumbNavBar"
+                                data-toggle="collapse" data-target="#breadcrumbNavBar">
+                                <span id="breadcrumbHamburgerTrigger" class="u-hamburger__box">
+                                    <span class="u-hamburger__inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                        <!-- End Breadcrumb Nav Toggle Button -->
+                    </div>
+                </div>
+
+                <div class="col-lg-7 order-lg-1">
+                    <!-- User Info -->
+                    <div class="media d-block d-sm-flex align-items-sm-center">
+                        <div class="u-lg-avatar position-relative mb-3 mb-sm-0 mr-3">
+                            <img class="img-fluid rounded-circle" src="<%= user.pic %>" alt="Image Description" />
+                            <span
+                                class="badge badge-md badge-outline-success badge-pos badge-pos--bottom-right rounded-circle">
+                                <span class="fas fa-check"></span>
+                            </span>
+                        </div>
+                        <div class="media-body">
+                            <h1 class="h3 text-white font-weight-medium mb-1">
+                                <%= user.name %>
+                            </h1>
+                            <span class="d-block text-white-70"><i class="fas fa-at" style="margin-right:0.3em;"></i><%=
+                user.email %></span>
+                            <span class="d-block text-white-70"><i class="fas fa-code-branch"
+                                    style="margin-right:0.3em;"></i><%= user._id %></span>
+                        </div>
+                    </div>
+                    <!-- End User Info -->
+                </div>
+            </div>
+        </div>
+
+        <div class="container space-bottom-1 space-bottom-lg-0">
+            <div class="d-lg-flex justify-content-lg-between align-items-lg-center">
+
+
+                <div class="ml-lg-auto pb-4">
+                    <!-- Button -->
+                    <a class="btn btn-sm btn-white text-nowrap transition-3d-hover" href="/admin/auth/logout"
+                        data-modal-target="#requestPaymentModal">
+                        <i class="fas fa-sign-out-alt" style="margin-right:0.2em;"></i>Logout
+                    </a>
+                    <!-- End Button -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumb Section -->
+    <div class="bg-light">
+        <div class="container space-2">
+            <!-- Services Section -->
+            <div class="container">
+                <div class=" w-lg-65 mx-lg-auto">
+                    <div class="card-deck d-block d-md-flex card-md-gutters-3 mb-5">
+                        <!-- Pricing -->
+                        <div class="card text-center mb-5 mb-md-0">
+                            <!-- Header -->
+                            <header class="card-header p-5">
+                                <h4 class="h5 text-primary">Admin</h4>
+                                <figure class="ie-height-56 max-width-8 mx-auto">
+                                    <img class="js-svg-injector" src="../../assets/svg/icons/icon-18.svg" alt="SVG"
+                                        data-parent="#icon18" />
+                                </figure>
+                            </header>
+                            <!-- End Header -->
+
+                            <!-- Content -->
+                            <div class="card-body p-5">
+                                <!-- SVG Icon -->
+
+                                <!-- End SVG Icon -->
+
+                                <button type="button" class="btn btn-sm btn-block btn-primary transition-3d-hover">
+                                    <a style="color: white; !important" href="/admin/dashboard">Procedi come
+                                        Admin</a>
+                                </button>
+                            </div>
+                            <!-- End Content -->
+                        </div>
+                        <!-- End Pricing -->
+
+                        <!-- Pricing -->
+                        <div class="card card-frame-highlighted text-center">
+                            <!-- Header -->
+                            <header class="card-header p-5">
+                                <h4 class="h5 text-primary">SuperUser</h4>
+                                <figure class="ie-height-56 max-width-8 mx-auto">
+                                    <img class="js-svg-injector" src="../../assets/svg/icons/icon-44.svg" alt="SVG"
+                                        data-parent="#icon44" />
+                                </figure>
+                            </header>
+                            <!-- End Header -->
+
+                            <!-- Content -->
+                            <div class="card-body p-5">
+                                <!-- SVG Icon -->
+
+                                <!-- End SVG Icon -->
+
+                                <button type="button" class="btn btn-sm btn-block btn-primary transition-3d-hover">
+                                    <a style="color: white; !important" href="/super/dashboard">Procedi come
+                                        SuperUser</a>
+                                </button>
+                            </div>
+                            <!-- End Content -->
+                        </div>
+                        <!-- End Pricing -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</main>
+<div class="container space-top-1 pb-3">
+    <%- messages('message', locals) %>
+</div>
+<%- include ('partials/footer') %>

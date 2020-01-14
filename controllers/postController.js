@@ -15,7 +15,7 @@ exports.checkID = (req, res, next) => {
 };
 
 exports.getAllPosts = (req, res) => {
-  Post.find((err, data) => {
+  Post.find({ status: 1 }, (err, data) => {
     if (err) {
       res.status(404).json({
         status: 'fail',
@@ -23,12 +23,7 @@ exports.getAllPosts = (req, res) => {
       });
     }
 
-    res.status(200).json({
-      status: 'success',
-      data: {
-        posts: data
-      }
-    });
+    res.render('show_all', { posts: data })
   });
 };
 
@@ -40,6 +35,12 @@ exports.getPostByCategory = (req, res) => {
         message: 'No ${category} found'
       });
     }
+
+    data.sort((a, b) => {
+      a = a.edited;
+      b = b.edited;
+      return a > b ? -1 : a < b ? 1 : 0;
+    });
 
     res
       .status(200)
@@ -104,3 +105,15 @@ exports.reset = (req, res) => {
     });
   });
 };
+
+exports.specialPage = (req, res) => {
+  Post.find({ special: true }, (err, data) => {
+    if (err) {
+      res.status(500).json({
+        status: 'fail',
+        message: 'Failed to retrieve special posts'
+      })
+    }
+    res.render('show_category', { category: 'speciali', posts: data });
+  })
+}

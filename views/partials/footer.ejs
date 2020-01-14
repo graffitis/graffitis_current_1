@@ -39,19 +39,13 @@
 
   <p class="mb-2">
     Progetto open-source su
-    <a
-      target="blank"
-      class="badge badge-secondary"
-      href="https://github.com/graffitis/graffitis-platform"
-      ><i class="fab fa-github" style="margin-right: 0.2em;"></i>
-      graffitis-platform</a
-    >
+    <a target="blank" class="badge badge-secondary" href="https://github.com/graffitis/graffitis-platform"><i
+        class="fab fa-github" style="margin-right: 0.2em;"></i>
+      graffitis-platform</a>
   </p>
   <p>
     © 2020 GRAFFITIS · Reparto Tecnico Redazione ·
-    <a href="https://www.itiscuneo.gov.it" target="blank"
-      >ITIS Delpozzo Cuneo</a
-    >
+    <a href="https://www.itiscuneo.gov.it" target="blank">ITIS Delpozzo Cuneo</a>
   </p>
 </footer>
 <!-- ========== END FOOTER ========== -->
@@ -75,6 +69,8 @@
 <script src="../../assets/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
 <script src="../../assets/vendor/summernote/dist/summernote-lite.js"></script>
 <script src="../../assets/vendor/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js"></script>
+<script src="../../assets/vendor/custombox/dist/custombox.min.js"></script>
+<script src="../../assets/vendor/custombox/dist/custombox.legacy.min.js"></script>
 
 <!-- JS Front -->
 <script src="../../assets/js/hs.core.js"></script>
@@ -95,10 +91,11 @@
 <script src="../../assets/js/components/hs.focus-state.js"></script>
 <script src="../../assets/js/components/hs.sticky-block.js"></script>
 <script src="../../assets/js/components/hs.go-to.js"></script>
+<script src="../../assets/js/components/hs.modal-window.js"></script>
 
 <!-- JS Plugins Init. -->
 <script>
-  $(window).on('load', function() {
+  $(window).on('load', function () {
     // initialization of HSMegaMenu component
     $('.js-mega-menu').HSMegaMenu({
       event: 'hover',
@@ -113,27 +110,31 @@
 
   $.HSCore.components.HSStickyBlock.init('.js-sticky-block');
 
-  $(document).on('ready', function() {
+  $(document).on('ready', function () {
     // initialization of text editors
     $.HSCore.components.HSSummernoteEditor.init('.js-summernote-editor');
   });
 
-  $(document).on('ready', function() {
+  $(document).on('ready', function () {
     // initialization of datatables
     $.HSCore.components.HSDatatables.init('.js-datatable');
   });
 
-  $(document).on('ready', function() {
+  $(document).on('ready', function () {
     // initialization of header
     $.HSCore.components.HSHeader.init($('#header'));
 
     // initialization of unfold component
     $.HSCore.components.HSUnfold.init($('[data-unfold-target]'), {
-      afterOpen: function() {
+      afterOpen: function () {
         $(this)
           .find('input[type="search"]')
           .focus();
       }
+    });
+
+    $.HSCore.components.HSModalWindow.init('userModalTrigger', '.js-modal-window', {
+      autonomous: true
     });
 
     // initialization of malihu scrollbar

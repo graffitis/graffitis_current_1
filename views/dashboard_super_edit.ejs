@@ -1,0 +1,149 @@
+<%- include ('partials/header') %>
+<main id="content" role="main">
+    <div class="bg-primary">
+        <!-- Breadcrumb Section -->
+        <div class="container space-top-1 pb-3">
+            <div class="row">
+                <div class="col-lg-5 order-lg-2 text-lg-right mb-4 mb-lg-0">
+                    <div
+                        class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start">
+                        <!-- Breadcrumb -->
+                        <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
+                            <li class="breadcrumb-item">
+                                <a class="breadcrumb-link" href="/">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a class="breadcrumb-link" href="/super">SuperUser</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a class="breadcrumb-link" href="/super/dashboard">Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                Modifica Utente
+                            </li>
+                        </ol>
+                        <!-- End Breadcrumb -->
+
+                        <!-- Breadcrumb Nav Toggle Button -->
+                        <div class="d-lg-none">
+                            <button type="button" class="navbar-toggler btn u-hamburger u-hamburger--white"
+                                aria-label="Toggle navigation" aria-expanded="false" aria-controls="breadcrumbNavBar"
+                                data-toggle="collapse" data-target="#breadcrumbNavBar">
+                                <span id="breadcrumbHamburgerTrigger" class="u-hamburger__box">
+                                    <span class="u-hamburger__inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                        <!-- End Breadcrumb Nav Toggle Button -->
+                    </div>
+                </div>
+
+                <div class="col-lg-7 order-lg-1">
+                    <!-- User Info -->
+                    <div class="media d-block d-sm-flex align-items-sm-center">
+                        <div class="u-lg-avatar position-relative mb-3 mb-sm-0 mr-3">
+                            <img class="img-fluid rounded-circle" src="<%= user.pic %>" alt="Image Description" />
+                            <span
+                                class="badge badge-md badge-outline-success badge-pos badge-pos--bottom-right rounded-circle">
+                                <span class="fas fa-check"></span>
+                            </span>
+                        </div>
+                        <div class="media-body">
+                            <h1 class="h3 text-white font-weight-medium mb-1">
+                                <%= user.name %>
+                            </h1>
+                            <span class="d-block text-white-70"><i class="fas fa-at" style="margin-right:0.3em;"></i><%=
+                user.email %></span>
+                            <span class="d-block text-white-70"><i class="fas fa-code-branch"
+                                    style="margin-right:0.3em;"></i><%= user._id %></span>
+                        </div>
+                    </div>
+                    <!-- End User Info -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <form action="/super/users/<%= formUser._id %>" method="POST" id="post_create">
+        <!-- End Breadcrumb Section -->
+        <div class="bg-light">
+            <div class="container space-2">
+                <div class="form-group">
+                    <label for="name">NOME</label>
+                    <input type="text" class="form-control" id="name" name="name"
+                        placeholder="Inserisci il titolo dell'articolo..." value="<%= formUser.name %>" />
+                    <small id="titleHelp" class="form-text text-muted">Verrà visualizzato come nome autore negli
+                        articoli scritti da questo utente</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-MAIL</label>
+                    <input type="text" class="form-control" id="email" name="email"
+                        placeholder="Inserisci un URL di un'immagine" value="<%= formUser.email %>" />
+                    <small id="coverHelp" class="form-text text-muted">Verrà utilizzata per inviare eventuali
+                        comunicazioni all'utente</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="cover">ID</label>
+                    <div class="js-focus-state input-group mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-code-branch"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="<%= formUser._id %>" aria-label="Disabled"
+                            disabled>
+
+                    </div>
+                    <small id="idHelp" class="form-text text-muted">ID Univoco non modificabile utilizzato per tutte
+                        le operazioni sugli utenti</small>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label for="status" class="form-label">
+                        Ruolo
+                    </label>
+
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
+                        <label class="btn btn-sm btn-secondary active">
+                            <input type="radio" name="role" id="aggiorna" autocomplete="off" value="2" />
+                            <i class="fas fa-laptop-code"></i> SuperUser
+                        </label>
+
+                        <label class="btn btn-sm btn-secondary">
+                            <input type="radio" name="role" id="mantieni" autocomplete="off" value="1" checked />
+                            <i class="far fa-minus-square"></i> Standard
+                        </label>
+                    </div>
+                    <small id="tagsHelp" class="form-text text-muted mb-6">SUPERUSER > Caratteristiche Standard +
+                        Gestione Team e Categorie <br>
+                        STANDARD > Creazione e Modifica Posts | <strong> default</strong></small>
+
+
+                </div>
+
+                <hr class="hr mb-6 mt-6">
+
+                <!-- Buttons -->
+                <div class="row ml-0 mb-4">
+                    <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1">
+                        <i class="fas fa-cloud-upload-alt"></i> Salva e Applica Ruolo
+                    </button>
+    </form>
+
+    <form action="/super/users/<%= formUser._id %>" method="POST" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit" class="btn btn-sm btn-danger transition-3d-hover">
+            <i class="far fa-trash-alt"></i> Elimina Utente
+        </button>
+    </form>
+
+    </div>
+
+    <a href="/super/users" class="link-muted">
+        <i class="fas fa-arrow-left" style="margin-left: 0.2em;"></i> Torna Al Team</a>
+    </div>
+    </div>
+</main>
+<%- include ('partials/footer') %>

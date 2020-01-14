@@ -1,15 +1,14 @@
-<div id="messages">
-  <% Object.keys(messages).forEach(type => { %>
-  <div
-    class="alert alert-<%= type %> alert-dismissible fade show"
-    role="<%= type %>"
-  >
-    <% messages[type].forEach(message => { %><i class="far fa-check-circle"></i>
-    <%= message %> <% }) %>
+<div class="mt-3">
+  <div id="messages">
+    <% Object.keys(messages).forEach(type => { %>
+    <div class="alert alert-<%= type %> alert-dismissible fade show" role="<%= type %>">
+      <% messages[type].forEach(message => { %><i class="far fa-check-circle"></i>
+      <%= message %> <% }) %>
 
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">×</span>
-    </button>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <% }) %>
   </div>
-  <% }) %>
 </div>

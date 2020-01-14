@@ -21,15 +21,22 @@ exports.posts = (req, res) => {
 };
 
 exports.editPage = (req, res) => {
-  Post.findById(req.params.id, (err, data) => {
-    if (err) {
-      res.status(400).json({
-        status: 'fail',
-        message: 'failed to load posts'
-      });
-    }
-
-    res.render('dashboard_edit', { post: data, user: req.user });
+  Post.findById(req.params.id, (err1, data) => {
+    Category.find((err2, cats) => {
+      if (err2) {
+        res.status(500).json({
+          status: 'failed',
+          message: 'failed to retrieve categories'
+        });
+      }
+      if (err1) {
+        res.status(400).json({
+          status: 'fail',
+          message: 'failed to load posts'
+        });
+      }
+      res.render('dashboard_edit', { post: data, user: req.user, cats: cats });
+    });
   });
 };
 
@@ -70,7 +77,7 @@ exports.editPost = (req, res) => {
         });
       }
       req.flash('success', 'Post Modificato con successo! | ' + dateState);
-      res.redirect('/admin/dashboard');
+      res.redirect('/admin/posts');
     });
   });
 };
@@ -89,7 +96,7 @@ exports.createPage = (req, res) => {
 
 exports.newPost = (req, res) => {
 
-  console.log(req.body)
+  const special = (req.body.special === 'true');
 
   const newPost = new Post({
     cover: req.body.cover,
@@ -101,7 +108,8 @@ exports.newPost = (req, res) => {
     body: req.body.body,
     tags: req.body.tags.replace(/\s+/g, '').split(','),
     status: req.body.status * 1,
-    edited: Date.now()
+    edited: Date.now(),
+    special: special
   });
 
   newPost.save(err => {
@@ -127,3 +135,18 @@ exports.deletePost = (req, res) => {
     res.redirect('/admin/posts');
   });
 };
+
+
+exports.teamPage = (req, res) => {
+  console.log('got here');
+  Admin.find((err, data) => {
+    if (err) {
+      res.status(500).json({
+        status: 'fail',
+        message: 'failed to retrieve admins'
+      });
+    }
+    console.log('got here c2');
+    res.render('dashboard_team', { admins: data });
+  });
+}

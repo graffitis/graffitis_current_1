@@ -26,5 +26,11 @@ exports.callback = (req, res) => {
     'success',
     'Hai eseguito il login corettamente come ' + req.user.name
   );
-  res.redirect('/admin/dashboard');
+  if (req.user.role === 2) {
+    res.redirect('/super');
+  } else if (req.user.role === 1) {
+    res.redirect('/admin/dashboard');
+  } else {
+    res.redirect('/');
+  }
 };

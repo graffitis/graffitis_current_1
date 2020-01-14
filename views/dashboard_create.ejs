@@ -148,12 +148,12 @@
                                 $('#category_input_sel').val(e.target.dataset.cat)
                               }
                             </script>
-                            <input type="radio" class="custom-control-input" id="stylishRadio<%= i %>" name="category_gui" 
-                            onchange="set_cat(event)" data-cat="<%= cat.name %>">
+                            <input type="radio" class="custom-control-input" id="stylishRadio<%= i %>"
+                              name="category_gui" onchange="set_cat(event)" data-cat="<%= cat.name %>">
                             <!-- END WORKAROUND -->
                             <label class="custom-control-label" for="stylishRadio<%= i %>">
                               <h6><%= cat.name %></h6>
-                              <small class="card-text text-muted"><%= cat.authors %></small>
+                              <small class="card-text text-muted"><%= cat.desc %></small>
                             </label>
                           </div>
                         </div>
@@ -200,20 +200,7 @@
         </div>
 
 
-        <!-- <div class="form-group">
-          <label for="category">Categoria</label>
-          <input
-            type="text"
-            class="form-control"
-            id="category"
-            name="category"
-            placeholder="Inserisci la categoria dell'articolo..."
-          />
-          <small id="categoryHelp" class="form-text text-muted"
-            >Ci servirà a catalogare il tuo articolo e suddividere tutti i
-            manoscritti in modo ordinato</small
-          >
-        </div> -->
+
         <div class="form-group space-top-1">
           <label for="body">Corpo dell'Articolo</label>
           <div class="u-summernote-editor">
@@ -228,7 +215,7 @@
 
           <!-- Tags Input -->
           <div class="u-tagsinput">
-            <input id="tags" type="text" name="tags" value="ITIS, Informatica, Mondo, Cinema" data-role="tagsinput" />
+            <input id="tags" type="text" name="tags" value="ITIS" data-role="tagsinput" />
           </div>
           <small id="tagsHelp" class="form-text text-muted">Grazie a questi tag miglioreremo l'indicizzazione del tuo
             articolo
@@ -238,11 +225,34 @@
 
         <div class="form-group ">
           <label for="status" class="form-label">
+            Tipologia Edizione
+          </label>
+
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
+            <label class="btn btn-sm btn-secondary">
+              <input type="radio" name="special" id="aggiorna" autocomplete="off" value="true" />
+              <i class="fas fa-star"></i> Speciale
+            </label>
+
+            <label class="btn btn-sm btn-secondary active">
+              <input type="radio" name="special" id="mantieni" autocomplete="off" value="false" checked />
+              <i class="far fa-newspaper"></i> Standard
+            </label>
+          </div>
+          <small id="tagsHelp" class="form-text text-muted mb-6">
+            SPECIALE > I Post verranno contrassegnati da un badge 'Edizione Speciale' in tutti i loro formati<br>
+            STANDARD > Nessuna modifica ai Post | <strong> default</strong>
+          </small>
+        </div>
+
+        <div class="form-group ">
+          <label for="status" class="form-label">
             Stato
           </label>
 
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-sm btn-secondary active">
+            <label class="btn btn-sm btn-secondary active disabled">
               <input type="radio" name="status" id="option1" autocomplete="off" value="1" />
               <i class="fas fa-globe"></i> Online
             </label>
@@ -256,8 +266,10 @@
             </label>
           </div>
         </div>
-        <small id="tagsHelp" class="form-text text-muted mb-6">ONLINE > L'articolo è subito visibile al pubblico <br>
-          PRONTO > L'articolo è pronto per la pubblicazione <br> BOZZA > L'articolo è in stesura </small>
+        <small id="tagsHelp" class="form-text text-muted mb-6">ONLINE > L'articolo è subito visibile al pubblico, può
+          essere utilizzato solo dagli ammistratori.<br>
+          PRONTO > L'articolo è pronto per la pubblicazione. <br> BOZZA > L'articolo è in stesura. | <strong>
+            default</strong> </small>
 
         <hr class="hr mb-6 mt-6">
 
@@ -266,11 +278,11 @@
           <i class="fas fa-cloud-upload-alt"></i> Salva e Applica Stato
         </button>
   </form>
-  <a href="/admin/posts">
-    <button class="btn btn-sm btn-soft-secondary transition-3d-hover">
-      Annulla
-    </button>
-  </a>
+  <div class="row ml-0 mt-4">
+    <a href="/admin/posts" class="link-muted">
+      <i class="fas fa-arrow-left" style="margin-left: 0.2em;"></i> Torna Alla Dashboard</a>
+  </div>
+
 
   <!-- End Buttons -->
   </div>
