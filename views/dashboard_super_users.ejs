@@ -151,12 +151,13 @@
                             </td>
                             <td class="align-middle text-secondary  "><%=user._id %></td>
 
-                            <% if(user.role === 2) { %>
+                            <% if(user.role === 3) { %>
+                            <td class="align-middle text-success"><i class="fas fa-crown"></i> - King</td>
+                            <% } else  if (user.role === 2) { %>
                             <td class="align-middle text-success"><i class="fas fa-laptop-code"></i> - Super</td>
-                            <% } else { %>
-                            <td class="align-middle text-warning"><i class="far fa-minus-square"
-                                    style="margin-right:0.3em;"></i> - Standard</td>
-                            <%} %>
+                            <%} else { %>
+                            <td class="align-middle text-success"><i class="fas fa-minus-square"></i> - Admin</td>
+                            <% } %>
 
                         </tr>
                         <% }); %>
