@@ -28,7 +28,8 @@ exports.getAllPosts = (req, res) => {
 };
 
 exports.getPostByCategory = (req, res) => {
-  Post.find({ category: req.params.category }, (err, data) => {
+  const query = { $and: [{ category: req.params.category }, { status: 1 }] };
+  Post.find(query, (err, data) => {
     if (err) {
       res.status(404).json({
         status: 'fail',
@@ -107,7 +108,8 @@ exports.reset = (req, res) => {
 };
 
 exports.specialPage = (req, res) => {
-  Post.find({ special: true }, (err, data) => {
+  const query = { $and: [{ special: true }, { status: 1 }] };
+  Post.find(query, (err, data) => {
     if (err) {
       res.status(500).json({
         status: 'fail',

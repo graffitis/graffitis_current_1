@@ -6,17 +6,17 @@ const utils = require('./../config/utils');
 
 
 
-router.route('/').get(utils.authCheck, adminController.posts);
+router.route('/').get(utils.adminCheck, adminController.posts);
 
 router
   .route('/new')
-  .get(utils.authCheck, adminController.createPage)
-  .post(utils.authCheck, adminController.newPost);
+  .get(utils.adminCheck, adminController.createPage)
+  .post(utils.adminCheck, adminController.newPost);
 
 router
   .route('/:id')
-  .get(utils.authCheck, adminController.editPage)
-  .post(utils.authCheck, adminController.editPost)
-  .delete(utils.authCheck, adminController.deletePost);
+  .get(utils.adminCheck, adminController.editPage)
+  .post(utils.adminCheck, adminController.editPost)
+  .delete(utils.adminCheck, adminController.deletePost);
 
 module.exports = router;

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Title -->
+    <title>Accesso Negato | GRAFFITIS</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Google Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" />
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Favicon da definire durante periodo PCTO -->
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="../../assets/vendor/font-awesome/css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="../../assets/vendor/animate.css/animate.min.css" />
+    <link rel="stylesheet" href="../../assets/vendor/hs-megamenu/src/hs.megamenu.css" />
+    <link rel="stylesheet" href="../../assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css" />
+    <link rel="stylesheet" href="../../assets/vendor/fancybox/jquery.fancybox.css" />
+    <link rel="stylesheet" href="../../assets/vendor/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" href="../../assets/vendor/dzsparallaxer/dzsparallaxer.css" />
+
+    <!-- CSS Front Template -->
+    <link rel="stylesheet" href="../../assets/css/theme.css" />
+</head>
+
+<body class="bg-img-hero-fixed" style="background-image: url(../../assets/svg/illustrations/error-404.svg);">
+    <!-- ========== HEADER ========== -->
+    <header id="header" class="u-header u-header--bg-transparent u-header--abs-top">
+        <div class="u-header__section">
+            <div id="logoAndNav" class="container">
+                <!-- Nav -->
+                <nav class="navbar navbar-expand u-header__navbar">
+                    <!-- Logo -->
+                    <a class="navbar-brand u-header__navbar-brand u-header__navbar-brand-center" href="/"
+                        aria-label="Front">
+                        <span class="u-header__navbar-brand-text">Graffitis</span>
+                    </a>
+                    <!-- End Logo -->
+                </nav>
+                <!-- End Nav -->
+            </div>
+        </div>
+    </header>
+    <!-- ========== END HEADER ========== -->
+
+    <!-- ========== MAIN ========== -->
+    <main id="content" role="main">
+        <!-- Hero Section -->
+        <div class="d-lg-flex">
+            <div class="container d-lg-flex align-items-lg-center min-height-lg-100vh space-4">
+                <div class="w-lg-60 w-xl-50">
+                    <!-- Title -->
+                    <div class="mb-5">
+                        <h1 class="text-primary font-weight-normal">
+                            Accesso
+                            <span class="font-weight-semi-bold">Negato </span>
+                        </h1>
+
+                        <div class="card card-frame mt-3">
+                            <div class="card-body">
+                                <p class="mb-0">
+                                    <i class="fas fa-user-lock"></i> E' richiesto un livello di autenticazione più alto
+                                    di
+                                    <strong><%= user.role %></strong>
+                                </p>
+                                <hr>
+                                <p>
+                                    Se credi che ci sia un problema con la piattaforma,
+                                    <a href="/contatti"><i class="fas fa-external-link-alt"></i>contattaci</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Title -->
+
+                    <a class="btn btn-primary btn-wide transition-3d-hover" href="/"><i class="fas fa-chevron-left"></i>
+                        Torna Alla Home</a>
+                </div>
+            </div>
+        </div>
+        <!-- End Hero Section -->
+    </main>
+    <!-- ========== END MAIN ========== -->
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="position-md-absolute right-md-0 bottom-md-0 left-md-0">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center space-1">
+                <!-- Copyright -->
+                <span>© 2020 GRAFFITIS · Reparto Tecnico Redazione ·
+                    <a href="https://www.itiscuneo.gov.it" target="blank">ITIS Delpozzo Cuneo</a></span>
+
+                <!-- End Copyright -->
+            </div>
+        </div>
+    </footer>
+    <!-- ========== END FOOTER ========== -->
+
+    <!-- JS Global Compulsory -->
+    <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
+    <script src="../../assets/vendor/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../../assets/vendor/bootstrap/bootstrap.min.js"></script>
+
+    <!-- JS Implementing Plugins -->
+
+    <!-- JS Front -->
+    <script src="../../assets/js/hs.core.js"></script>
+    <!-- Code injected by live-server -->
+    <script type="text/javascript">
+        // <![CDATA[  <-- For SVG support
+        if ('WebSocket' in window) {
+            (function () {
+                function refreshCSS() {
+                    var sheets = [].slice.call(document.getElementsByTagName('link'));
+                    var head = document.getElementsByTagName('head')[0];
+                    for (var i = 0; i < sheets.length; ++i) {
+                        var elem = sheets[i];
+                        var parent = elem.parentElement || head;
+                        parent.removeChild(elem);
+                        var rel = elem.rel;
+                        if (
+                            (elem.href && typeof rel != 'string') ||
+                            rel.length == 0 ||
+                            rel.toLowerCase() == 'stylesheet'
+                        ) {
+                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                            elem.href =
+                                url +
+                                (url.indexOf('?') >= 0 ? '&' : '?') +
+                                '_cacheOverride=' +
+                                new Date().valueOf();
+                        }
+                        parent.appendChild(elem);
+                    }
+                }
+                var protocol =
+                    window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+                var address =
+                    protocol + window.location.host + window.location.pathname + '/ws';
+                var socket = new WebSocket(address);
+                socket.onmessage = function (msg) {
+                    if (msg.data == 'reload') window.location.reload();
+                    else if (msg.data == 'refreshcss') refreshCSS();
+                };
+                if (
+                    sessionStorage &&
+                    !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')
+                ) {
+                    console.log('Live reload enabled.');
+                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+                }
+            })();
+        } else {
+            console.error(
+                'Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.'
+            );
+        }
+      // ]]>
+    </script>
+</body>
+
+</html>

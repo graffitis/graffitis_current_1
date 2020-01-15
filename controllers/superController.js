@@ -64,7 +64,7 @@ exports.edit_user = (req, res) => {
             })
         } else {
             let upUser = {
-                googleID: data.googleId,
+                googleId: data.googleId,
                 name: req.body.name,
                 email: req.body.email,
                 pic: data.pic,
@@ -188,7 +188,8 @@ exports.delete_cat = (req, res) => {
 }
 
 exports.get_prima = (req, res) => {
-    Post.find((err, data) => {
+    const query = { $and: [{ featured: true }, { status: 1 }] };
+    Post.find(query, (err, data) => {
         if (err) {
             res.status(500).json({
                 status: 'fail',
@@ -197,4 +198,8 @@ exports.get_prima = (req, res) => {
         }
         res.render('dashboard_super_prima', { posts: data });
     });
+}
+
+exports.get_prima_new = (req, res) => {
+    res.render('dashboard_super_create_prima');
 }

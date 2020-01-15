@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="../../assets/vendor/bootstrap-tagsinput/css/bootstrap-tagsinput.css">
   <link rel="stylesheet" href="../../assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
   <link rel="stylesheet" href="../../assets/vendor/custombox/dist/custombox.min.css">
-  <link rel="stylesheet" href="../../assets/vendor/animate.css">
+  <!-- <link rel="stylesheet" href="../../assets/vendor/animate.css"> -->
 
   <!-- CSS Front Template -->
   <link rel="stylesheet" href="../../assets/css/theme.css">
@@ -62,10 +62,12 @@
           <!-- End Responsive Toggle Button -->
 
 
+
           <!-- Navigation -->
           <div id="navBar" class="collapse navbar-collapse u-header__navbar-collapse">
             <ul class="navbar-nav u-header__navbar-nav">
               <!-- Demos -->
+
               <li class="nav-item hs-has-mega-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp"
                 data-animation-out="fadeOut" data-max-width="900px" data-position="right">
                 <a id="demosMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;"
@@ -190,24 +192,28 @@
                 <!-- End Demos - Mega Menu -->
               </li>
               <!-- End Demos -->
-
+              <li class="nav-item u-header__nav-item mr-2">
+                <a class="nav-link u-header__nav-link" href="/redazione">Redazione</a>
+              </li>
               <!-- Docs -->
               <% if(user) { %>
               <li class="list-inline-item">
                 <!-- Account Sidebar Toggle Button -->
                 <div class="dropdown show">
-                  <a class="btn btn-sm btn-primary dropdown-toggle transition-3d-hover" href="#" role="button"
+                  <a class="btn btn-sm btn-secondary dropdown-toggle transition-3d-hover" href="#" role="button"
                     id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user" style="margin-right:0.2em;"></i> <%= user.name %>
                   </a>
 
                   <div class=" dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <% if (user.role === 2) { %>
+                    <% if (user.role === 3) { %>
+                    <a class="dropdown-item" href="/king">Dashboard</a>
+                    <% } else if (user.role === 2) { %>
                     <a class="dropdown-item" href="/super">Dashboard</a>
                     <% } else if (user.role === 1) { %>
                     <a class="dropdown-item" href="/admin/dashboard">Dashboard</a>
                     <% } else { %>
-                    <a class="dropdown-item" href="/user/dashboard">Dashboard</a>
+                    <a class="dropdown-item" href="/dashboard">Dashboard</a>
                     <% } %>
                     <!-- <a class="dropdown-item" href="/admin/todos">To Do</a> -->
                     <a class="dropdown-item" href="/admin/auth/logout"><i class="fas fa-sign-out-alt"

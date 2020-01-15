@@ -2,7 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Category = require('./../models/Category');
 const basicController = require('./../controllers/basicController');
+const userController = require('./../controllers/userController');
+const utils = require('./../config/utils');
 const router = express.Router();
+
 
 router.route('/').get(basicController.getHome);
 
@@ -10,13 +13,11 @@ router.route('/choice').get((req, res) => {
   res.render('choice');
 });
 
-router.route('/testpage').get((req, res) => {
-  res.render('test');
-});
+router.route('/dashboard').get(utils.userCheck, userController.dashboard);
 
-router.route('/paginanuova').get((req, res) => {
-  res.render('test2');
-});
+router.route('/redazione').get(basicController.get_redazione);
+
+router.route('/upperRoleRequired').get(basicController.get_upperRole);
 
 router.route('/newcat').get((req, res) => {
   const newCat = {

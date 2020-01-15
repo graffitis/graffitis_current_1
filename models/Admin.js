@@ -5,9 +5,12 @@ var adminSchema = new mongoose.Schema({
   name: String,
   email: String,
   pic: String,
-  role: Number
+  role: Number,
+  task: String,
+  desc: String
   /* 
-    ROLES: 
+    ROLES:
+      king   > 3 
       super  > 2
       admin  > 1
       user   > 0

@@ -13,13 +13,17 @@
                 <a class="breadcrumb-link" href="/">Home</a>
               </li>
               <li class="breadcrumb-item">
-                <a class="breadcrumb-link" href="/admin/dashboard">Dashboard</a>
+                <a class="breadcrumb-link" href="/king"><i class="fas fa-crown"></i>
+                  King</a>
               </li>
               <li class="breadcrumb-item">
-                <a class="breadcrumb-link" href="/admin/posts">Posts</a>
+                <a class="breadcrumb-link" href="/king/dashboard">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a class="breadcrumb-link" href="/king/posts">Posts</a>
               </li>
               <li class="breadcrumb-item active" aria-current="page">
-                Scrivi un Post
+                Scrivi
               </li>
             </ol>
             <!-- End Breadcrumb -->
@@ -64,7 +68,7 @@
   </div>
   <!-- End Breadcrumb Section -->
 
-  <form action="/admin/posts/new" method="POST" id="post_create">
+  <form action="/king/posts/new" method="POST" id="post_create">
     <div class="bg-light">
       <div class="container space-2">
         <div class="form-group">
@@ -252,7 +256,10 @@
           </label>
 
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
-
+            <label class="btn btn-sm btn-secondary active">
+              <input type="radio" name="status" id="option1" autocomplete="off" value="1" />
+              <i class="fas fa-globe"></i> Online
+            </label>
             <label class="btn btn-sm btn-secondary">
               <input type="radio" name="status" id="option2" autocomplete="off" value="0" />
               <i class="fas fa-book-medical"></i> Pronto

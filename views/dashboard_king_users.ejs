@@ -13,10 +13,14 @@
                                 <a class="breadcrumb-link" href="/">Home</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a class="breadcrumb-link" href="/super/dashboard">Dashboard</a>
+                                <a class="breadcrumb-link" href="/king"><i class="fas fa-crown"></i>
+                                    King</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a class="breadcrumb-link" href="/king/dashboard">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Posts
+                                Utenti
                             </li>
                         </ol>
                         <!-- End Breadcrumb -->
@@ -69,9 +73,10 @@
 
                 <div class="ml-lg-auto pb-4">
                     <!-- Button -->
-                    <a class="btn btn-sm btn-white text-nowrap transition-3d-hover" disabled href="/super/prima/new"
-                        data-modal-target="#requestPaymentModal">
-                        <i class="fas fa-plus" style="margin-right:0.4em;"></i>Aggiungi Post Consigliato
+                    <a class="btn btn-sm btn-white text-nowrap transition-3d-hover disabled" disabled
+                        href="/admin/posts/new" data-modal-target="#requestPaymentModal">
+                        <i class="fas fa-plus" style="margin-right:0.4em;"></i>Crea Utente <span
+                            class="badge badge-secondary">Coming Soon</span>
                     </a>
                     <!-- End Button -->
                 </div>
@@ -84,7 +89,7 @@
 
             <%- messages('message', locals) %>
 
-            <h2 class="h2 mb-4">Prima Pagina</h2>
+            <h2 class="h2 mb-4">Utenti</h2>
             <div class="table-responsive-md u-datatable bg-white shadow-lg rounded">
                 <table class="js-datatable table table-bordered u-datatable__striped u-datatable__content"
                     data-dt-info="#datatableInfo" data-dt-search="#datatableSearch" data-dt-entries="#datatableEntries"
@@ -99,7 +104,7 @@
                         <tr class="text-uppercase font-size-1">
                             <th scope="col" class="font-weight-medium">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    Titolo
+                                    Utente
                                     <div class="ml-2">
                                         <span class="fas fa-angle-up u-datatable__thead-icon"></span>
                                         <span class="fas fa-angle-down u-datatable__thead-icon"></span>
@@ -108,7 +113,7 @@
                             </th>
                             <th scope="col" class="font-weight-medium">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    Categoria
+                                    E-Mail
                                     <div class="ml-2">
                                         <span class="fas fa-angle-up u-datatable__thead-icon"></span>
                                         <span class="fas fa-angle-down u-datatable__thead-icon"></span>
@@ -117,7 +122,7 @@
                             </th>
                             <th scope="col" class="font-weight-medium">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    Autore
+                                    ID
                                     <div class="ml-2">
                                         <span class="fas fa-angle-up u-datatable__thead-icon"></span>
                                         <span class="fas fa-angle-down u-datatable__thead-icon"></span>
@@ -126,53 +131,76 @@
                             </th>
                             <th scope="col" class="font-weight-medium">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    Data Creazione
+                                    Ruolo
                                     <div class="ml-2">
                                         <span class="fas fa-angle-up u-datatable__thead-icon"></span>
                                         <span class="fas fa-angle-down u-datatable__thead-icon"></span>
                                     </div>
                                 </div>
                             </th>
-                            <th scope="col" class="font-weight-medium">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    Stato
-                                    <div class="ml-2">
-                                        <span class="fas fa-angle-up u-datatable__thead-icon"></span>
-                                        <span class="fas fa-angle-down u-datatable__thead-icon"></span>
-                                    </div>
-                                </div>
-                            </th>
+
                         </tr>
                     </thead>
                     <tbody class="font-size-1">
-                        <% posts.forEach((post) => { %>
+                        <% users.forEach((user) => { %>
                         <tr>
-                            <td class="align-middle"><span><a href="/king/posts/<%= post._id %>"><%= post.title %></a>
+                            <td class="align-middle" id="userModalTrigger"><span><a
+                                        href="/super/users/<%= user._id %>"><img class="img-fluid rounded-circle mr-2"
+                                            style="width:2em;" src="<%= user.pic %>"
+                                            alt="Image Description"><%= user.name %></a>
                                 </span>
                             </td>
                             <td class="align-middle text-secondary">
-                                <%= post.category %>
+                                <%= user.email %>
                             </td>
-                            <td class="align-middle text-secondary  "><%= post.author %></td>
-                            <td class="align-middle text-secondary"><%= post.edited.toLocaleDateString("it-IT") %></td>
-                            <% if(post.status === 1) { %>
-                            <td class="align-middle text-success"><i class="fas fa-dot-circle"></i> - Online</td>
-                            <% } else if(post.status === 0) { %>
-                            <td class="align-middle text-warning"><i class="fas fa-dot-circle"></i> - Pronto</td>
-                            <%} else { %>
-                            <td class="align-middle text-danger"><i class="fas fa-dot-circle"></i> - Bozza</td>
-                            <%}%>
+                            <td class="align-middle text-secondary  "><%=user._id %></td>
+
+                            <% if(user.role === 2) { %>
+                            <td class="align-middle text-success"><i class="fas fa-laptop-code"></i> - Super</td>
+                            <% } else { %>
+                            <td class="align-middle text-warning"><i class="far fa-minus-square"
+                                    style="margin-right:0.3em;"></i> - Standard</td>
+                            <%} %>
 
                         </tr>
-                    <% }); %>
+                        <% }); %>
 
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
     </div>
+    <!-- Modal -->
+    <div id="animationModal" class="js-modal-window u-modal-window" style="width: 500px;">
+        <div class="card">
+            <!-- Header -->
+            <header class="card-header bg-light py-3 px-5">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3 class="h6 mb-0">Modal title</h3>
 
+                    <button type="button" class="close" aria-label="Close" onclick="Custombox.modal.close();">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+            </header>
+            <!-- End Header -->
+
+            <!-- Body -->
+            <div class="card-body p-5">
+                <p>Modal body text goes here.</p>
+            </div>
+            <!-- End Body -->
+
+            <!-- Footer -->
+            <div class="card-footer d-flex justify-content-end">
+                <button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1">Save Changes</button>
+                <button type="button" class="btn btn-sm btn-soft-secondary transition-3d-hover"
+                    onclick="Custombox.modal.close();">Close</button>
+            </div>
+            <!-- End Footer -->
+        </div>
+    </div>
+    <!-- End Modal -->
 </main>
 <%- include ('partials/footer') %>

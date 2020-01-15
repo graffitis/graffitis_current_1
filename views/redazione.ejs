@@ -1,0 +1,47 @@
+<%- include ('partials/header') %>
+<main id="content" role="main">
+    <!-- Hero Section -->
+    <div class="container space-2">
+        <div class="w-md-80 w-lg-75 text-center mx-md-auto">
+            <div class="space-bottom-2">
+                <h1 class="display-4 font-size-md-down-5 font-weight-semi-bold">
+                    La Redazione
+                </h1>
+                <p class="lead font-weight-normal">
+                    #TODO:Inserire testi di sottotitolo ove necessario
+                </p>
+            </div>
+        </div>
+
+        <div class="row mx-n2">
+
+            <!-- TO RENDER -->
+            <% admins.forEach((admin) => { %>
+            <div class="col-sm-6 col-lg-3 px-2 mb-3">
+                <!-- Team -->
+                <div class="card shadow transition-3d-hover p-4">
+                    <div class="u-lg-avatar mb-4">
+                        <img class="img-fluid rounded-circle" src="<%= admin.pic %>" alt="Image Description">
+                    </div>
+
+                    <small class="d-block text-secondary text-uppercase mb-1"><%= admin.task %></small>
+                    <h4 class="h5 text-lh-sm"><%= admin.name %></h4>
+                    <p class="font-size-1">I am an ambitious workaholic, but apart from that, pretty simple
+                        person.</p>
+
+
+                    <!-- End Team -->
+                </div>
+
+            </div>
+            <% }) %>
+            <!-- END TO RENDER -->
+
+
+
+
+
+        </div>
+    </div>
+</main>
+<%- include ('partials/footer') %>

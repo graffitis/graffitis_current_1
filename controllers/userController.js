@@ -1,3 +1,3 @@
 exports.dashboard = (req, res) => {
-  res.send('User dashboard!');
+  res.render('dashboard_user');
 };

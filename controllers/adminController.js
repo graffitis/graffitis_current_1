@@ -41,6 +41,9 @@ exports.editPage = (req, res) => {
 };
 
 exports.editPost = (req, res) => {
+
+  const special = (req.body.special === 'true');
+
   let updatedPost = {
     cover: req.body.cover,
     title: req.body.title,
@@ -51,7 +54,8 @@ exports.editPost = (req, res) => {
     status: req.body.status * 1,
     edited: Date.now(),
     body: req.body.body,
-    tags: req.body.tags.replace(/\s+/g, '').split(',')
+    tags: req.body.tags.replace(/\s+/g, '').split(','),
+    spcial: special
   };
 
   Post.findById(req.params.id, (err, data) => {
@@ -98,6 +102,13 @@ exports.newPost = (req, res) => {
 
   const special = (req.body.special === 'true');
 
+  if (req.body.status * 1 === 1) {
+    res.status(403).json({
+      staus: 'forbidden',
+      message: 'upper role required to get posts online'
+    })
+  }
+
   const newPost = new Post({
     cover: req.body.cover,
     title: req.body.title,
@@ -120,7 +131,7 @@ exports.newPost = (req, res) => {
       });
     }
     req.flash('success', 'Nuovo articolo creato correttamente!');
-    res.redirect('/admin/dashboard');
+    res.redirect('/admin/posts');
   });
 };
 

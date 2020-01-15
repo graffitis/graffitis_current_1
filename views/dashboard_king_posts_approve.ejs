@@ -1,0 +1,357 @@
+<%- include ('partials/header') %>
+<main id="content" role="main">
+    <div class="bg-primary">
+        <!-- Breadcrumb Section -->
+        <div class="container space-top-1 pb-3">
+            <div class="row">
+                <div class="col-lg-5 order-lg-2 text-lg-right mb-4 mb-lg-0">
+                    <div
+                        class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start">
+                        <!-- Breadcrumb -->
+                        <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
+                            <li class="breadcrumb-item">
+                                <a class="breadcrumb-link" href="/">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a class="breadcrumb-link" href="/king"><i class="fas fa-crown"></i>
+                                    King</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a class="breadcrumb-link" href="/king/dashboard">Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a class="breadcrumb-link" href="/king/posts">Posts</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                Approva
+                            </li>
+                        </ol>
+                        <!-- End Breadcrumb -->
+
+                        <!-- Breadcrumb Nav Toggle Button -->
+                        <div class="d-lg-none">
+                            <button type="button" class="navbar-toggler btn u-hamburger u-hamburger--white"
+                                aria-label="Toggle navigation" aria-expanded="false" aria-controls="breadcrumbNavBar"
+                                data-toggle="collapse" data-target="#breadcrumbNavBar">
+                                <span id="breadcrumbHamburgerTrigger" class="u-hamburger__box">
+                                    <span class="u-hamburger__inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                        <!-- End Breadcrumb Nav Toggle Button -->
+                    </div>
+                </div>
+
+                <div class="col-lg-7 order-lg-1">
+                    <!-- User Info -->
+                    <div class="media d-block d-sm-flex align-items-sm-center">
+                        <div class="u-lg-avatar position-relative mb-3 mb-sm-0 mr-3">
+                            <img class="img-fluid rounded-circle" src="<%= user.pic %>" alt="Image Description" />
+                            <span
+                                class="badge badge-md badge-outline-success badge-pos badge-pos--bottom-right rounded-circle">
+                                <span class="fas fa-check"></span>
+                            </span>
+                        </div>
+                        <div class="media-body">
+                            <h1 class="h3 text-white font-weight-medium mb-1">
+                                <%= user.name %>
+                            </h1>
+                            <span class="d-block text-white-70"><i class="fas fa-at" style="margin-right:0.3em;"></i><%=
+                user.email %></span>
+                            <span class="d-block text-white-70"><i class="fas fa-code-branch"
+                                    style="margin-right:0.3em;"></i><%= user._id %></span>
+                        </div>
+                    </div>
+                    <!-- End User Info -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <form action="/king/posts/<%= post._id %>" method="POST" id="post_create">
+        <!-- End Breadcrumb Section -->
+        <div class="bg-light">
+            <div class="container space-2">
+                <div class="form-group">
+                    <label for="title">Titolo</label>
+                    <input type="text" class="form-control" id="title" name="title"
+                        placeholder="Inserisci il titolo dell'articolo..." value="<%= post.title %>" />
+                    <small id="titleHelp" class="form-text text-muted">Questo titolo sarà visualizzato sulle pagine
+                        delle rubriche
+                        e sulla
+                        pagina dell'articolo con un carattere di dimensioni maggiori</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="cover">Immagine di Copertina</label>
+                    <input type="text" class="form-control" id="cover" name="cover"
+                        placeholder="Inserisci un URL di un'immagine" value="<%= post.cover %>" />
+                    <small id="coverHelp" class="form-text text-muted">L'immagina sarà presente in tutte le visuali
+                        dell'articolo</small>
+                </div>
+                <div class="form-group">
+                    <label for="desc">Descrizione</label>
+                    <input type="text" class="form-control" id="desc" name="desc"
+                        placeholder="Inserisci una breve descrizione dell'articolo" value="<%= post.desc %>" />
+                    <small id="descHelp" class="form-text text-muted">Questa breve descrizione verrà posta nella visuale
+                        compatta
+                        degli
+                        articoli nella pagina Home e della Rubrica</small>
+                </div>
+                <div class="form-group" id="category">
+                    <!-- WORKAROUND -->
+                    <input type="text" style="display: none;" name="category" value="<%= cats[0].name %>"
+                        id="category_input_sel">
+                    <!-- END WORKAROUND -->
+                    <label for="category">Categoria</label>
+                    <!-- Account Sidebar Toggle Button -->
+                    <div class="mt-1">
+                        <a id="sidebarNavToggler" class="btn btn-sm btn-secondary" href="javascript:;" role="button"
+                            aria-controls="sidebarContent" aria-haspopup="true" aria-expanded="false"
+                            data-unfold-event="click" data-unfold-hide-on-scroll="false"
+                            data-unfold-target="#sidebarContent" data-unfold-type="css-animation"
+                            data-unfold-animation-in="fadeInRight" data-unfold-animation-out="fadeOutRight"
+                            data-unfold-duration="500">
+                            Seleziona <i class="fas fa-arrow-right" style="margin-left: 0.2em;"></i>
+                        </a>
+                    </div>
+
+                    <!-- End Account Sidebar Toggle Button -->
+
+                    <!-- Sidebar Navigation -->
+                    <aside id="sidebarContent" class="u-sidebar" aria-labelledby="sidebarNavToggler">
+                        <div class="u-sidebar__scroller">
+                            <div class="u-sidebar__container">
+                                <div class="u-header-sidebar__footer-offset">
+                                    <!-- Toggle Button -->
+                                    <div class="d-flex align-items-center pt-4 px-7">
+                                        <button type="button" class="close ml-auto" aria-controls="sidebarContent"
+                                            aria-haspopup="true" aria-expanded="false" data-unfold-event="click"
+                                            data-unfold-hide-on-scroll="false" data-unfold-target="#sidebarContent"
+                                            data-unfold-type="css-animation" data-unfold-animation-in="fadeInRight"
+                                            data-unfold-animation-out="fadeOutRight" data-unfold-duration="500">
+                                            <span aria-hidden="true"></span>
+                                        </button>
+                                    </div>
+                                    <!-- End Toggle Button -->
+
+                                    <!-- Content -->
+                                    <div class="js-scrollbar u-sidebar__body">
+                                        <div class="u-sidebar__content u-header-sidebar__content">
+                                            <h4 class="h5 mb-6"><i class="fas fa-folder-open"
+                                                    style="margin-right:0.3em"></i>Categorie e
+                                                Rubriche</h4>
+                                            <!-- ------ to render -->
+                                            <div class="mCustomScrollbar" data-mcs-theme="dark">
+
+                                                <% cats.forEach((cat, i) => {  %>
+                                                <div class="card mb-3 custom-control custom-radio">
+                                                    <div class="card-body">
+                                                        <!-- WORKAROUND
+                            Questo è probabilmente il peggior pezzo di codice abba mai scritto, 
+                            ma altrimenti non so come aggiustare sta roba.... Boh
+                            -->
+                                                        <script>
+                                                            function set_cat(e) {
+                                                                console.log(e.target.dataset.cat)
+                                                                $('#category_input_sel').val(e.target.dataset.cat)
+                                                            }
+                                                        </script>
+                                                        <input type="radio" class="custom-control-input"
+                                                            id="stylishRadio<%= i %>" name="category_gui"
+                                                            onchange="set_cat(event)" data-cat="<%= cat.name %>">
+                                                        <!-- END WORKAROUND -->
+                                                        <label class="custom-control-label" for="stylishRadio<%= i %>">
+                                                            <h6><%= cat.name %></h6>
+                                                            <small
+                                                                class="card-text text-muted"><%= cat.authors %></small>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <% }); %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Content -->
+                                </div>
+
+                                <!-- Footer -->
+                                <footer class="u-sidebar__footer u-sidebar__footer--account">
+                                    <!-- <button type="button" class="btn btn-secondary mb-3 mt-3"
+                        aria-controls="sidebarContent"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        data-unfold-event="click"
+                        data-unfold-hide-on-scroll="false"
+                        data-unfold-target="#sidebarContent"
+                        data-unfold-type="css-animation"
+                        data-unfold-animation-in="fadeInRight"
+                        data-unfold-animation-out="fadeOutRight"
+                        data-unfold-duration="500">
+                  <span aria-hidden="true"> < Fatto</span>
+              </button> -->
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item mb-5"><a class="text-muted" href="#"><span
+                                                    class="d-none d-sm-inline-block" aria-controls="sidebarContent"
+                                                    aria-haspopup="true" aria-expanded="false" data-unfold-event="click"
+                                                    data-unfold-hide-on-scroll="false"
+                                                    data-unfold-target="#sidebarContent"
+                                                    data-unfold-type="css-animation"
+                                                    data-unfold-animation-in="fadeInRight"
+                                                    data-unfold-animation-out="fadeOutRight"
+                                                    data-unfold-duration="500"><i class="fas fa-arrow-left"
+                                                        style="margin-right: 0.15em;"></i>
+                                                    Prosegui con l'articolo</span>
+                                            </a></li>
+                                        <li class="list-inline-item link-muted"><a href="#"><i
+                                                    class="fas fa-info-circle" style="margin-right: 0.3em;"></i>Non
+                                                trovi una categoria?</a></li>
+                                    </ul>
+                                </footer>
+                                <!-- End Footer -->
+                            </div>
+                        </div>
+                    </aside>
+                    <!-- End Sidebar Navigation -->
+                </div>
+                <div class="form-group space-top-1">
+                    <label for="body">Corpo dell'Articolo</label>
+                    <div class="u-summernote-editor">
+                        <textarea id="body" class="js-summernote-editor" data-height="300" name="body"
+                            form="post_create"><%- post.body %>"</textarea>
+                    </div>
+                </div>
+                <div class="form-group mb-6 space-top-1">
+                    <label for="tags" class="form-label">
+                        Tags
+                    </label>
+
+                    <!-- Tags Input -->
+                    <div class="u-tagsinput">
+                        <input id="tags" type="text" name="tags" data-role="tagsinput" value="<%= post.tags %>" />
+                    </div>
+                    <small id="tagsHelp" class="form-text text-muted">Grazie a questi tag miglioreremo l'indicizzazione
+                        del tuo
+                        articolo
+                        nella dashboard dei lettori</small>
+                    <!-- End Tags Input -->
+                </div>
+
+                <div class="form-group ">
+                    <label for="status" class="form-label">
+                        Tipologia Edizione
+                    </label>
+
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
+                        <label class="btn btn-sm btn-secondary">
+                            <input type="radio" name="special" id="aggiorna" autocomplete="off" value="true" />
+                            <i class="fas fa-star"></i> Speciale
+                        </label>
+
+                        <label class="btn btn-sm btn-secondary active">
+                            <input type="radio" name="special" id="mantieni" autocomplete="off" value="false" checked />
+                            <i class="far fa-newspaper"></i> Standard
+                        </label>
+                    </div>
+                    <small id="tagsHelp" class="form-text text-muted mb-6">
+                        SPECIALE > I Post verranno contrassegnati da un badge 'Edizione Speciale' in tutti i loro
+                        formati<br>
+                        STANDARD > Nessuna modifica ai Post | <strong> default</strong>
+                    </small>
+                </div>
+
+                <div class="form-group ">
+                    <label for="status" class="form-label">
+                        Stato Articolo
+                    </label>
+
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
+                        <label class="btn btn-sm btn-secondary active">
+                            <input type="radio" name="status" id="option1" autocomplete="off" value="1" />
+                            <i class="fas fa-globe"></i> Online
+                        </label>
+
+                        <label class="btn btn-sm btn-secondary">
+                            <input type="radio" name="status" id="option2" autocomplete="off" value="0" />
+                            <i class="fas fa-glasses"></i> Pronto
+                        </label>
+                        <label class="btn btn-sm btn-secondary">
+                            <input type="radio" name="status" id="option3" autocomplete="off" value="-1" checked />
+                            <i class="fas fa-pencil-alt"></i> Bozza
+                        </label>
+
+                    </div>
+                    <small id="tagsHelp" class="form-text text-muted mb-6">ONLINE > L'articolo è subito visibile al
+                        pubblico <br>
+                        PRONTO > L'articolo è pronto per la pubblicazione <br> BOZZA > L'articolo è in stesura |
+                        <strong>
+                            default</strong></small>
+
+                    <div class="form-group ">
+                        <label for="status" class="form-label">
+                            Ordine di Pubblicazione
+                        </label>
+
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
+                            <label class="btn btn-sm btn-secondary active">
+                                <input type="radio" name="updateFlag" id="aggiorna" autocomplete="off" value="1" />
+                                <i class="fas fa-arrow-circle-up"></i> Aggiorna
+                            </label>
+
+                            <label class="btn btn-sm btn-secondary">
+                                <input type="radio" name="updateFlag" id="mantieni" autocomplete="off" value="-1"
+                                    checked />
+                                <i class="fas fa-minus-circle"></i> Mantieni
+                            </label>
+                        </div>
+                        <small id="tagsHelp" class="form-text text-muted mb-6">AGGIORNA > L'articolo comparirà in prima
+                            pagina
+                            avendo come data quella dell'ultima modifica <br> MANTIENI > L'articolo continuerà ad avere
+                            come data
+                            quella della prima stesura | <strong> default</strong></small>
+
+
+                    </div>
+
+                    <hr class="hr mb-6 mt-6">
+                    <div class="alert alert-warning" role="alert">
+                        <strong> Sei in modalità di approvazione post dal livello <i class="fas fa-crown ml-1"></i>
+                            King
+                        </strong>
+                        <hr>
+                        La pubblicazione verrà effettuata a nome dell'autore originario >
+                        <strong><%= originalAuthor.name %></strong>
+                    </div>
+                    <input type="hidden" name="author" value="<%= originalAuthor.name %>">
+                    <input type="hidden" name="authorPic" value="<%= originalAuthor.pic %>">
+                    <hr class="hr mb-6 mt-6">
+
+
+                    <!-- Buttons -->
+                    <div class="row ml-0 mb-4">
+                        <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1">
+                            <i class="fas fa-cloud-upload-alt"></i> Salva e Applica Stato
+                        </button>
+    </form>
+
+    <form action="/king/posts/<%= post._id %>" method="POST" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit" class="btn btn-sm btn-danger transition-3d-hover">
+            <i class="far fa-trash-alt"></i> Elimina Post
+        </button>
+    </form>
+    <!-- <a href="/admin/posts1" method="GET" style="margin-left: 0.3em;">
+    <button class="btn btn-sm btn-soft-secondary transition-3d-hover">
+      Annulla
+    </button>
+  </a> -->
+    </div>
+
+    <a href="/king/posts" class="link-muted">
+        <i class="fas fa-arrow-left" style="margin-left: 0.2em;"></i> Torna Alla Dashboard</a>
+    </div>
+    </div>
+</main>
+<%- include ('partials/footer') %>

@@ -19,5 +19,7 @@ router.route('/users/:id').get(utils.superCheck, superController.get_users_edit)
 //#TODO: Separare le route prima in altro file
 router.route('/prima').get(utils.superCheck, superController.get_prima);
 
+router.route('/prima/new').get(utils.superCheck, superController.get_prima_new);
+
 
 module.exports = router;

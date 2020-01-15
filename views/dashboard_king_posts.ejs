@@ -13,7 +13,11 @@
                                 <a class="breadcrumb-link" href="/">Home</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a class="breadcrumb-link" href="/super/dashboard">Dashboard</a>
+                                <a class="breadcrumb-link" href="/king"><i class="fas fa-crown"></i>
+                                    King</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a class="breadcrumb-link" href="/king/dashboard">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 Posts
@@ -69,9 +73,9 @@
 
                 <div class="ml-lg-auto pb-4">
                     <!-- Button -->
-                    <a class="btn btn-sm btn-white text-nowrap transition-3d-hover" disabled href="/super/prima/new"
+                    <a class="btn btn-sm btn-white text-nowrap transition-3d-hover" href="/king/posts/new"
                         data-modal-target="#requestPaymentModal">
-                        <i class="fas fa-plus" style="margin-right:0.4em;"></i>Aggiungi Post Consigliato
+                        <i class="fas fa-paragraph" style="margin-right:0.4em;"></i>Scrivi un Post
                     </a>
                     <!-- End Button -->
                 </div>
@@ -84,7 +88,7 @@
 
             <%- messages('message', locals) %>
 
-            <h2 class="h2 mb-4">Prima Pagina</h2>
+            <h2 class="h2 mb-4">Articoli</h2>
             <div class="table-responsive-md u-datatable bg-white shadow-lg rounded">
                 <table class="js-datatable table table-bordered u-datatable__striped u-datatable__content"
                     data-dt-info="#datatableInfo" data-dt-search="#datatableSearch" data-dt-entries="#datatableEntries"
@@ -169,10 +173,8 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
     </div>
-
 </main>
 <%- include ('partials/footer') %>
