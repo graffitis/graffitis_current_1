@@ -41,7 +41,7 @@ passport.use(
             name: profile.displayName,
             email: profile.emails[0].value,
             pic: profile._json.picture,
-            role: 0
+            role: 1
           });
           newAdmin.save().then(data => {
             console.log('SIGNIN UP > ' + data);
