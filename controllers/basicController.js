@@ -23,7 +23,8 @@ exports.pageNotFound = (req, res) => {
 };
 
 exports.get_redazione = (req, res) => {
-  Admin.find((err, data) => {
+  const query = { $or: [{ role: 1 }, { role: 2 }, { role: 3 }] };
+  Admin.find(query, (err, data) => {
     if (err) {
       res.status(500).json({
         status: 'fail',

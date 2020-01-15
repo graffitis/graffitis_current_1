@@ -6,14 +6,35 @@
             <%- messages('message', locals) %>
             <!-- Title -->
             <div class="mb-7">
-                <h1 class="h3 text-primary font-weight-normal mb-0"><span class="font-weight-semi-bold">Lettore</span></h1>
-                <p>Login</p>
+                <h1 class="h3 text-primary font-weight-normal mb-0"><span class="font-weight-semi-bold">Lettore</span>
+                </h1>
+                <p>Compila il Form di seguito per accedere</p>
             </div>
             <!-- End Title -->
-            <div style="margin-bottom:2em; margin-right:3em;"><a class="btn btn-sm btn-soft-google transition-3d-hover" href="/users/auth/google">
-                <i class="fab fa-google" style="margin-right:0.2em;"></i>
-                Accedi con Google
-            </a></div>
+            <div style="margin-bottom:2em; margin-right:3em;"><a class="btn btn-sm btn-soft-google transition-3d-hover"
+                    href="/users/auth/google">
+                    <i class="fab fa-google" style="margin-right:0.2em;"></i>
+                    Accedi con Google
+                </a>
+            </div>
+            <div class="card mt-4 shadow">
+                <div class="card-header">
+                    <h4><i class="fas fa-shield-alt"></i> Informazioni sull'Autenticazione</h4>
+                </div>
+                <div class="card-body">
+                    <p class="mb-0">
+                        Utilizziamo OAuth 2.0 di Google per garantire operazioni di autenticazione sicure e veloci per
+                        tutti gli
+                        utenti. <br>Utilizza il tuo account Google <strong>...@itiscuneo.eu</strong> per procedere.
+                    </p>
+                    <hr>
+                    <p>
+                        <a href="/contatti"><i class="fas fa-external-link-alt"></i>Contattaci</a> se vuoi saperne di
+                        piu!
+                    </p>
+
+                </div>
+            </div>
         </form>
     </div>
 </main>

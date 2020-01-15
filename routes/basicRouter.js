@@ -10,7 +10,7 @@ const router = express.Router();
 router.route('/').get(basicController.getHome);
 
 router.route('/choice').get((req, res) => {
-  res.render('choice');
+  res.redirect('/admin/auth/register');
 });
 
 router.route('/dashboard').get(utils.userCheck, userController.dashboard);
