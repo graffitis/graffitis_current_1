@@ -146,6 +146,7 @@
           <tbody class="font-size-1">
             <% posts.forEach((post) => { %>
             <tr>
+              <% if(post.title.length > 40 ) post.title = post.title.slice(0, 40) + '...' %>
               <td class="align-middle"><span><a href="/admin/posts/<%= post._id %>"><%= post.title %></a> </span>
               </td>
               <td class="align-middle text-secondary">

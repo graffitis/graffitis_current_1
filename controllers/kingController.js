@@ -183,13 +183,13 @@ exports.get_logs = (req, res) => {
                 message: 'failed to retrieve logs from DB'
             })
         }
-
+        console.log(data);
         data.sort((a, b) => {
             a = a.time;
             b = b.time;
             return a > b ? -1 : a < b ? 1 : 0;
         });
-
+        console.log(data);
         res.render('dashboard_king_logs', { logs: data });
     })
 }
