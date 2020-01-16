@@ -19,6 +19,7 @@ const superRouter = require('./routes/superRouter');
 const superCatsRouter = require('./routes/superCatsRouter');
 const kingRouter = require('./routes/kingRouter');
 const kingPostsRouter = require('./routes/kingPostsRouter');
+const profileRouter = require('./routes/profileRouter');
 
 const passportSetup = require('./config/passport-setup');
 const passport = require('passport');
@@ -121,6 +122,7 @@ app.use((req, res, next) => {
   res.render('dashboard_edit');
 }); */
 
+app.use('/profile', profileRouter);
 app.use('/users', userRouter);
 app.use('/users/auth', userAuthRouter);
 app.use('/admin', adminRouter);

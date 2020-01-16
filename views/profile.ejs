@@ -1,0 +1,179 @@
+<%- include('./partials/header') %>
+
+<div class="bg-primary">
+    <div class="container space-top-1 pb-3">
+        <div class="row">
+            <div class="col-lg-5 order-lg-2 text-lg-right mb-4 mb-lg-0">
+                <div
+                    class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start">
+                    <!-- Breadcrumb -->
+                    <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
+                        <li class="breadcrumb-item">
+                            <a class="breadcrumb-link" href="/">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Il Tuo Profilo
+                        </li>
+                    </ol>
+                    <!-- End Breadcrumb -->
+
+                    <!-- Breadcrumb Nav Toggle Button -->
+                    <div class="d-lg-none">
+                        <button type="button" class="navbar-toggler btn u-hamburger u-hamburger--white"
+                            aria-label="Toggle navigation" aria-expanded="false" aria-controls="breadcrumbNavBar"
+                            data-toggle="collapse" data-target="#breadcrumbNavBar">
+                            <span id="breadcrumbHamburgerTrigger" class="u-hamburger__box">
+                                <span class="u-hamburger__inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                    <!-- End Breadcrumb Nav Toggle Button -->
+                </div>
+            </div>
+
+            <div class="col-lg-7 order-lg-1">
+                <!-- User Info -->
+                <div class="media d-block d-sm-flex align-items-sm-center">
+                    <div class="u-lg-avatar position-relative mb-3 mb-sm-0 mr-3">
+                        <img class="img-fluid rounded-circle" src="<%= user.pic %>" alt="Image Description" />
+                        <span
+                            class="badge badge-md badge-outline-success badge-pos badge-pos--bottom-right rounded-circle">
+                            <span class="fas fa-check"></span>
+                        </span>
+                    </div>
+                    <div class="media-body">
+                        <h1 class="h3 text-white font-weight-medium mb-1">
+                            <%= user.name %>
+                        </h1>
+                        <span class="d-block text-white-70"><i class="fas fa-at" style="margin-right:0.3em;"></i><%=
+                user.email %></span>
+                        <span class="d-block text-white-70"><i class="fas fa-code-branch"
+                                style="margin-right:0.3em;"></i><%= user._id %></span>
+                    </div>
+                </div>
+                <!-- End User Info -->
+            </div>
+        </div>
+    </div>
+
+    <div class="container space-bottom-1 space-bottom-lg-0">
+        <div class="d-lg-flex justify-content-lg-between align-items-lg-center">
+
+
+            <div class="ml-lg-auto pb-4">
+                <!-- Button -->
+                <a class="btn btn-sm btn-white text-nowrap transition-3d-hover" href="/admin/auth/logout"
+                    data-modal-target="#requestPaymentModal">
+                    <i class="fas fa-sign-out-alt" style="margin-right:0.2em;"></i>Logout
+                </a>
+                <!-- End Button -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-light">
+
+    <div class=" container space-2">
+
+
+
+        <!-- Title -->
+        <div class="mb-3">
+            <h2 class="h5 mb-0">Il Tuo Profilo</h2>
+            <p>Le informazioni principali...</p>
+        </div>
+
+        <hr class="mt-1 mb-7">
+
+        <form action="/profile" method="POST" id="post_create">
+            <!-- End Breadcrumb Section -->
+
+
+            <div class="form-group">
+                <label for="name">NOME</label>
+                <input type="text" class="form-control" id="name" name="name"
+                    placeholder="Inserisci i tuoi Nome e Cognome" value="<%= user.name %>" />
+                <small id="titleHelp" class="form-text text-muted">Verrà visualizzato come nome autore negli
+                    articoli scritti da questo utente</small>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-MAIL</label>
+                <input type="text" class="form-control" id="email" name="email"
+                    placeholder="Inserisci il tuo miglior indirizzo e-mail" value="<%= user.email %>" />
+                <small id="coverHelp" class="form-text text-muted">Verrà utilizzata per inviare eventuali
+                    comunicazioni all'utente</small>
+            </div>
+
+            <div class="form-group">
+                <label for="task">RUOLO</label>
+                <input type="text" class="form-control" id="task" name="task"
+                    placeholder="Inserisci il ruolo che rivesti in graffITIS" value="<%= user.task %>" />
+                <small id="coverHelp" class="form-text text-muted">Grazie a questo campo gli utenti sapranno qual'è il
+                    tuo ruolo in redazione</small>
+            </div>
+
+            <div class="form-group">
+                <label for="cover">ID</label>
+                <div class="js-focus-state input-group mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-code-branch"></i>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="5e1ed452bd9d3d00178d363f" aria-label="Disabled"
+                        disabled>
+
+                </div>
+                <small id="idHelp" class="form-text text-muted">ID Univoco non modificabile utilizzato per tutte
+                    le operazioni sugli utenti</small>
+            </div>
+
+
+
+
+            <hr class="my-7">
+
+            <!-- Title -->
+            <div class="mb-3">
+                <h2 class="h5 mb-0">Descrizione</h2>
+                <p>Scrivi nel campo di seguito ciò che gli utenti leggeranno su di te...</p>
+            </div>
+            <!-- End Title -->
+
+            <div class="mb-6">
+                <div class="form-group">
+
+                    <textarea name="desc" class="form-control" id="exampleFormControlTextarea1"
+                        rows="3"><%= user.desc %></textarea>
+                </div>
+                <!-- End Text Editor Input -->
+            </div>
+
+
+
+            <hr class="hr mb-6 mt-6">
+
+            <!-- Buttons -->
+            <div class="row ml-0 mb-4">
+                <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1">
+                    <i class="fas fa-cloud-upload-alt"></i> Salva e Applica Ruolo
+                </button>
+        </form>
+    </div>
+    <div class="row ml-0 mt-4">
+        <a href="/" class="link-muted">
+            <i class="fas fa-arrow-left" style="margin-left: 0.2em;"></i> Torna Alla Home</a>
+    </div>
+    <!-- End Buttons -->
+
+
+
+    <!-- Title -->
+
+
+    <!-- End Personal Info Form -->
+</div>
+</div>
+
+<%- include('./partials/footer') %>
