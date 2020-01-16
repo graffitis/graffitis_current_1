@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Post = require('./../models/Post');
+const Category = require('./../models/Category');
 
 exports.checkID = (req, res, next) => {
   Post.find({ id: req.id }, (err, data) => {
@@ -117,5 +118,18 @@ exports.specialPage = (req, res) => {
       })
     }
     res.render('show_category', { category: 'speciali', posts: data });
+  })
+}
+
+exports.get_cats = (req, res) => {
+  Category.find((err, data) => {
+    if (err) {
+      res.status(500).json({
+        status: 'fail',
+        message: 'failed to retrieve categories from DB'
+      })
+    } else {
+      res.render('categories', { cats: data });
+    }
   })
 }

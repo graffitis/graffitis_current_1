@@ -6,6 +6,7 @@ const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
+const mongoose = require('mongoose');
 
 const postRouter = require('./routes/postRouter');
 const basicRouter = require('./routes/basicRouter');
@@ -22,6 +23,8 @@ const kingPostsRouter = require('./routes/kingPostsRouter');
 const passportSetup = require('./config/passport-setup');
 const passport = require('passport');
 const keys = require('./config/keys');
+
+const Category = require('./models/Category');
 
 const app = express();
 
@@ -99,6 +102,19 @@ app.use((req, res, next) => {
   res.locals.user = req.user;
   next();
 });
+
+app.use((req, res, next) => {
+  Category.find((err, data) => {
+    if (err) {
+      res.status(500).json({
+        status: 'fail',
+        message: 'failed to retrieve headers categories from header'
+      })
+    }
+    res.locals.headerCats = data;
+  });
+  next();
+})
 
 /* app.route('/edit/:id').get((req, res) => {
   console.log(req.params.id);

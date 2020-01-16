@@ -1,0 +1,44 @@
+<%- include ('partials/header') %>
+<main id="content" role="main">
+    <!-- Hero Section -->
+    <div class="container space-2">
+        <div class="w-md-80 w-lg-75 text-center mx-md-auto">
+            <div class="space-bottom-2">
+                <h1 class="display-4 font-size-md-down-5 font-weight-semi-bold">
+                    Categorie
+                </h1>
+                <p class="lead font-weight-normal">
+                    #TODO:Inserire testi di sottotitolo ove necessario
+                </p>
+            </div>
+        </div>
+
+        <div class="row mx-n2">
+
+            <!-- TO RENDER -->
+            <% cats.forEach((cat) => { %>
+            <div class="col-sm-6 col-lg-3 px-2 mb-3">
+                <!-- Team -->
+                <% cat.name = cat.name.toLowerCase().replace(/\s+/g, '-') %>
+                <a href="/posts/categories/<%= cat.name %>">
+                    <div class="card shadow transition-3d-hover p-4">
+
+                        <h4 class="h5 text-lh-sm"><%= cat.name %></h4>
+                        <p class="font-size-1"><%= cat.desc %></p>
+
+
+                        <!-- End Team -->
+                    </div>
+                </a>
+            </div>
+            <% }) %>
+            <!-- END TO RENDER -->
+
+
+
+
+
+        </div>
+    </div>
+</main>
+<%- include ('partials/footer') %>

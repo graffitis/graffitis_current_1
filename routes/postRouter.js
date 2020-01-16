@@ -8,13 +8,15 @@ router
 
 router.route('/reset').delete(postController.reset);
 
-router.route('/:id').get(postController.getPostById);
-
+router.route('/categories').get(postController.get_cats);
 // TODO: Implementare vettore categorie
 // router.route('/categories').get(postController.getAllCategories);
 router.route('/categories/specials').get(postController.specialPage);
 
 router.route('/categories/:category').get(postController.getPostByCategory);
+
+
+router.route('/:id').get(postController.getPostById);
 
 
 module.exports = router;
