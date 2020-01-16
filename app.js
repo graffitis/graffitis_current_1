@@ -7,6 +7,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
+const favicon = require('serve-favicon')
 
 const postRouter = require('./routes/postRouter');
 const basicRouter = require('./routes/basicRouter');
@@ -29,8 +30,13 @@ const Category = require('./models/Category');
 
 const app = express();
 
+
+
 // Definiamo il motore che utilizzeremo per i template
 app.set('view engine', 'ejs');
+
+const path = require('path')
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 // Definiamo la cartella dei contenuti statici
 app.use(express.static(__dirname + '/public'));
