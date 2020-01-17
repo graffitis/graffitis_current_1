@@ -188,18 +188,14 @@ exports.delete_cat = (req, res) => {
 }
 
 exports.get_prima = (req, res) => {
-    const query = { $and: [{ featured: true }, { status: 1 }] };
-    Post.find(query, (err, data) => {
-        if (err) {
-            res.status(500).json({
-                status: 'fail',
-                message: 'failed to retrieve posts from DB'
-            })
-        }
-        res.render('dashboard_super_prima', { posts: data });
-    });
+
+    res.render('dashboard_super_prima', { postIDs: res.locals.prima });
+
 }
 
-exports.get_prima_new = (req, res) => {
-    res.render('dashboard_super_create_prima');
+
+exports.update_prima = (req, res) => {
+    res.locals.prima[(req.body.n * 1)] = req.body.id;
+    req.flash('success', 'ID Post Consigliato aggiornato');
+    res.redirect('/super/prima');
 }

@@ -107,6 +107,7 @@ app.use(passport.session());
 // Salvataggio Variabili Globali
 app.use((req, res, next) => {
   res.locals.user = req.user;
+  res.locals.prima = [];
   next();
 });
 

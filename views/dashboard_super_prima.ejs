@@ -69,9 +69,10 @@
 
                 <div class="ml-lg-auto pb-4">
                     <!-- Button -->
-                    <a class="btn btn-sm btn-white text-nowrap transition-3d-hover" disabled href="/super/prima/new"
-                        data-modal-target="#requestPaymentModal">
-                        <i class="fas fa-plus" style="margin-right:0.4em;"></i>Aggiungi Post Consigliato
+                    <a class="btn btn-sm btn-white text-nowrap transition-3d-hover disabled" disabled
+                        href="/super/prima/new" data-modal-target="#requestPaymentModal">
+                        <i class="fas fa-plus" style="margin-right:0.4em;"></i>Aggiungi Post Consigliato <span
+                            class="badge badge-secondary">Coming Soon</span>
                     </a>
                     <!-- End Button -->
                 </div>
@@ -85,92 +86,70 @@
             <%- messages('message', locals) %>
 
             <h2 class="h2 mb-4">Prima Pagina</h2>
-            <div class="table-responsive-md u-datatable bg-white shadow-lg rounded">
-                <table class="js-datatable table table-bordered u-datatable__striped u-datatable__content"
-                    data-dt-info="#datatableInfo" data-dt-search="#datatableSearch" data-dt-entries="#datatableEntries"
-                    data-dt-page-length="12" data-dt-is-responsive="false" data-dt-is-show-paging="true"
-                    data-dt-pagination="datatablePagination" data-dt-pagination-classes="pagination mb-0"
-                    data-dt-pagination-items-classes="page-item" data-dt-pagination-links-classes="page-link"
-                    data-dt-pagination-next-classes="page-item" data-dt-pagination-next-link-classes="page-link"
-                    data-dt-pagination-next-link-markup='<span aria-hidden="true">&raquo;</span>'
-                    data-dt-pagination-prev-classes="page-item" data-dt-pagination-prev-link-classes="page-link"
-                    data-dt-pagination-prev-link-markup='<span aria-hidden="true">&laquo;</span>'>
-                    <thead>
-                        <tr class="text-uppercase font-size-1">
-                            <th scope="col" class="font-weight-medium">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    Titolo
-                                    <div class="ml-2">
-                                        <span class="fas fa-angle-up u-datatable__thead-icon"></span>
-                                        <span class="fas fa-angle-down u-datatable__thead-icon"></span>
-                                    </div>
-                                </div>
-                            </th>
-                            <th scope="col" class="font-weight-medium">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    Categoria
-                                    <div class="ml-2">
-                                        <span class="fas fa-angle-up u-datatable__thead-icon"></span>
-                                        <span class="fas fa-angle-down u-datatable__thead-icon"></span>
-                                    </div>
-                                </div>
-                            </th>
-                            <th scope="col" class="font-weight-medium">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    Autore
-                                    <div class="ml-2">
-                                        <span class="fas fa-angle-up u-datatable__thead-icon"></span>
-                                        <span class="fas fa-angle-down u-datatable__thead-icon"></span>
-                                    </div>
-                                </div>
-                            </th>
-                            <th scope="col" class="font-weight-medium">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    Data Creazione
-                                    <div class="ml-2">
-                                        <span class="fas fa-angle-up u-datatable__thead-icon"></span>
-                                        <span class="fas fa-angle-down u-datatable__thead-icon"></span>
-                                    </div>
-                                </div>
-                            </th>
-                            <th scope="col" class="font-weight-medium">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    Stato
-                                    <div class="ml-2">
-                                        <span class="fas fa-angle-up u-datatable__thead-icon"></span>
-                                        <span class="fas fa-angle-down u-datatable__thead-icon"></span>
-                                    </div>
-                                </div>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="font-size-1">
-                        <% posts.forEach((post) => { %>
-                        <tr>
-                            <td class="align-middle"><span><a href="/king/posts/<%= post._id %>"><%= post.title %></a>
-                                </span>
-                            </td>
-                            <td class="align-middle text-secondary">
-                                <%= post.category %>
-                            </td>
-                            <td class="align-middle text-secondary  "><%= post.author %></td>
-                            <td class="align-middle text-secondary"><%= post.edited.toLocaleDateString("it-IT") %></td>
-                            <% if(post.status === 1) { %>
-                            <td class="align-middle text-success"><i class="fas fa-dot-circle"></i> - Online</td>
-                            <% } else if(post.status === 0) { %>
-                            <td class="align-middle text-warning"><i class="fas fa-dot-circle"></i> - Pronto</td>
-                            <%} else { %>
-                            <td class="align-middle text-danger"><i class="fas fa-dot-circle"></i> - Bozza</td>
-                            <%}%>
+            <p>Associa ciascuno degli spazi in prima pagina all'ID di un post per attivare i contenuti</p>
+            <p>ID Univoco disponibile nelle pagina di modifica post ai
+                livelli <strong><i class="fas fa-laptop-code"></i> SuperUser</strong> e <strong> <i
+                        class="fas fa-crown mr-1"></i>King</strong></p>
+            <hr class="my-6">
 
-                        </tr>
-                    <% }); %>
+            <form action="/super/prima" method="POST">
+                <div class="form-group">
+                    <label for="cover">POST #1</label>
+                    <div class="js-focus-state input-group mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-code-branch"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="5e1c48b3bd764d2d98bb61b8"
+                            aria-label="Disabled">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit" id="searchButtonExample2">
+                                <span class="fas fa-edit"></span> Aggiorna
+                            </button>
+                        </div>
+                    </div>
+            </form>
 
-                    </tbody>
-                </table>
+        </div>
+        <div class="form-group mt-2">
+            <label for="cover">POST #2</label>
+            <div class="js-focus-state input-group mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-code-branch"></i>
+                    </span>
+                </div>
+                <input type="hidden" name="n" value="0">
+                <input type="text" class="form-control" name="id" placeholder="5e1c48b3bd764d2d98bb61b8"
+                    aria-label="Disabled">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" id="searchButtonExample2">
+                        <span class="fas fa-edit"></span> Aggiorna
+                    </button>
+                </div>
             </div>
 
         </div>
+        <div class="form-group mt-2">
+            <label for="cover">POST #3</label>
+            <div class="js-focus-state input-group mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-code-branch"></i>
+                    </span>
+                </div>
+                <input type="text" class="form-control" placeholder="5e1c48b3bd764d2d98bb61b8" aria-label="Disabled">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" id="searchButtonExample2">
+                        <span class="fas fa-edit"></span> Aggiorna
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
     </div>
     </div>
 

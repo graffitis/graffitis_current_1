@@ -17,9 +17,9 @@ router.route('/users').get(utils.superCheck, superController.get_users);
 router.route('/users/:id').get(utils.superCheck, superController.get_users_edit).post(utils.superCheck, superController.edit_user).delete(utils.superCheck, superController.delete_user);
 
 //#TODO: Separare le route prima in altro file
-router.route('/prima').get(utils.superCheck, superController.get_prima);
+router.route('/prima').get(utils.superCheck, superController.get_prima).post(utils.superCheck, superController.update_prima);
 
-router.route('/prima/new').get(utils.superCheck, superController.get_prima_new);
+
 
 
 module.exports = router;
