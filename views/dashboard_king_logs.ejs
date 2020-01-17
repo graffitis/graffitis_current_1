@@ -155,8 +155,10 @@
                             <% } else if (log.op === -1) { %>
                             <td class="align-middle text-danger"> <strong><i class="fas fa-door-open"></i>
                                     Logout</strong> </td>
-                            <%} %>
-
+                            <%} else if (log.op === 2) {%>
+                            <td class="align-middle text-warning"> <strong><i class="fas fa-user-plus"></i>
+                                    Post Creato</strong> </td>
+                            <% } %>
                         </tr>
                         <% }); %>
 

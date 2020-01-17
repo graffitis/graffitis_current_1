@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Admin = require('./../models/Admin');
 const Post = require('./../models/Post');
+const Log = require('./../models/Log');
 const Category = require('./../models/Category');
 
 exports.dashboard = (req, res) => {
@@ -130,6 +131,21 @@ exports.newPost = (req, res) => {
         message: 'Failed to create new post'
       });
     }
+
+    Log.create({
+      user: req.user.name,
+      time: Date.now(),
+      op: 2
+    }, (err, data) => {
+      if (err) {
+
+        res.status(500).json({
+          status: 'fail',
+          message: 'the post has been created, but the server failed to save log documents'
+        });
+      }
+    });
+
     req.flash('success', 'Nuovo articolo creato correttamente!');
     res.redirect('/admin/posts');
   });
