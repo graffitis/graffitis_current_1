@@ -184,11 +184,7 @@ exports.get_logs = (req, res) => {
             })
         }
         console.log(data);
-        data.sort((a, b) => {
-            a = a.time;
-            b = b.time;
-            return a > b ? -1 : a < b ? 1 : 0;
-        });
+        data.sort((a, b) => b.time - a.time);
         console.log(data);
         res.render('dashboard_king_logs', { logs: data });
     })
