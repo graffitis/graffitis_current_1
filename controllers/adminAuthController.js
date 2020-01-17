@@ -50,7 +50,7 @@ exports.callback = (req, res) => {
     }
     req.flash(
       'success',
-      'Hai eseguito il login corettamente come ' + req.user.name
+      'Hai eseguito il login correttamente come ' + req.user.name
     );
     if (req.user.role === 3) {
       res.redirect('/king');
