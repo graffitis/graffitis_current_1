@@ -7,7 +7,8 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
-const favicon = require('serve-favicon')
+const favicon = require('serve-favicon');
+const sslRedirect = require('heroku-ssl-redirect');;
 
 const postRouter = require('./routes/postRouter');
 const basicRouter = require('./routes/basicRouter');
@@ -33,6 +34,7 @@ const app = express();
 
 
 // Definiamo il motore che utilizzeremo per i template
+app.use(sslRedirect());
 app.set('view engine', 'ejs');
 
 const path = require('path')
