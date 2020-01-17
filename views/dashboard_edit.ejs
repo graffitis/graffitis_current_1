@@ -92,7 +92,8 @@
         </div>
         <div class="form-group" id="category">
           <!-- WORKAROUND -->
-          <input type="text" style="display: none;" name="category" value="<%= post.category %>" id="category_input_sel">
+          <input type="text" style="display: none;" name="category" value="<%= post.category %>"
+            id="category_input_sel">
           <!-- END WORKAROUND -->
           <label for="category">Categoria</label>
           <!-- Account Sidebar Toggle Button -->
@@ -147,10 +148,10 @@
                               }
                             </script>
                             <% if (cat.name.toLowerCase() == post.category.toLowerCase()) { %>
-                              <input type="radio" class="custom-control-input" id="stylishRadio<%= i %>"
+                            <input type="radio" class="custom-control-input" id="stylishRadio<%= i %>"
                               name="category_gui" onchange="set_cat(event)" data-cat="<%= cat.name %>" checked>
                             <% } else { %>
-                              <input type="radio" class="custom-control-input" id="stylishRadio<%= i %>"
+                            <input type="radio" class="custom-control-input" id="stylishRadio<%= i %>"
                               name="category_gui" onchange="set_cat(event)" data-cat="<%= cat.name %>">
                             <% } %>
                             <!-- END WORKAROUND -->
@@ -230,15 +231,26 @@
 
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
 
+            <% if (post.special) { %>
+            <label class="btn btn-sm btn-secondary">
+              <input type="radio" name="special" id="aggiorna" autocomplete="off" value="true" checked />
+              <i class="fas fa-star"></i> Speciale
+            </label>
+            <label class="btn btn-sm btn-secondary active">
+              <input type="radio" name="special" id="mantieni" autocomplete="off" value="false" />
+              <i class="far fa-newspaper"></i> Standard
+            </label>
+            <% } else { %>
             <label class="btn btn-sm btn-secondary">
               <input type="radio" name="special" id="aggiorna" autocomplete="off" value="true" />
               <i class="fas fa-star"></i> Speciale
             </label>
-
             <label class="btn btn-sm btn-secondary active">
               <input type="radio" name="special" id="mantieni" autocomplete="off" value="false" checked />
               <i class="far fa-newspaper"></i> Standard
             </label>
+            <% } %>
+
           </div>
           <small id="tagsHelp" class="form-text text-muted mb-6">
             SPECIALE > I Post verranno contrassegnati da un badge 'Edizione Speciale' in tutti i loro formati<br>
@@ -254,14 +266,25 @@
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
 
 
+            <% if (post.status != -1) { %>
             <label class="btn btn-sm btn-secondary">
-              <input type="radio" name="status" id="option2" autocomplete="off" value="0" checked/>
+              <input type="radio" name="status" id="option2" autocomplete="off" value="0" checked />
               <i class="fas fa-glasses"></i> Pronto
             </label>
             <label class="btn btn-sm btn-secondary">
               <input type="radio" name="status" id="option3" autocomplete="off" value="-1" />
               <i class="fas fa-pencil-alt"></i> Bozza
             </label>
+            <% } else { %>
+            <label class="btn btn-sm btn-secondary">
+              <input type="radio" name="status" id="option2" autocomplete="off" value="0" />
+              <i class="fas fa-glasses"></i> Pronto
+            </label>
+            <label class="btn btn-sm btn-secondary">
+              <input type="radio" name="status" id="option3" autocomplete="off" value="-1" checked />
+              <i class="fas fa-pencil-alt"></i> Bozza
+            </label>
+            <% } %>
 
           </div>
           <small id="tagsHelp" class="form-text text-muted mb-6">ONLINE > L'articolo è subito visibile al pubblico <br>
@@ -298,8 +321,9 @@
               redatto/modificato dal tuo account!
             </strong>
             <hr>
-            Stiamo lavorando ad una gestione della modifica più efficiente, ma se non hai scritto tu questo articolo, <br> contatta l'autore originario per accordare la modifica o <a
-              href="/contatti"><i class="fas fa-external-link-alt"></i>contattaci</a>
+            Stiamo lavorando ad una gestione della modifica più efficiente, ma se non hai scritto tu questo articolo,
+            <br> contatta l'autore originario per accordare la modifica o <a href="/contatti"><i
+                class="fas fa-external-link-alt"></i>contattaci</a>
           </div>
           <hr class="my-5">
 
