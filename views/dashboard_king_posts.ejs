@@ -91,23 +91,14 @@
             <h2 class="h2 mb-4">Articoli</h2>
             <div class="table-responsive-md u-datatable bg-white shadow-lg rounded">
                 <table class="js-datatable table table-bordered u-datatable__striped u-datatable__content"
-                data-dt-info="#datatableWithPaginationInfo"
-                data-dt-page-length="10"
-                data-dt-is-show-paging="true"
-       
-                data-dt-pagination="datatablePagination"
-                data-dt-pagination-classes="pagination mb-0"
-                data-dt-pagination-items-classes="page-item"
-                data-dt-pagination-links-classes="page-link"
-       
-                data-dt-pagination-next-classes="page-item"
-                data-dt-pagination-next-link-classes="page-link"
-                data-dt-pagination-next-link-markup='<span aria-hidden="true">»</span>'
-       
-                data-dt-pagination-prev-classes="page-item"
-                data-dt-pagination-prev-link-classes="page-link"
-                data-dt-pagination-prev-link-markup='<span aria-hidden="true">«</span>'>
-                <thead>
+                    data-dt-info="#datatableWithPaginationInfo" data-dt-page-length="10" data-dt-is-show-paging="true"
+                    data-dt-pagination="datatablePagination" data-dt-pagination-classes="pagination mb-0"
+                    data-dt-pagination-items-classes="page-item" data-dt-pagination-links-classes="page-link"
+                    data-dt-pagination-next-classes="page-item" data-dt-pagination-next-link-classes="page-link"
+                    data-dt-pagination-next-link-markup='<span aria-hidden="true">»</span>'
+                    data-dt-pagination-prev-classes="page-item" data-dt-pagination-prev-link-classes="page-link"
+                    data-dt-pagination-prev-link-markup='<span aria-hidden="true">«</span>'>
+                    <thead>
                         <tr class="text-uppercase font-size-1">
                             <th scope="col" class="font-weight-medium">
                                 <div class="d-flex justify-content-between align-items-center">
@@ -159,6 +150,7 @@
                     <tbody class="font-size-1">
                         <% posts.forEach((post) => { %>
                         <tr>
+                            <% if(post.title.length > 40 ) post.title = post.title.slice(0, 40) + '...' %>
                             <td class="align-middle"><span><a href="/king/posts/<%= post._id %>"><%= post.title %></a>
                                 </span>
                             </td>
