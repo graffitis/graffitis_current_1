@@ -117,7 +117,7 @@ exports.get_new_cat = (req, res) => {
 
 exports.new_cat = (req, res) => {
     newCat = {
-        name: req.body.name,
+        name: req.body.name.toLowerCase().replace(/\s+/g, '-'),
         desc: req.body.desc,
         status: req.body.status * 1
     }
