@@ -92,7 +92,7 @@
         </div>
         <div class="form-group" id="category">
           <!-- WORKAROUND -->
-          <input type="text" style="display: none;" name="category" value="<%= cats[0].name %>" id="category_input_sel">
+          <input type="text" style="display: none;" name="category" value="<%= post.category %>" id="category_input_sel">
           <!-- END WORKAROUND -->
           <label for="category">Categoria</label>
           <!-- Account Sidebar Toggle Button -->
@@ -146,8 +146,13 @@
                                 $('#category_input_sel').val(e.target.dataset.cat)
                               }
                             </script>
-                            <input type="radio" class="custom-control-input" id="stylishRadio<%= i %>"
+                            <% if (cat.name.toLowerCase() == post.category.toLowerCase()) { %>
+                              <input type="radio" class="custom-control-input" id="stylishRadio<%= i %>"
+                              name="category_gui" onchange="set_cat(event)" data-cat="<%= cat.name %>" checked>
+                            <% } else { %>
+                              <input type="radio" class="custom-control-input" id="stylishRadio<%= i %>"
                               name="category_gui" onchange="set_cat(event)" data-cat="<%= cat.name %>">
+                            <% } %>
                             <!-- END WORKAROUND -->
                             <label class="custom-control-label" for="stylishRadio<%= i %>">
                               <h6><%= cat.name %></h6>
