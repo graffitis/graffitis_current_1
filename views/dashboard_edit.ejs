@@ -146,8 +146,13 @@
                                 $('#category_input_sel').val(e.target.dataset.cat)
                               }
                             </script>
-                            <input type="radio" class="custom-control-input" id="stylishRadio<%= i %>"
+                            <% if (cat.name.toLowerCase() == post.category.toLowerCase()) { %>
+                              <input type="radio" class="custom-control-input" id="stylishRadio<%= i %>"
+                              name="category_gui" onchange="set_cat(event)" data-cat="<%= cat.name %>" checked>
+                            <% } else { %>
+                              <input type="radio" class="custom-control-input" id="stylishRadio<%= i %>"
                               name="category_gui" onchange="set_cat(event)" data-cat="<%= cat.name %>">
+                            <% } %>
                             <!-- END WORKAROUND -->
                             <label class="custom-control-label" for="stylishRadio<%= i %>">
                               <h6><%= cat.name %></h6>
