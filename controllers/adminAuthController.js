@@ -18,6 +18,7 @@ exports.login_google = (req, res) => {
 
 exports.logout = (req, res) => {
   // HANDLE WITH PASSPORT
+  req.logout();
   req.flash('success', 'Hai eseguito correttamente il logout');
   res.redirect('/admin/auth/login');
 }
