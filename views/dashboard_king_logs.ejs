@@ -90,6 +90,22 @@
             <%- messages('message', locals) %>
 
             <h2 class="h2 mb-4">Logs di Accesso </h2>
+
+            <hr class="my-5">
+
+            <div class="alert alert-warning" role="alert">
+                <strong> <i class="fas fa-exclamation-triangle mr-2"></i> Visuale Logs in manutenzione
+                </strong>
+                <hr>
+                Stiamo lavorando al codice dell'app, alcune funzionalità (E.G. ordinamento e paginazione
+                tabella)
+                potrebbero non essere disponibili.
+                <br> Se la pagina dovesse risultare inutilizzabile <a href="/contatti"><i
+                        class="fas fa-external-link-alt"></i>contattaci</a>
+            </div>
+
+            <hr class="my-5">
+
             <div class="table-responsive-md u-datatable bg-white shadow-lg rounded">
                 <table id="logsTable"
                     class="js-datatable table table-bordered u-datatable__striped u-datatable__content"
