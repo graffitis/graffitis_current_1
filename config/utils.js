@@ -64,16 +64,13 @@ exports.userCheck = (req, res, next) => {
 exports.newLog = (req, res, next) => {
 
     if (req.originalUrl.search('logout')) {
-        log(req.user, -1);
+        log(req.user.name, -1);
     } else if (req.originalUrl.search('google')) {
-        log(req.user, 1);
+        log(req.user.name, 1);
     } else if (req.originalUrl.search('new')) {
-        log(req.user, 2);
+        log(req.user.name, 2);
     }
 
     next();
 
 }
-
-
-

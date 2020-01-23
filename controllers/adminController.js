@@ -6,7 +6,9 @@ const Category = require('./../models/Category');
 
 exports.dashboard = (req, res) => {
   // Retrieving user data
-  res.render('dashboard_admin', { user: req.user });
+  res.render('dashboard_admin', {
+    user: req.user
+  });
 };
 
 exports.posts = (req, res) => {
@@ -17,7 +19,10 @@ exports.posts = (req, res) => {
         message: 'failed to load posts'
       });
     }
-    res.render('dashboard_posts', { posts: data, user: req.user });
+    res.render('dashboard_posts', {
+      posts: data,
+      user: req.user
+    });
   });
 };
 
@@ -36,7 +41,11 @@ exports.editPage = (req, res) => {
           message: 'failed to load posts'
         });
       }
-      res.render('dashboard_edit', { post: data, user: req.user, cats: cats });
+      res.render('dashboard_edit', {
+        post: data,
+        user: req.user,
+        cats: cats
+      });
     });
   });
 };
@@ -85,6 +94,19 @@ exports.editPost = (req, res) => {
       res.redirect('/admin/posts');
     });
   });
+  Log.create({
+    user: req.user.name,
+    time: Date.now(),
+    op: 3
+  }, (err, data) => {
+    if (err) {
+
+      res.status(500).json({
+        status: 'fail',
+        message: 'the post has been edited, but the server failed to save log documents'
+      });
+    }
+  });
 };
 
 exports.createPage = (req, res) => {
@@ -95,7 +117,9 @@ exports.createPage = (req, res) => {
         message: 'failed to retrieve categories'
       });
     }
-    res.render('dashboard_create', { cats: data });
+    res.render('dashboard_create', {
+      cats: data
+    });
   });
 };
 
@@ -152,7 +176,9 @@ exports.newPost = (req, res) => {
 };
 
 exports.deletePost = (req, res) => {
-  Post.deleteOne({ _id: req.params.id }, err => {
+  Post.deleteOne({
+    _id: req.params.id
+  }, err => {
     if (err) {
       res.status(500).json({
         status: 'fail',
@@ -160,6 +186,20 @@ exports.deletePost = (req, res) => {
       });
     }
     res.redirect('/admin/posts');
+  });
+
+  Log.create({
+    user: req.user.name,
+    time: Date.now(),
+    op: 4
+  }, (err, data) => {
+    if (err) {
+
+      res.status(500).json({
+        status: 'fail',
+        message: 'the post has been deleted, but the server failed to save log documents'
+      });
+    }
   });
 };
 
@@ -174,6 +214,8 @@ exports.teamPage = (req, res) => {
       });
     }
     console.log('got here c2');
-    res.render('dashboard_team', { admins: data });
+    res.render('dashboard_team', {
+      admins: data
+    });
   });
 }

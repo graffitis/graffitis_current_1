@@ -18,6 +18,6 @@ router.route('/google').get(
 // Callback route
 router
   .route('/google/redirect')
-  .get(passport.authenticate('google'), adminAuthController.callback);
+  .get(passport.authenticate('google'), utils.newLog, adminAuthController.callback);
 
 module.exports = router;
