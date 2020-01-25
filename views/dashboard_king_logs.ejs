@@ -106,7 +106,7 @@
 
             <hr class="my-5">
 
-            <div class="table-responsive-md u-datatable bg-white shadow-lg rounded">
+            <div class="table-responsive-md u-datatable table-striped bg-white shadow-lg rounded">
                 <table id="logsTable"
                     class="js-datatable table table-bordered u-datatable__striped u-datatable__content"
                     data-dt-info="#datatableWithPaginationInfo" data-dt-page-length="20" data-dt-is-show-paging="true"
@@ -173,10 +173,10 @@
                             <td class="align-middle text-danger"> <strong><i class="fas fa-door-open"></i>
                                     Logout</strong> </td>
                             <%} else if (log.op === 2) {%>
-                            <td class="align-middle text-warning"> <strong><i class="fas fa-feather-alt"></i>
+                            <td class="align-middle text-primary"> <strong><i class="fas fa-feather-alt"></i>
                                     Post Creato</strong> </td>
                             <% } else if (log.op === 3) { %>
-                            <td class="align-middle text-indigo"> <strong><i class="fas fa-edit"></i>
+                            <td class="align-middle text-warning"> <strong><i class="fas fa-edit"></i>
                                     Post Modificato</strong> </td>
                             <% } else if (log.op === 4) { %>
                             <td class="align-middle text-secondary"> <strong><i class="fas fa-trash-alt"></i>
