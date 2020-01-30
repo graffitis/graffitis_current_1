@@ -89,7 +89,7 @@
             <%- messages('message', locals) %>
 
             <h2 class="h2 mb-4">Articoli</h2>
-            <div class="table-responsive-md u-datatable bg-white shadow-lg rounded">
+            <div class="table-responsive-md u-datatable table-striped bg-white shadow-lg rounded">
                 <table class="js-datatable table table-bordered u-datatable__striped u-datatable__content"
                     data-dt-info="#datatableWithPaginationInfo" data-dt-page-length="10" data-dt-is-show-paging="true"
                     data-dt-pagination="datatablePagination" data-dt-pagination-classes="pagination mb-0"
@@ -148,6 +148,7 @@
                         </tr>
                     </thead>
                     <tbody class="font-size-1">
+                        <% posts.sort((a, b) => b.edited.getTime - a.edited.getTime); %>
                         <% posts.forEach((post) => { %>
                         <tr>
                             <% if(post.title.length > 40 ) post.title = post.title.slice(0, 40) + '...' %>

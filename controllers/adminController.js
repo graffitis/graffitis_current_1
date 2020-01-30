@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const nodemailer = require('nodemailer');
 const Admin = require('./../models/Admin');
 const Post = require('./../models/Post');
 const Log = require('./../models/Log');
@@ -51,8 +52,7 @@ exports.editPage = (req, res) => {
 };
 
 exports.editPost = (req, res) => {
-
-  const special = (req.body.special === 'true');
+  const special = req.body.special === 'true';
 
   let updatedPost = {
     cover: req.body.cover,
@@ -94,19 +94,22 @@ exports.editPost = (req, res) => {
       res.redirect('/admin/posts');
     });
   });
-  Log.create({
-    user: req.user.name,
-    time: Date.now(),
-    op: 3
-  }, (err, data) => {
-    if (err) {
-
-      res.status(500).json({
-        status: 'fail',
-        message: 'the post has been edited, but the server failed to save log documents'
-      });
+  Log.create(
+    {
+      user: req.user.name,
+      time: Date.now(),
+      op: 3
+    },
+    (err, data) => {
+      if (err) {
+        res.status(500).json({
+          status: 'fail',
+          message:
+            'the post has been edited, but the server failed to save log documents'
+        });
+      }
     }
-  });
+  );
 };
 
 exports.createPage = (req, res) => {
@@ -124,14 +127,13 @@ exports.createPage = (req, res) => {
 };
 
 exports.newPost = (req, res) => {
-
-  const special = (req.body.special === 'true');
+  const special = req.body.special === 'true';
 
   if (req.body.status * 1 === 1) {
     res.status(403).json({
       staus: 'forbidden',
       message: 'upper role required to get posts online'
-    })
+    });
   }
 
   const newPost = new Post({
@@ -156,17 +158,49 @@ exports.newPost = (req, res) => {
       });
     }
 
-    Log.create({
-      user: req.user.name,
-      time: Date.now(),
-      op: 2
-    }, (err, data) => {
-      if (err) {
+    Log.create(
+      {
+        user: req.user.name,
+        time: Date.now(),
+        op: 2
+      },
+      (err, data) => {
+        if (err) {
+          res.status(500).json({
+            status: 'fail',
+            message:
+              'the post has been created, but the server failed to save log documents'
+          });
+        }
+      }
+    );
 
-        res.status(500).json({
-          status: 'fail',
-          message: 'the post has been created, but the server failed to save log documents'
-        });
+    let transporter = nodemailer.createTransport({
+      host: 'smtps.aruba.it',
+      secure: true,
+      port: 465,
+      auth: {
+        user: 'graffitis_mailer1@revo.digital',
+        pass: 'stefanopapi'
+      },
+      tls: {
+        rejectUnauthorized: false
+      }
+    });
+
+    let HelperOption = {
+      from: '"Redazione Graffitis" <graffitis@itiscuneo.eu>',
+      to: req.user.email,
+      subject: 'Il tuo nuovo articolo',
+      text: '',
+      html: `<h3>Il tuo Nuovo Articolo</h3><p>Piattaforma Grafitis</p><strong>Titolo: </strong> ${newPost.title}`
+    };
+    transporter.sendMail(HelperOption, (err, info) => {
+      if (err) {
+        console.log('MAILER ERROR\n' + err);
+      } else {
+        console.log('Email sent successfully!');
+        console.log(info);
       }
     });
 
@@ -176,33 +210,38 @@ exports.newPost = (req, res) => {
 };
 
 exports.deletePost = (req, res) => {
-  Post.deleteOne({
-    _id: req.params.id
-  }, err => {
-    if (err) {
-      res.status(500).json({
-        status: 'fail',
-        message: 'Failed to delete post'
-      });
+  Post.deleteOne(
+    {
+      _id: req.params.id
+    },
+    err => {
+      if (err) {
+        res.status(500).json({
+          status: 'fail',
+          message: 'Failed to delete post'
+        });
+      }
+      res.redirect('/admin/posts');
     }
-    res.redirect('/admin/posts');
-  });
+  );
 
-  Log.create({
-    user: req.user.name,
-    time: Date.now(),
-    op: 4
-  }, (err, data) => {
-    if (err) {
-
-      res.status(500).json({
-        status: 'fail',
-        message: 'the post has been deleted, but the server failed to save log documents'
-      });
+  Log.create(
+    {
+      user: req.user.name,
+      time: Date.now(),
+      op: 4
+    },
+    (err, data) => {
+      if (err) {
+        res.status(500).json({
+          status: 'fail',
+          message:
+            'the post has been deleted, but the server failed to save log documents'
+        });
+      }
     }
-  });
+  );
 };
-
 
 exports.teamPage = (req, res) => {
   console.log('got here');
@@ -218,4 +257,4 @@ exports.teamPage = (req, res) => {
       admins: data
     });
   });
-}
+};
