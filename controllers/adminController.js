@@ -144,7 +144,7 @@ exports.newPost = (req, res) => {
     author: req.user.name,
     authorPic: req.user.pic,
     body: req.body.body,
-    tags: req.body.tags.replace(/\s+/g, '').split(','),
+    tags: req.body.tags.replace(/\s+/g, '').split(''),
     status: req.body.status * 1,
     edited: Date.now(),
     special: special
@@ -175,32 +175,26 @@ exports.newPost = (req, res) => {
       }
     );
 
-    let transporter = nodemailer.createTransport({
-      host: 'smtps.aruba.it',
-      secure: true,
-      port: 465,
-      auth: {
-        user: 'graffitis_mailer1@revo.digital',
-        pass: 'stefanopapi'
-      },
-      tls: {
-        rejectUnauthorized: false
-      }
-    });
+    // Require:
+    var postmark = require('postmark');
 
-    let HelperOption = {
-      from: '"Redazione Graffitis" <graffitis@itiscuneo.eu>',
-      to: req.user.email,
-      subject: 'Il tuo nuovo articolo',
-      text: '',
-      html: `<h3>Il tuo Nuovo Articolo</h3><p>Piattaforma Grafitis</p><strong>Titolo: </strong> ${newPost.title}`
-    };
-    transporter.sendMail(HelperOption, (err, info) => {
-      if (err) {
-        console.log('MAILER ERROR\n' + err);
-      } else {
-        console.log('Email sent successfully!');
-        console.log(info);
+    // Send an email:
+    var client = new postmark.ServerClient(
+      '935d9bbf-a909-4c1f-bccb-8dbcee243191'
+    );
+
+    let userName = req.user.name.split(' ');
+
+    client.sendEmailWithTemplate({
+      From: 'graffitis_mailer1@revo.digital',
+      To: req.user.email,
+      TemplateAlias: 'articoloCreato',
+      TemplateModel: {
+        name: userName[0],
+        action_url: 'https://graffitis.itiscuneo.gov.it/admin/dashboard',
+        title: newPost.title,
+        desc: newPost.desc,
+        img: newPost.cover
       }
     });
 
