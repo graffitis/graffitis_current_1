@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-
+const postmark = require('postmark');
+const keys = require('./../config/keys');
+const client = new postmark.ServerClient(keys.mail.postmarkAPI);
 const Log = require('./../models/Log');
 
 function log(user, op) {
@@ -72,5 +74,37 @@ exports.newLog = (req, res, next) => {
     }
 
     next();
+}
 
+exports.mail_creato = (user, body) => {
+
+    let userName = user.name.split(' ');
+
+    client.sendEmailWithTemplate({
+        From: 'graffitis_mailer1@revo.digital',
+        To: user.email,
+        TemplateAlias: 'articoloCreato',
+        TemplateModel: {
+            name: userName[0],
+            action_url: 'https://graffitis.itiscuneo.gov.it/admin/dashboard',
+            title: body.title,
+            desc: body.desc,
+            img: body.cover
+        }
+    });
+}
+
+exports.mail_pronto = (user, body) => {
+    client.sendEmailWithTemplate({
+        From: 'graffitis_mailer1@revo.digital',
+        To: user.email,
+        TemplateAlias: 'articoloCreato',
+        TemplateModel: {
+            name: userName[0],
+            action_url: 'https://graffitis.itiscuneo.gov.it/admin/dashboard',
+            title: body.title,
+            desc: body.desc,
+            img: body.cover
+        }
+    });
 }

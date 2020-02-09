@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
+const postmark = require('postmark');
 const Admin = require('./../models/Admin');
 const Post = require('./../models/Post');
 const Log = require('./../models/Log');
 const Category = require('./../models/Category');
+const utils = require('./../config/utils');
 
 exports.dashboard = (req, res) => {
   // Retrieving user data
@@ -94,8 +96,7 @@ exports.editPost = (req, res) => {
       res.redirect('/admin/posts');
     });
   });
-  Log.create(
-    {
+  Log.create({
       user: req.user.name,
       time: Date.now(),
       op: 3
@@ -104,8 +105,7 @@ exports.editPost = (req, res) => {
       if (err) {
         res.status(500).json({
           status: 'fail',
-          message:
-            'the post has been edited, but the server failed to save log documents'
+          message: 'the post has been edited, but the server failed to save log documents'
         });
       }
     }
@@ -158,8 +158,7 @@ exports.newPost = (req, res) => {
       });
     }
 
-    Log.create(
-      {
+    Log.create({
         user: req.user.name,
         time: Date.now(),
         op: 2
@@ -168,35 +167,13 @@ exports.newPost = (req, res) => {
         if (err) {
           res.status(500).json({
             status: 'fail',
-            message:
-              'the post has been created, but the server failed to save log documents'
+            message: 'the post has been created, but the server failed to save log documents'
           });
         }
       }
     );
 
-    // Require:
-    var postmark = require('postmark');
-
-    // Send an email:
-    var client = new postmark.ServerClient(
-      '935d9bbf-a909-4c1f-bccb-8dbcee243191'
-    );
-
-    let userName = req.user.name.split(' ');
-
-    client.sendEmailWithTemplate({
-      From: 'graffitis_mailer1@revo.digital',
-      To: req.user.email,
-      TemplateAlias: 'articoloCreato',
-      TemplateModel: {
-        name: userName[0],
-        action_url: 'https://graffitis.itiscuneo.gov.it/admin/dashboard',
-        title: newPost.title,
-        desc: newPost.desc,
-        img: newPost.cover
-      }
-    });
+    utils.mail_creato(req.user, newPost);
 
     req.flash('success', 'Nuovo articolo creato correttamente!');
     res.redirect('/admin/posts');
@@ -204,8 +181,7 @@ exports.newPost = (req, res) => {
 };
 
 exports.deletePost = (req, res) => {
-  Post.deleteOne(
-    {
+  Post.deleteOne({
       _id: req.params.id
     },
     err => {
@@ -219,8 +195,7 @@ exports.deletePost = (req, res) => {
     }
   );
 
-  Log.create(
-    {
+  Log.create({
       user: req.user.name,
       time: Date.now(),
       op: 4
@@ -229,8 +204,7 @@ exports.deletePost = (req, res) => {
       if (err) {
         res.status(500).json({
           status: 'fail',
-          message:
-            'the post has been deleted, but the server failed to save log documents'
+          message: 'the post has been deleted, but the server failed to save log documents'
         });
       }
     }

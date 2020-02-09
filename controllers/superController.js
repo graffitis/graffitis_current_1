@@ -22,7 +22,10 @@ exports.get_dashboard = (req, res) => {
         });
     }
 
-    res.render('dashboard_super', { cats: getCats(), users: getUsers() });
+    res.render('dashboard_super', {
+        cats: getCats(),
+        users: getUsers()
+    });
 }
 
 exports.main = (req, res) => {
@@ -38,7 +41,10 @@ exports.get_users = (req, res) => {
                 message: 'Failed to retrieve users'
             })
         }
-        res.render('dashboard_super_users', { user: req.user, users: data });
+        res.render('dashboard_super_users', {
+            user: req.user,
+            users: data
+        });
     })
 }
 
@@ -50,7 +56,9 @@ exports.get_users_edit = (req, res) => {
                 message: 'failed to load user data'
             })
         }
-        res.render('dashboard_super_edit', { formUser: data });
+        res.render('dashboard_super_edit', {
+            formUser: data
+        });
     })
 }
 
@@ -107,7 +115,9 @@ exports.get_cats = (req, res) => {
                 message: 'failed to retrieve categories from DB'
             })
         }
-        res.render('dashboard_super_cats', { cats: data });
+        res.render('dashboard_super_cats', {
+            cats: data
+        });
     })
 }
 
@@ -144,7 +154,9 @@ exports.get_edit_cat = (req, res) => {
                 message: 'failed to retrieve category from DB'
             })
         }
-        res.render('dashboard_super_edit_cat', { cat: data });
+        res.render('dashboard_super_edit_cat', {
+            cat: data
+        });
     })
 }
 
@@ -170,12 +182,15 @@ exports.edit_cat = (req, res) => {
                 })
             }
             req.flash('success', 'Categoria modificata con successo');
+            res.redirect('/super/cats');
         })
     })
 }
 
 exports.delete_cat = (req, res) => {
-    Category.deleteOne({ _id: req.params.id }, (err, data) => {
+    Category.deleteOne({
+        _id: req.params.id
+    }, (err, data) => {
         if (err) {
             res.status(500).json({
                 status: 'fail',
@@ -189,7 +204,9 @@ exports.delete_cat = (req, res) => {
 
 exports.get_prima = (req, res) => {
 
-    res.render('dashboard_super_prima', { postIDs: res.locals.prima });
+    res.render('dashboard_super_prima', {
+        postIDs: res.locals.prima
+    });
 
 }
 
