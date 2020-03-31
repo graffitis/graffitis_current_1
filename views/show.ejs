@@ -84,22 +84,45 @@
           href="/posts/tag/<%= item %>"><%= item %></a></span>
       <% }) %>
     </div>
+
     <div class="card bg-img-hero bg-primary text-white text-center p-5 my-4"
       style="background-image: url(../../assets/svg/components/abstract-shapes-11.svg);">
       <h4 class="h5 mb-3">
-        Ti piace ciò che hai letto?
+        <i class="fas fa-thumbs-up"></i> Ti piace ciò che hai letto?
       </h4>
 
+      <% if(!user) { %>
       <!-- Form -->
       <a class="btn btn-sm btn-white transition-3d-hover" href="/user/auth/google">
         <i class="fab fa-google" style="margin-right:0.2em;"></i>
         Registrati con Google
       </a>
+      <% } %>
 
       <!-- End Form -->
-      <p class="text-white mt-4 mb-0">
-        Commenta, aggiungi gli articoli ai preferiti e molto altro...
-      </p>
+      <div class="card mt-3 shadow text-black-50">
+        <div class="card-header">
+          <strong>
+            Graffitis è un progetto della <em>Componente Studenti Consiglio Istituto</em>
+          </strong>
+        </div>
+
+        <div class="card-body">
+
+          I ragazzi della redazione si cimentano ogni giorno nelle attività più disparate per permettere la
+          pubblicazione degli articoli e il
+          mantenimento della piattaforma.
+          <% if(user) { %>
+          <br>
+          Se hai qualche suggerimento o consiglio, scrivici...<br> <a
+            href="mailto:arecco.consiglioistituto@itiscuneo.eu"><i class="fas fa-pen-nib"></i> Alessia Arecco</a> |
+          <a href="mailto:viada.consiglioistituto@itiscuneo.eu"><i class="fas fa-code"></i> Leonardo Viada</a>
+          <% } else { %>
+          <br>Se hai qualche suggerimento/consiglio, esegui l'accesso e contattaci.
+          <% } %>
+        </div>
+      </div>
+
     </div>
     <!-- End Badges -->
 
