@@ -12,13 +12,17 @@
             <span class="badge badge-warning text-white ml-1 mt-3"><i class="fas fa-star mr-1"></i>Edizione
               Speciale</span></a>
           <% } %>
+
           <% if(user) { %>
-          <% if(user.role > 0) { %>
+          <% if(user.role === 1) { %>
           <a href="/admin/posts/<%= post._id %>" class="ml-3 mt-3 text-black-50 link"><i class="far fa-edit"></i>
             Modifica
             l'articolo</a>
-          <% }%>
-          <% } %>
+          <% } else { %>
+          <a href="/king/posts/<%= post._id %>" class="ml-3 mt-3 text-black-50 link"><i class="far fa-edit"></i>
+            Modifica
+            l'articolo | Super & King </a>
+          <% } }%>
         </span>
 
         <!-- #TODO: implementare e corregere layout pulsante 'torna alla home'-->
