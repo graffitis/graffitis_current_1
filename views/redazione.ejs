@@ -13,11 +13,11 @@
             </div>
         </div>
 
-        <div class="row mx-n2">
+        <div class="grid mx-n2 justify-content-between" data-masonry='{ "itemSelector": ".grid-item"}'>
 
             <!-- TO RENDER -->
             <% admins.forEach((admin) => { %>
-            <div class="col-sm-6 col-lg-3 px-2 mb-3">
+            <div class="grid-item col-sm-6 col-lg-3 px-2 mb-3">
                 <!-- Team -->
                 <div class="card shadow transition-3d-hover p-4">
                     <div class="u-lg-avatar mb-4">
@@ -42,4 +42,11 @@
         </div>
     </div>
 </main>
+<script>
+    $('.grid').masonry({
+        // options
+        itemSelector: '.grid-item',
+        columnWidth: 200
+    });
+</script>
 <%- include ('partials/footer') %>

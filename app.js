@@ -8,7 +8,7 @@ const session = require('express-session');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const favicon = require('serve-favicon');
-const sslRedirect = require('heroku-ssl-redirect');;
+const sslRedirect = require('heroku-ssl-redirect');
 
 const postRouter = require('./routes/postRouter');
 const basicRouter = require('./routes/basicRouter');
@@ -30,15 +30,13 @@ const keys = require('./config/keys');
 const Category = require('./models/Category');
 
 const app = express();
-
-
-
+// test
 // Definiamo il motore che utilizzeremo per i template
 app.use(sslRedirect());
 app.set('view engine', 'ejs');
 
-const path = require('path')
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+const path = require('path');
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // Definiamo la cartella dei contenuti statici
 app.use(express.static(__dirname + '/public'));
@@ -119,12 +117,12 @@ app.use((req, res, next) => {
       res.status(500).json({
         status: 'fail',
         message: 'failed to retrieve headers categories from header'
-      })
+      });
     }
     res.locals.headerCats = data;
   });
   next();
-})
+});
 
 /* app.route('/edit/:id').get((req, res) => {
   console.log(req.params.id);
@@ -137,7 +135,7 @@ app.use('/users/auth', userAuthRouter);
 app.use('/admin', adminRouter);
 app.use('/admin/posts', adminPostRouter);
 app.use('/admin/auth', adminAuthRouter);
-app.use('/super/cats', superCatsRouter)
+app.use('/super/cats', superCatsRouter);
 app.use('/super', superRouter);
 app.use('/king/posts', kingPostsRouter);
 app.use('/king', kingRouter);
