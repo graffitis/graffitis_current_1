@@ -23591,3 +23591,7 @@ label.btn {
 /*------------------------------------
   File for your custom SCSS style
 ------------------------------------*/
+
+.graffitis-content {
+  text-align: justify !important;
+}

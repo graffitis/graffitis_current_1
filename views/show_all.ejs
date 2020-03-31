@@ -8,12 +8,12 @@
                     TUTTI I POST
                 </h1>
                 <p class="lead font-weight-normal">
-                    #TODO:Inserire testi di sottotitolo ove necessario
+                    Tutti quello che la redazione di GraffITIS ha prodotto...
                 </p>
             </div>
         </div>
 
-        <div class="row">
+        <div class="grid mx-n2 justify-content-between" data-masonry='{ "itemSelector": ".grid-item"}'>
             <% posts.forEach((item) => { %>
             <% let test = null; %>
             <% if (item.special) { %>
@@ -21,7 +21,7 @@
             <% } %>
 
             <% if(item.cover || item.cover.length > 2) { %>
-            <div class="col-md-6 col-lg-4 mb-5">
+            <div class="grid-item col-md-6 col-lg-4 mb-5">
                 <article class="card shadow h-100 transition-3d-hover <%= test %>">
                     <img style="height:14em;object-fit: cover;" class="card-img-top" src="<%= item.cover %>"
                         alt="Image Description" />
@@ -54,7 +54,7 @@
                 </article>
             </div>
             <% } else {  %>
-            <div class="col-md-6 col-lg-4 mb-5">
+            <div class="grid-item col-md-6 col-lg-4 mb-5">
                 <article class="card shadow h-100 transition-3d-hover <%= test %>">
 
                     <div class="card-body p-5">
@@ -91,4 +91,11 @@
         </div>
     </div>
 </main>
+<script>
+    $('.grid').masonry({
+        // options
+        itemSelector: '.grid-item',
+        columnWidth: 200
+    });
+</script>
 <%- include ('partials/footer') %>

@@ -24,7 +24,13 @@ exports.getAllPosts = (req, res) => {
       });
     }
 
-    res.render('show_all', { posts: data })
+    data.sort((a, b) => {
+      a = a.edited;
+      b = b.edited;
+      return a > b ? -1 : a < b ? 1 : 0;
+    });
+
+    res.render('show_all', { posts: data });
   });
 };
 
@@ -115,11 +121,11 @@ exports.specialPage = (req, res) => {
       res.status(500).json({
         status: 'fail',
         message: 'Failed to retrieve special posts'
-      })
+      });
     }
     res.render('show_category', { category: 'speciali', posts: data });
-  })
-}
+  });
+};
 
 exports.get_cats = (req, res) => {
   Category.find((err, data) => {
@@ -127,9 +133,9 @@ exports.get_cats = (req, res) => {
       res.status(500).json({
         status: 'fail',
         message: 'failed to retrieve categories from DB'
-      })
+      });
     } else {
       res.render('categories', { cats: data });
     }
-  })
-}
+  });
+};

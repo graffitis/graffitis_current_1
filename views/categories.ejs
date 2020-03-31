@@ -13,11 +13,11 @@
             </div>
         </div>
 
-        <div class="row mx-n2">
+        <div class="grid mx-n2 justify-content-between" data-masonry='{ "itemSelector": ".grid-item"}'>
 
             <!-- TO RENDER -->
             <% cats.forEach((cat) => { %>
-            <div class="col-sm-6 col-lg-3 px-2 mb-3">
+            <div class="grid-item col-sm-6 col-lg-3 px-2 mb-3">
                 <!-- Team -->
                 <% cat.name = cat.name.toLowerCase().replace(/\s+/g, '-') %>
                 <a href="/posts/categories/<%= cat.name %>">
@@ -41,4 +41,11 @@
         </div>
     </div>
 </main>
+<script>
+    $('.grid').masonry({
+        // options
+        itemSelector: '.grid-item',
+        columnWidth: 200
+    });
+</script>
 <%- include ('partials/footer') %>

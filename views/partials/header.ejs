@@ -78,13 +78,13 @@
           <div id="navBar" class="collapse navbar-collapse u-header__navbar-collapse">
             <ul class="navbar-nav u-header__navbar-nav">
               <!-- Demos -->
-              <li class="nav-item u-header__nav-item mr-2">
-                <a class="nav-link u-header__nav-link" href="/">Prima Pagina</a>
+              <li class="nav-item u-header__nav-item mr-2" id="primapagina">
+                <a class="nav-link u-header__nav-link" href="/"><i class="far fa-newspaper"></i> Prima Pagina</a>
               </li>
               <li class="nav-item hs-has-mega-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp"
-                data-animation-out="fadeOut" data-max-width="900px" data-position="right">
+                data-animation-out="fadeOut" data-max-width="900px" data-position="right" id="categories">
                 <a id="demosMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;"
-                  aria-haspopup="true" aria-expanded="false">Rubriche</a>
+                  aria-haspopup="true" aria-expanded="false"><i class="fas fa-layer-group"></i> Rubriche</a>
 
                 <!-- Demos - Mega Menu -->
                 <div class="hs-mega-menu w-100 u-header__sub-menu" aria-labelledby="demosMegaMenu">
@@ -134,7 +134,8 @@
                                 alt="SVG">
                               <div class="media-body">
                                 <span class="u-header__promo-title">Memes</span>
-                                <small class="u-header__promo-text">Un po' di ignoranza...</small>
+                                <small class="u-header__promo-text">Qualche post divertente per tirarci su il
+                                  morale...</small>
                               </div>
                             </div>
                           </a>
@@ -149,7 +150,7 @@
                                 alt="SVG">
                               <div class="media-body">
                                 <span class="u-header__promo-title">Moda</span>
-                                <small class="u-header__promo-text">Descrizione</small>
+                                <small class="u-header__promo-text">Aggiornamenti dalle passerelle nel mondo</small>
                               </div>
                             </div>
                           </a>
@@ -166,7 +167,7 @@
                                 alt="SVG">
                               <div class="media-body">
                                 <span class="u-header__promo-title">Musica</span>
-                                <small class="u-header__promo-text">Descrizione</small>
+                                <small class="u-header__promo-text">Colonna sonora della vita di tutti i giorni</small>
                               </div>
                             </div>
                           </a>
@@ -214,8 +215,9 @@
                 <!-- End Demos - Mega Menu -->
               </li>
               <!-- End Demos -->
-              <li class="nav-item u-header__nav-item mr-2">
-                <a class="nav-link u-header__nav-link" href="/redazione">Redazione</a>
+              <li class="nav-item u-header__nav-item mr-2" id="redazione">
+                <a class="nav-link u-header__nav-link" href="/redazione"><i class="fas fa-feather-alt"></i>
+                  Redazione</a>
               </li>
               <!-- Docs -->
               <% if(user) { %>
