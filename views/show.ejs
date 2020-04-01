@@ -1,32 +1,34 @@
 <%- include ('partials/header') %>
 <div class="container space-1">
   <div class="w-lg-60 mx-lg-auto">
-    <div class="container mb-4">
-      <div class="row justify-content-between">
-        <span class="row ml-0">
-          <h1 class="h2 font-weight-medium">
-            <%= post.title %>
-          </h1>
-          <% if (post.special) { %>
-          <a href="/specials">
-            <span class="badge badge-warning text-white ml-1 mt-3"><i class="fas fa-star mr-1"></i>Edizione
-              Speciale</span></a>
-          <% } %>
+    <div class="container mb-4 p-0">
+      <p class="d-inline-block text-black-50 text-uppercase my-auto"><strong><%= post.category %></strong> </p>
+      <!-- <div class="row"> -->
+      <span>
+        <h1 class="h2 font-weight-medium">
+          <%= post.title %>
+        </h1>
 
-          <% if(user) { %>
-          <% if(user.role === 1) { %>
-          <a href="/admin/posts/<%= post._id %>" class="ml-3 mt-3 text-black-50 link"><i class="far fa-edit"></i>
-            Modifica
-            l'articolo</a>
-          <% } else { %>
-          <a href="/king/posts/<%= post._id %>" class="ml-3 mt-3 text-black-50 link"><i class="far fa-edit"></i>
-            Modifica
-            l'articolo | Super & King </a>
-          <% } }%>
-        </span>
+        <% if (post.special) { %>
+        <a href="/specials">
+          <span class="badge badge-warning text-white ml-1 mt-3"><i class="fas fa-star mr-1"></i>Edizione
+            Speciale</span></a>
+        <% } %>
 
-        <!-- #TODO: implementare e corregere layout pulsante 'torna alla home'-->
-      </div>
+        <% if(user) { %>
+        <% if(user.role === 1) { %>
+        <a href="/admin/posts/<%= post._id %>" class="ml-3 mt-3 text-black-50 link"><i class="far fa-edit"></i>
+          Modifica
+          l'articolo</a>
+        <% } else { %>
+        <a href="/king/posts/<%= post._id %>" class="ml-3 mt-3 text-black-50 link"><i class="far fa-edit"></i>
+          Modifica
+          l'articolo | Super & King </a>
+        <% } }%>
+      </span>
+
+      <!-- #TODO: implementare e corregere layout pulsante 'torna alla home'-->
+      <!-- </div> -->
     </div>
 
     <!-- Author -->
