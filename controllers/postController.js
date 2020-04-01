@@ -70,7 +70,14 @@ exports.getPostById = (req, res) => {
       })*/;
     }
 
-    Admin.find({ name: data.author }, (err, authordata) => {
+    res.status(200).render('show', { post: data, desc: -1 });
+    /* Admin.find({ name: data.author }, (err, authordata) => {
+      if (err) {
+        res.status(500).json({
+          status: 'fail',
+          message: 'errors on post rendering'
+        });
+      }
       if (authordata[0]) {
         if (authordata[0].desc != '' && authordata[0].desc) {
           res
@@ -78,9 +85,8 @@ exports.getPostById = (req, res) => {
             .render('show', { post: data, desc: authordata[0].desc });
         }
       } else {
-        res.status(200).render('show', { post: data, desc: -1 });
       }
-    });
+    }); */
   });
 };
 
