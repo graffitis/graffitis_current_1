@@ -2,7 +2,8 @@
 <div class="container space-1">
   <div class="w-lg-60 mx-lg-auto">
     <div class="container mb-4 p-0">
-      <p class="d-inline-block text-black-50 text-uppercase my-auto"><strong><%= post.category %></strong> </p>
+      <a class="d-inline-block text-black-50 text-uppercase my-auto"
+        href="/posts/categories/<%= post.category %>"><strong><%= post.category %></strong> </a>
       <!-- <div class="row"> -->
       <span>
         <h1 class="h2 font-weight-medium">
@@ -16,19 +17,12 @@
         <% } %>
 
         <% if(user) { %>
-        <% if(user.role === 1) { %>
-        <a href="/admin/posts/<%= post._id %>" class="ml-3 mt-3 text-black-50 link"><i class="far fa-edit"></i>
-          Modifica
-          l'articolo</a>
-        <% } else { %>
+        <% if(user.role === 2 || user.role === 3) { %>
         <a href="/king/posts/<%= post._id %>" class="ml-3 mt-3 text-black-50 link"><i class="far fa-edit"></i>
           Modifica
           l'articolo | <strong>Super & King</strong> </a>
         <% } }%>
       </span>
-
-      <!-- #TODO: implementare e corregere layout pulsante 'torna alla home'-->
-      <!-- </div> -->
     </div>
 
     <!-- Author -->

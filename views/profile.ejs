@@ -83,29 +83,39 @@
             <p>Le informazioni principali...</p>
         </div>
 
-        <hr class="mt-1 mb-7">
+        <hr class="mt-1 mb-5">
+        <div class="alert alert-warning" role="alert">
+            <strong> <i class="fas fa-shield-alt mr-2"> </i>Sicurezza e
+                Modifiche Autorizzate
+            </strong>
+            <hr>
+            Momentaneamente, per motivi di sicurezza, non è consentito modificare il tuo nome o la tua e-mail associati
+            a graffITIS .
+            <br> Puoi sempre aggiornare il tuo ruolo e la tua descrizione.
+        </div>
+        <hr class="my-5">
 
         <form action="/profile" method="POST" id="post_create">
             <!-- End Breadcrumb Section -->
 
 
-            <div class="form-group">
+            <div class="form-group js-focus-state">
                 <label for="name">NOME</label>
-                <input type="text" class="form-control" id="name" name="name"
-                    placeholder="Inserisci i tuoi Nome e Cognome" value="<%= user.name %>" />
+                <input type="text" class="form-control" id="name" name="name" placeholder="<%= user.name %>" disabled
+                    aria-label="Disabled" />
                 <small id="titleHelp" class="form-text text-muted">Verrà visualizzato come nome autore negli
                     articoli scritti da questo utente</small>
             </div>
 
-            <div class="form-group">
+            <div class="form-group js-focus-state">
                 <label for="email">E-MAIL</label>
-                <input type="text" class="form-control" id="email" name="email"
-                    placeholder="Inserisci il tuo miglior indirizzo e-mail" value="<%= user.email %>" />
+                <input type="text" class="form-control" id="email" name="email" placeholder="<%= user.email %>" disabled
+                    aria-label="Disabled" />
                 <small id="coverHelp" class="form-text text-muted">Verrà utilizzata per inviare eventuali
                     comunicazioni all'utente</small>
             </div>
 
-            <div class="form-group">
+            <div class="form-group ">
                 <label for="task">RUOLO</label>
                 <input type="text" class="form-control" id="task" name="task"
                     placeholder="Inserisci il ruolo che rivesti in graffITIS" value="<%= user.task %>" />
@@ -121,7 +131,7 @@
                             <i class="fas fa-code-branch"></i>
                         </span>
                     </div>
-                    <input type="text" class="form-control" placeholder="5e1ed452bd9d3d00178d363f" aria-label="Disabled"
+                    <input type="text" class="form-control" placeholder="<%= user._id %>" aria-label="Disabled"
                         disabled>
 
                 </div>

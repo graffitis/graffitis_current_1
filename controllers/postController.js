@@ -77,13 +77,14 @@ exports.getPostById = (req, res) => {
           message: 'error on post render'
         });
       }
-      // if (authordata && authordata[0]) {
-      if (authordata[0].desc != '' && authordata[0].desc) {
-        res
-          .status(200)
-          .render('show', { post: data, desc: authordata[0].desc });
-      } else {
-        res.status(200).render('show', { post: data, desc: -1 });
+      if (authordata[0] != null) {
+        if (authordata[0].desc != '' && authordata[0].desc) {
+          res
+            .status(200)
+            .render('show', { post: data, desc: authordata[0].desc });
+        } else {
+          res.status(200).render('show', { post: data, desc: -1 });
+        }
       }
     });
   });
