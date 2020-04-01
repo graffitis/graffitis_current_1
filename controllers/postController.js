@@ -82,10 +82,9 @@ exports.getPostById = (req, res) => {
           res
             .status(200)
             .render('show', { post: data, desc: authordata[0].desc });
-        } else {
-          res.status(200).render('show', { post: data, desc: -1 });
         }
       }
+      res.status(200).render('show', { post: data, desc: -1 });
     });
   });
 };
