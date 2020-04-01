@@ -70,23 +70,22 @@ exports.getPostById = (req, res) => {
       })*/;
     }
 
-    res.status(200).render('show', { post: data, desc: -1 });
-    /* Admin.find({ name: data.author }, (err, authordata) => {
+    Admin.find({ name: data.author }, (err, authordata) => {
       if (err) {
         res.status(500).json({
           status: 'fail',
-          message: 'errors on post rendering'
+          message: 'error on post render'
         });
       }
-      if (authordata[0]) {
-        if (authordata[0].desc != '' && authordata[0].desc) {
-          res
-            .status(200)
-            .render('show', { post: data, desc: authordata[0].desc });
-        }
+      // if (authordata && authordata[0]) {
+      if (authordata[0].desc != '' && authordata[0].desc) {
+        res
+          .status(200)
+          .render('show', { post: data, desc: authordata[0].desc });
       } else {
+        res.status(200).render('show', { post: data, desc: -1 });
       }
-    }); */
+    });
   });
 };
 
