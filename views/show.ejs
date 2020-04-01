@@ -136,11 +136,17 @@
         <img class="img-fluid rounded-circle" src="<%= post.authorPic %>" alt="Image Description" />
       </div>
       <div class="media-body ml-3">
-        <small class="d-block text-muted text-uppercase">Scritto da</small>
+        <small class="d-block text-primary text-uppercase"><strong>Scritto da</strong> </small>
         <h3 class="h5 font-weight-medium mb-0">
           <%= post.author %>
         </h3>
-        <p class="mb-0"></p>
+        <% if(desc != -1) { %>
+        <p class="mb-0 text-black-50"><%= desc %></p>
+        <% } else { %>
+        <p class="mb-0 text-black-50">
+          <i class="fas fa-puzzle-piece"></i> Questo autore non ha ancora caricato la sua descrizione...
+        </p>
+        <% } %>
       </div>
     </div>
     <!-- End Author -->

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Post = require('./../models/Post');
 const Category = require('./../models/Category');
+const Admin = require('./../models/Admin');
 
 exports.checkID = (req, res, next) => {
   Post.find({ id: req.id }, (err, data) => {
@@ -69,7 +70,17 @@ exports.getPostById = (req, res) => {
       })*/;
     }
 
-    res.status(200).render('show', { post: data });
+    Admin.find({ name: data.author }, (err, authordata) => {
+      if (authordata[0]) {
+        if (authordata[0].desc != '' && authordata[0].desc) {
+          res
+            .status(200)
+            .render('show', { post: data, desc: authordata[0].desc });
+        }
+      } else {
+        res.status(200).render('show', { post: data, desc: -1 });
+      }
+    });
   });
 };
 
