@@ -74,10 +74,18 @@
             </p>
 
             <div class="media align-items-center pt-5">
+              <% if( post.author.charAt(post.author.length - 1) === 'r' &&  post.author.charAt(post.author.length - 2) === '_' &&  post.author.charAt(post.author.length - 3) === '_') { %>
+              <div class="u-sm-avatar u-sm-avatar--bordered rounded-circle ml-n2" data-toggle="tooltip"
+                data-placement="top" title="Redazione">
+                <img class="img-fluid rounded-circle" src="https://i.ibb.co/WsQqqXR/graffiti-SOLOGArtboard-1.png"
+                  alt="Image Description" />
+              </div>
+              <% } else { %>
               <div class="u-sm-avatar u-sm-avatar--bordered rounded-circle ml-n2" data-toggle="tooltip"
                 data-placement="top" title="<%= post.author %>">
                 <img class="img-fluid rounded-circle" src="<%= post.authorPic %>" alt="Image Description" />
               </div>
+              <% } %>
               <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
 
                 <% let minuti = ('0'+post.edited.getMinutes()).slice(-2) %>
@@ -110,10 +118,18 @@
             </p>
 
             <div class="media align-items-center pt-5">
+              <% if( post.author.charAt(post.author.length - 1) === 'r' &&  post.author.charAt(post.author.length - 2) === '_' &&  post.author.charAt(post.author.length - 3) === '_') { %>
+              <div class="u-sm-avatar u-sm-avatar--bordered rounded-circle ml-n2" data-toggle="tooltip"
+                data-placement="top" title="Redazione">
+                <img class="img-fluid rounded-circle" src="https://i.ibb.co/WsQqqXR/graffiti-SOLOGArtboard-1.png"
+                  alt="Image Description" />
+              </div>
+              <% } else { %>
               <div class="u-sm-avatar u-sm-avatar--bordered rounded-circle ml-n2" data-toggle="tooltip"
                 data-placement="top" title="<%= post.author %>">
                 <img class="img-fluid rounded-circle" src="<%= post.authorPic %>" alt="Image Description" />
               </div>
+              <% } %>
               <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
 
                 <% let minuti = ('0'+post.edited.getMinutes()).slice(-2) %>

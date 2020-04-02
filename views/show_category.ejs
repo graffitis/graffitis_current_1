@@ -41,10 +41,18 @@
 
           <div class="card-footer border-0 pt-0 pb-5 px-0 mx-5">
             <div class="media align-items-center">
+              <% if( post.author.charAt(post.author.length - 1) === 'r' &&  post.author.charAt(post.author.length - 2) === '_' &&  post.author.charAt(post.author.length - 3) === '_') { %>
               <div class="u-sm-avatar u-sm-avatar--bordered rounded-circle ml-n2" data-toggle="tooltip"
-                data-placement="top" title="<%= item.author %>">
-                <img class="img-fluid rounded-circle" src="<%= item.authorPic %>" alt="Image Description" />
+                data-placement="top" title="Redazione">
+                <img class="img-fluid rounded-circle" src="https://i.ibb.co/WsQqqXR/graffiti-SOLOGArtboard-1.png"
+                  alt="Image Description" />
               </div>
+              <% } else { %>
+              <div class="u-sm-avatar u-sm-avatar--bordered rounded-circle ml-n2" data-toggle="tooltip"
+                data-placement="top" title="<%= post.author %>">
+                <img class="img-fluid rounded-circle" src="<%= post.authorPic %>" alt="Image Description" />
+              </div>
+              <% } %>
               <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
                 <%= item.edited.toLocaleDateString("it-IT") %>
               </div>
@@ -72,10 +80,18 @@
 
           <div class="card-footer border-0 pt-0 pb-5 px-0 mx-5">
             <div class="media align-items-center">
+              <% if( item.author.charAt(item.author.length - 1) === 'r' &&  item.author.charAt(item.author.length - 2) === '_' &&  item.author.charAt(item.author.length - 3) === '_') { %>
+              <div class="u-sm-avatar u-sm-avatar--bordered rounded-circle ml-n2" data-toggle="tooltip"
+                data-placement="top" title="Redazione">
+                <img class="img-fluid rounded-circle" src="https://i.ibb.co/WsQqqXR/graffiti-SOLOGArtboard-1.png"
+                  alt="Image Description" />
+              </div>
+              <% } else { %>
               <div class="u-sm-avatar u-sm-avatar--bordered rounded-circle ml-n2" data-toggle="tooltip"
                 data-placement="top" title="<%= item.author %>">
                 <img class="img-fluid rounded-circle" src="<%= item.authorPic %>" alt="Image Description" />
               </div>
+              <% } %>
               <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
                 <%= item.edited.toLocaleDateString("it-IT") %>
               </div>

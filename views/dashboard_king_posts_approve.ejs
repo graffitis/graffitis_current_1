@@ -99,7 +99,7 @@
                 </div>
                 <div class="form-group" id="category">
                     <!-- WORKAROUND -->
-                    <input type="text" style="display: none;" name="category" value="<%= cats[0].name %>"
+                    <input type="text" style="display: none;" name="category" value="<%= post.category %>"
                         id="category_input_sel">
                     <!-- END WORKAROUND -->
                     <label for="category">Categoria</label>
@@ -147,18 +147,25 @@
                                                 <div class="card mb-3 custom-control custom-radio">
                                                     <div class="card-body">
                                                         <!-- WORKAROUND
-                            Questo è probabilmente il peggior pezzo di codice abba mai scritto, 
-                            ma altrimenti non so come aggiustare sta roba.... Boh
-                            -->
+                                      Questo è probabilmente il peggior pezzo di codice abba mai scritto, 
+                                      ma altrimenti non so come aggiustare sta roba.... Boh
+                                      -->
                                                         <script>
                                                             function set_cat(e) {
                                                                 console.log(e.target.dataset.cat)
                                                                 $('#category_input_sel').val(e.target.dataset.cat)
                                                             }
                                                         </script>
+                                                        <% if (cat.name.toLowerCase() == post.category.toLowerCase()) { %>
+                                                        <input type="radio" class="custom-control-input"
+                                                            id="stylishRadio<%= i %>" name="category_gui"
+                                                            onchange="set_cat(event)" data-cat="<%= cat.name %>"
+                                                            checked>
+                                                        <% } else { %>
                                                         <input type="radio" class="custom-control-input"
                                                             id="stylishRadio<%= i %>" name="category_gui"
                                                             onchange="set_cat(event)" data-cat="<%= cat.name %>">
+                                                        <% } %>
                                                         <!-- END WORKAROUND -->
                                                         <label class="custom-control-label" for="stylishRadio<%= i %>">
                                                             <h6><%= cat.name %></h6>
@@ -177,18 +184,18 @@
                                 <!-- Footer -->
                                 <footer class="u-sidebar__footer u-sidebar__footer--account">
                                     <!-- <button type="button" class="btn btn-secondary mb-3 mt-3"
-                        aria-controls="sidebarContent"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        data-unfold-event="click"
-                        data-unfold-hide-on-scroll="false"
-                        data-unfold-target="#sidebarContent"
-                        data-unfold-type="css-animation"
-                        data-unfold-animation-in="fadeInRight"
-                        data-unfold-animation-out="fadeOutRight"
-                        data-unfold-duration="500">
-                  <span aria-hidden="true"> < Fatto</span>
-              </button> -->
+                                  aria-controls="sidebarContent"
+                                  aria-haspopup="true"
+                                  aria-expanded="false"
+                                  data-unfold-event="click"
+                                  data-unfold-hide-on-scroll="false"
+                                  data-unfold-target="#sidebarContent"
+                                  data-unfold-type="css-animation"
+                                  data-unfold-animation-in="fadeInRight"
+                                  data-unfold-animation-out="fadeOutRight"
+                                  data-unfold-duration="500">
+                            <span aria-hidden="true"> < Fatto</span>
+                        </button> -->
                                     <ul class="list-inline mb-0">
                                         <li class="list-inline-item mb-5"><a class="text-muted" href="#"><span
                                                     class="d-none d-sm-inline-block" aria-controls="sidebarContent"
@@ -241,22 +248,26 @@
                         Tipologia Edizione
                     </label>
 
+
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
 
+
                         <label class="btn btn-sm btn-secondary">
-                            <input type="radio" name="special" id="aggiorna" autocomplete="off" value="true" />
+                            <input type="radio" name="special" id="aggiorna" autocomplete="off" value="true"
+                                <% if(post.special) { %> checked <% } %> />
                             <i class="fas fa-star"></i> Speciale
                         </label>
-
                         <label class="btn btn-sm btn-secondary active">
-                            <input type="radio" name="special" id="mantieni" autocomplete="off" value="false" checked />
+                            <input type="radio" name="special" id="mantieni" autocomplete="off" value="false"
+                                <% if(!post.special) { %> checked <% } %> />
                             <i class="far fa-newspaper"></i> Standard
                         </label>
+
                     </div>
                     <small id="tagsHelp" class="form-text text-muted mb-6">
                         SPECIALE > I Post verranno contrassegnati da un badge 'Edizione Speciale' in tutti i loro
                         formati<br>
-                        STANDARD > Nessuna modifica ai Post | <strong> default</strong>
+                        STANDARD > Nessuna modifica ai Post
                     </small>
                 </div>
 
@@ -268,25 +279,26 @@
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
 
                         <label class="btn btn-sm btn-secondary active">
-                            <input type="radio" name="status" id="option1" autocomplete="off" value="1" />
+                            <input type="radio" name="status" id="option1" autocomplete="off" value="1"
+                                <% if(post.status === 1) { %> checked <% } %> />
                             <i class="fas fa-globe"></i> Online
                         </label>
 
                         <label class="btn btn-sm btn-secondary">
-                            <input type="radio" name="status" id="option2" autocomplete="off" value="0" />
+                            <input type="radio" name="status" id="option2" autocomplete="off" value="0"
+                                <% if(post.status === 0) { %> checked <% } %> />
                             <i class="fas fa-glasses"></i> Pronto
                         </label>
                         <label class="btn btn-sm btn-secondary">
-                            <input type="radio" name="status" id="option3" autocomplete="off" value="-1" checked />
+                            <input type="radio" name="status" id="option3" autocomplete="off" value="-1"
+                                <% if(post.status === -1) { %> checked <% } %> />
                             <i class="fas fa-pencil-alt"></i> Bozza
                         </label>
 
                     </div>
                     <small id="tagsHelp" class="form-text text-muted mb-6">ONLINE > L'articolo è subito visibile al
                         pubblico <br>
-                        PRONTO > L'articolo è pronto per la pubblicazione <br> BOZZA > L'articolo è in stesura |
-                        <strong>
-                            default</strong></small>
+                        PRONTO > L'articolo è pronto per la pubblicazione <br> BOZZA > L'articolo è in stesura </small>
 
                     <div class="form-group ">
                         <label for="status" class="form-label">
@@ -327,8 +339,13 @@
                         ALTRE OPZIONI
                     </label>
                     <div class="form-group custom-control custom-checkbox">
-
-                        <input type="checkbox" class="custom-control-input" id="stylishCheckbox" name="redazione">
+                        <% if( post.author.charAt(post.author.length - 1) === 'r' &&  post.author.charAt(post.author.length - 2) === '_' &&  post.author.charAt(post.author.length - 3) === '_') { %>
+                        <input type="checkbox" class="custom-control-input" id="stylishCheckbox" name="redazione"
+                            checked>
+                        <% } else  { %>
+                        <input type="checkbox" class="custom-control-input" id="stylishCheckbox" name="redazione"
+                            checked>
+                        <% } %>
                         <label class="custom-control-label" for="stylishCheckbox" value="1">
                             Articolo della Redazione
                         </label>
