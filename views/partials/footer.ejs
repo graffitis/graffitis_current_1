@@ -40,6 +40,7 @@
 <script src="../../assets/vendor/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js"></script>
 <script src="../../assets/vendor/custombox/dist/custombox.min.js"></script>
 <script src="../../assets/vendor/custombox/dist/custombox.legacy.min.js"></script>
+<script src="../../assets/vendor/hs-toggle-state/dist/hs-toggle-state.min.js"></script>
 
 <!-- JS Front -->
 <script src="../../assets/js/hs.core.js"></script>
@@ -67,6 +68,15 @@
 
 <!-- JS Plugins Init. -->
 <script>
+  $(document).on('ready', function () {
+    // initialization of toggle state
+    $('.js-toggle-state').each(function () {
+      var toggleState = new HSToggleState($(this)).init();
+    });
+  });
+</script>
+<script>
+
   $(window).on('load', function () {
     // initialization of HSMegaMenu component
     $('.js-mega-menu').HSMegaMenu({

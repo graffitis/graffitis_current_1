@@ -28,6 +28,21 @@
     <!-- Author -->
     <div class="border-top border-bottom py-4 mb-5">
       <div class="row align-items-md-center">
+        <% if( post.author.charAt(post.author.length - 1) === 'r' &&  post.author.charAt(post.author.length - 2) === '_' &&  post.author.charAt(post.author.length - 3) === '_') { %>
+        <div class="col-md-7 mb-5 mb-md-0">
+          <div class="media align-items-center">
+            <div class="u-avatar">
+              <img class="img-fluid rounded-circle" src="https://i.ibb.co/WsQqqXR/graffiti-SOLOGArtboard-1.png"
+                alt="Image Description" />
+            </div>
+            <div class="media-body font-size-1 ml-3">
+              <span class="h6 font-weight-medium"><a href="#">La Redazione</a>
+              </span>
+              <span class="d-block text-muted"><%= post.edited.toLocaleDateString("it-IT") %></span>
+            </div>
+          </div>
+        </div>
+        <% } else { %>
         <div class="col-md-7 mb-5 mb-md-0">
           <div class="media align-items-center">
             <div class="u-avatar">
@@ -40,6 +55,7 @@
             </div>
           </div>
         </div>
+        <% } %>
         <!-- <div class="col-md-5">
           <div class="d-md-flex justify-content-md-end align-items-md-center">
 
@@ -127,6 +143,27 @@
     <!-- End Share -->
 
     <!-- Author -->
+
+    <% if( post.author.charAt(post.author.length - 1) === 'r' &&  post.author.charAt(post.author.length - 2) === '_' &&  post.author.charAt(post.author.length - 3) === '_') { %>
+    <div class="media align-items-center border-top border-bottom py-5 my-8">
+      <div class="u-lg-avatar">
+        <img class="img-fluid rounded-circle" src="https://i.ibb.co/WsQqqXR/graffiti-SOLOGArtboard-1.png"
+          alt="Image Description" />
+      </div>
+      <div class="media-body ml-3">
+        <small class="d-block text-primary text-uppercase"><strong>SCRITTO DALLA</strong> </small>
+        <h3 class="h5 font-weight-medium mb-0">
+          La Redazione
+        </h3>
+
+        <p class="mb-0 text-black-50">
+          <i class="fas fa-puzzle-piece"></i> Descrizione della redazione work in progress...
+        </p>
+
+      </div>
+    </div>
+
+    <% } else { %>
     <div class="media align-items-center border-top border-bottom py-5 my-8">
       <div class="u-lg-avatar">
         <img class="img-fluid rounded-circle" src="<%= post.authorPic %>" alt="Image Description" />
@@ -147,5 +184,6 @@
     </div>
     <!-- End Author -->
   </div>
+  <% } %>
   <%- include ('partials/footer') %>
 </div>
