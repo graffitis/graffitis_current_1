@@ -101,15 +101,16 @@
 
             <div class="form-group js-focus-state">
                 <label for="name">NOME</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="<%= user.name %>" disabled
-                    aria-label="Disabled" />
+                <input type="text" name="name" id="name" value="<%= user.name %>" hidden />
+                <input type="text" name="name" id="email" value="<%= user.email %>" hidden />
+                <input type="text" class="form-control" placeholder="<%= user.name %>" disabled aria-label="Disabled" />
                 <small id="titleHelp" class="form-text text-muted">Verrà visualizzato come nome autore negli
                     articoli scritti da questo utente</small>
             </div>
 
             <div class="form-group js-focus-state">
                 <label for="email">E-MAIL</label>
-                <input type="text" class="form-control" id="email" name="email" placeholder="<%= user.email %>" disabled
+                <input type="text" class="form-control" placeholder="<%= user.email %>" disabled
                     aria-label="Disabled" />
                 <small id="coverHelp" class="form-text text-muted">Verrà utilizzata per inviare eventuali
                     comunicazioni all'utente</small>
