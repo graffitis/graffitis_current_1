@@ -17,12 +17,14 @@ exports.get_posts = (req, res) => {
     if (err) {
       res.status(400).json({
         status: 'fail',
-        message: 'failed to load posts'
+        message: 'failed to load posts',
       });
     }
+
+    data.sort((a, b) => b.edited - a.edited);
     res.render('dashboard_king_posts', {
       posts: data,
-      user: req.user
+      user: req.user,
     });
   });
 };
@@ -32,11 +34,11 @@ exports.get_new_post = (req, res) => {
     if (err) {
       res.status(500).json({
         status: 'failed',
-        message: 'failed to retrieve categories'
+        message: 'failed to retrieve categories',
       });
     }
     res.render('dashboard_king_create_post', {
-      cats: data
+      cats: data,
     });
   });
 };
@@ -46,11 +48,11 @@ exports.createPage = (req, res) => {
     if (err) {
       res.status(500).json({
         status: 'failed',
-        message: 'failed to retrieve categories'
+        message: 'failed to retrieve categories',
       });
     }
     res.render('dashboard_create', {
-      cats: data
+      cats: data,
     });
   });
 };
@@ -69,14 +71,14 @@ exports.new_post = (req, res) => {
     tags: req.body.tags.replace(/\s+/g, '').split(','),
     status: req.body.status * 1,
     edited: Date.now(),
-    special: special
+    special: special,
   });
 
-  newPost.save(err => {
+  newPost.save((err) => {
     if (err) {
       res.status(400).json({
         status: 'fail',
-        message: 'Failed to create new post'
+        message: 'Failed to create new post',
       });
     }
     req.flash('success', 'Nuovo articolo creato correttamente!');
@@ -90,24 +92,24 @@ exports.get_approve = (req, res) => {
       if (err2) {
         res.status(500).json({
           status: 'failed',
-          message: 'failed to retrieve categories'
+          message: 'failed to retrieve categories',
         });
       }
       if (err1) {
         res.status(400).json({
           status: 'fail',
-          message: 'failed to retrieve posts'
+          message: 'failed to retrieve posts',
         });
       }
       const originalAuthor = {
         name: data.author,
-        pic: data.authorPic
+        pic: data.authorPic,
       };
       res.render('dashboard_king_posts_approve', {
         post: data,
         user: req.user,
         cats: cats,
-        originalAuthor: originalAuthor
+        originalAuthor: originalAuthor,
       });
     });
   });
@@ -128,7 +130,7 @@ exports.approve = (req, res) => {
     edited: Date.now(),
     body: req.body.body,
     tags: req.body.tags.replace(/\s+/g, '').split(','),
-    special: special
+    special: special,
   };
 
   if (req.body.redazione) {
@@ -159,7 +161,7 @@ exports.approve = (req, res) => {
     if (err) {
       return res.status(404).json({
         status: 'fail',
-        message: "Post to be modified doesn't exist | Invalid ID"
+        message: "Post to be modified doesn't exist | Invalid ID",
       });
     }
     console.log('updateFlag --> ' + req.body.updateFlag);
@@ -169,11 +171,11 @@ exports.approve = (req, res) => {
       dateState = 'Data non aggiornata';
     }
 
-    data.replaceOne(updatedPost, err => {
+    data.replaceOne(updatedPost, (err) => {
       if (err) {
         return res.status(500).json({
           status: 'fail',
-          message: 'Failed to update new post'
+          message: 'Failed to update new post',
         });
       }
       req.flash('success', 'Post Modificato con successo! | ' + dateState);
@@ -183,18 +185,21 @@ exports.approve = (req, res) => {
 };
 
 exports.delete_post = (req, res) => {
-  Post.deleteOne({
-    _id: req.params.id
-  }, err => {
-    if (err) {
-      res.status(500).json({
-        status: 'fail',
-        message: 'Failed to delete post'
-      });
+  Post.deleteOne(
+    {
+      _id: req.params.id,
+    },
+    (err) => {
+      if (err) {
+        res.status(500).json({
+          status: 'fail',
+          message: 'Failed to delete post',
+        });
+      }
+      req.flash('success', 'Post eliminato con successo!');
+      res.redirect('/king/posts');
     }
-    req.flash('success', 'Post eliminato con successo!');
-    res.redirect('/king/posts');
-  });
+  );
 };
 
 exports.get_users = (req, res) => {
@@ -202,12 +207,12 @@ exports.get_users = (req, res) => {
     if (err) {
       res.status(500).json({
         status: 'fail',
-        message: 'failed to retrieve posts from DB'
+        message: 'failed to retrieve posts from DB',
       });
     }
 
     res.render('dashboard_king_users', {
-      users: data
+      users: data,
     });
   });
 };
@@ -217,14 +222,14 @@ exports.get_logs = (req, res) => {
     if (err) {
       res.status(500).json({
         status: 'fail',
-        message: 'failed to retrieve logs from DB'
+        message: 'failed to retrieve logs from DB',
       });
     }
 
     data.sort((a, b) => b.time - a.time);
 
     res.render('dashboard_king_logs', {
-      logs: data
+      logs: data,
     });
   });
 };

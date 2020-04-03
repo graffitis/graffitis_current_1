@@ -103,6 +103,7 @@
                         id="category_input_sel">
                     <!-- END WORKAROUND -->
                     <label for="category">Categoria</label>
+
                     <!-- Account Sidebar Toggle Button -->
                     <div class="mt-1">
                         <a id="sidebarNavToggler" class="btn btn-sm btn-secondary" href="javascript:;" role="button"
@@ -236,8 +237,11 @@
                     <div class="u-tagsinput">
                         <input id="tags" type="text" name="tags" data-role="tagsinput" value="<%= post.tags %>" />
                     </div>
-                    <small id="tagsHelp" class="form-text text-muted">Grazie a questi tag miglioreremo l'indicizzazione
-                        del tuo
+                    <small id="tagsHelp" class="form-text text-muted"> <strong><i class="fas fa-exclamation"></i> Separa
+                            i tag con
+                            una virgola (No invio o tab) |
+                        </strong> Grazie a
+                        questi tag miglioreremo l'indicizzazione del tuo
                         articolo
                         nella dashboard dei lettori</small>
                     <!-- End Tags Input -->
@@ -373,12 +377,15 @@
                         <button type="submit" class="btn btn-sm btn-primary transition-3d-hover mr-1">
                             <i class="fas fa-cloud-upload-alt"></i> Salva e Applica Stato
                         </button>
+                        <!-- <button type="submit" class="btn btn-sm btn-success mr-1" disabled>
+                            <i class="fas fa-eye"></i> Salva e Visualizza 
+                        </button> -->
     </form>
-
+    <span class="mt-2 mr-1 text-secondary"> | </span>
     <form action="/king/posts/<%= post._id %>" method="POST" enctype="application/x-www-form-urlencoded">
         <input type="hidden" name="_method" value="DELETE">
         <button type="submit" class="btn btn-sm btn-danger transition-3d-hover">
-            <i class="far fa-trash-alt"></i> Elimina Post
+            <i class="far fa-trash-alt"></i> Elimina Post <span class="text-white-50"> | Irreversibile</span>
         </button>
     </form>
     <!-- <a href="/admin/posts1" method="GET" style="margin-left: 0.3em;">

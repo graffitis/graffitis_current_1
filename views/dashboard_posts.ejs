@@ -84,29 +84,35 @@
       <%- messages('message', locals) %>
 
       <h2 class="h2 mb-4">Articoli</h2>
-      <div class="table-responsive-md u-datatable bg-white shadow-lg rounded">
-        <table class="js-datatable table table-bordered u-datatable__striped u-datatable__content"
-        data-dt-info="#datatableWithPaginationInfo"
-        data-dt-page-length="10"
-        data-dt-is-show-paging="true"
 
-        data-dt-pagination="datatablePagination"
-        data-dt-pagination-classes="pagination mb-0"
-        data-dt-pagination-items-classes="page-item"
-        data-dt-pagination-links-classes="page-link"
+      <div class="js-focus-state input-group input-group-sm mb-4">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <span class="fas fa-search"></span>
+          </span>
+        </div>
+        <input id="datatableSearch" class="form-control " type="email" placeholder="Ricerca Articoli"
+          aria-label="Ricerca Articoli">
+      </div>
+      <!-- End Search -->
 
-        data-dt-pagination-next-classes="page-item"
-        data-dt-pagination-next-link-classes="page-link"
-        data-dt-pagination-next-link-markup='<span aria-hidden="true">»</span>'
+      <div class="table-responsive-md u-datatable shadow-lg bg-white">
 
-        data-dt-pagination-prev-classes="page-item"
-        data-dt-pagination-prev-link-classes="page-link"
-        data-dt-pagination-prev-link-markup='<span aria-hidden="true">«</span>'>
-        <thead>
+        <table id="kingPostsTable"
+          class="js-datatable table table-bordered table-striped u-datatable__striped u-datatable__content u-datatable__trigger mb-5"
+          data-dt-search="#datatableSearch" data-dt-info="#datatableWithPaginationInfo"
+          data-dt-entries="#datatableEntries" data-dt-page-length="8" data-dt-is-show-paging="true"
+          data-dt-pagination="datatablePagination" data-dt-pagination-classes="pagination mb-0"
+          data-dt-pagination-items-classes="page-item" data-dt-pagination-links-classes="page-link"
+          data-dt-pagination-next-classes="page-item" data-dt-pagination-next-link-classes="page-link"
+          data-dt-pagination-next-link-markup='<span aria-hidden="true">»</span>'
+          data-dt-pagination-prev-classes="page-item" data-dt-pagination-prev-link-classes="page-link"
+          data-dt-pagination-prev-link-markup='<span aria-hidden="true">«</span>' data-dt-is-responsive>
+          <thead>
             <tr class="text-uppercase font-size-1">
               <th scope="col" class="font-weight-medium">
                 <div class="d-flex justify-content-between align-items-center">
-                  Titolo
+                  TITOLO
                   <div class="ml-2">
                     <span class="fas fa-angle-up u-datatable__thead-icon"></span>
                     <span class="fas fa-angle-down u-datatable__thead-icon"></span>
@@ -115,7 +121,7 @@
               </th>
               <th scope="col" class="font-weight-medium">
                 <div class="d-flex justify-content-between align-items-center">
-                  Categoria
+                  CATEGORIA
                   <div class="ml-2">
                     <span class="fas fa-angle-up u-datatable__thead-icon"></span>
                     <span class="fas fa-angle-down u-datatable__thead-icon"></span>
@@ -124,7 +130,7 @@
               </th>
               <th scope="col" class="font-weight-medium">
                 <div class="d-flex justify-content-between align-items-center">
-                  Autore
+                  AUTORE
                   <div class="ml-2">
                     <span class="fas fa-angle-up u-datatable__thead-icon"></span>
                     <span class="fas fa-angle-down u-datatable__thead-icon"></span>
@@ -133,7 +139,7 @@
               </th>
               <th scope="col" class="font-weight-medium">
                 <div class="d-flex justify-content-between align-items-center">
-                  Data Creazione
+                  DATA
                   <div class="ml-2">
                     <span class="fas fa-angle-up u-datatable__thead-icon"></span>
                     <span class="fas fa-angle-down u-datatable__thead-icon"></span>
@@ -142,7 +148,7 @@
               </th>
               <th scope="col" class="font-weight-medium">
                 <div class="d-flex justify-content-between align-items-center">
-                  Stato
+                  STATO
                   <div class="ml-2">
                     <span class="fas fa-angle-up u-datatable__thead-icon"></span>
                     <span class="fas fa-angle-down u-datatable__thead-icon"></span>
@@ -152,36 +158,45 @@
             </tr>
           </thead>
           <tbody class="font-size-1">
-            <% posts.forEach((post) => { %>
+            <% posts.forEach(post => { %>
+            <% if(post.title.length > 30) { %>
+            <% post.title = post.title.substring(0, 30) + '...' %>
+            <% } %>
             <tr>
-              <% if(post.title.length > 40 ) post.title = post.title.slice(0, 40) + '...' %>
-              <td class="align-middle"><span><a href="/admin/posts/<%= post._id %>"><%= post.title %></a> </span>
-              </td>
-              <td class="align-middle text-secondary">
-                <%= post.category %>
-              </td>
-              <td class="align-middle text-secondary  "><%= post.author %></td>
-              <td class="align-middle text-secondary"><%= post.edited.toLocaleDateString("it-IT") %></td>
-              <% if(post.status === 1) { %>
-              <td class="align-middle text-success"><i class="fas fa-dot-circle"></i> - Online</td>
+              <td><a href="/admin/posts/<%= post._id %>" target="_blank"><%= post.title %></a></td>
+              <td class="text-secondary"><%= post.category %></td>
+              <td class="text-secondary"><%= post.author %></td>
+              <td class="text-secondary"><%= post.edited.toLocaleDateString() %></td>
+
+              <% if(post.status == 1) { %>
+              <td class="text-success"><strong><i class="fas fa-dot-circle"></i>
+                  Online</strong></td>
               <% } else if(post.status === 0) { %>
-              <td class="align-middle text-warning"><i class="fas fa-dot-circle"></i> - Pronto</td>
-              <%} else { %>
-              <td class="align-middle text-danger"><i class="fas fa-dot-circle"></i> - Bozza</td>
-              <%}%>
 
-                        </tr>
-                    <% }); %>
+              <td class="text-warning"><strong><i class="fas fa-dot-circle"></i>
+                  Pronto</strong></td>
+              <% } else { %>
 
+              <td class="text-danger"><strong><i class="fas fa-dot-circle"></i>
+                  Bozza</strong></td>
+              <% } %>
+
+            </tr>
+
+            <% }) %>
           </tbody>
         </table>
+
       </div>
-      <div class="pagination justify-content-center">
-          <div class="d-flex justify-content-between align-items-center">
-              <nav id="datatablePagination" aria-label="Activity pagination"></nav>
-              <small id="datatableInfo" class="text-secondary"></small>
-          </div>
+
+      <!-- Pagination -->
+      <div class="d-flex justify-content-between align-items-center">
+        <nav id="datatablePagination" aria-label="Activity pagination"></nav>
+
+        <small id="datatableInfo" class="text-secondary"></small>
       </div>
+      <!-- End Pagination -->
+
     </div>
   </div>
   </div>

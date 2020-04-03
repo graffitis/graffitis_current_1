@@ -1,7 +1,6 @@
 <!-- ========== FOOTER ========== -->
 <footer class="container space-1 text-center">
   <!-- <h6>Link Utili</h6> -->
-  <hr class="my-3">
   <p> <a href="/">Prima Pagina</a> · <a href="/posts/categories">Rubriche</a> · <a href="/redazione">Redazione</a> <br>
     <a target="blank"
       href="https://www.itiscuneo.gov.it/index.php/component/content/article?id=181:regole-della-community&catid=138:documenti">Termini</a>
@@ -58,6 +57,7 @@
 <script src="../../assets/vendor/custombox/dist/custombox.legacy.min.js"></script>
 <script src="../../assets/vendor/hs-toggle-state/dist/hs-toggle-state.min.js"></script>
 
+
 <!-- JS Front -->
 <script src="../../assets/js/hs.core.js"></script>
 <script src="../../assets/js/components/hs.header.js"></script>
@@ -79,8 +79,10 @@
 <script src="../../assets/js/components/hs.go-to.js"></script>
 <script src="../../assets/js/components/hs.modal-window.js"></script>
 
+
 <!-- JS Leo -->
 <script src="../../assets/js/leoStyle.js"></script>
+
 
 <!-- JS Plugins Init. -->
 <script>
@@ -115,8 +117,7 @@
 
   $(document).on('ready', function () {
     // initialization of datatables
-    //$.HSCore.components.HSDatatables.init('.js-datatable');
-
+    $.HSCore.components.HSDatatables.init('.js-datatable');
   });
 
   $(document).on('ready', function () {

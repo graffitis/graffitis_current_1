@@ -91,36 +91,37 @@
 
             <h2 class="h2 mb-4">Logs di Accesso </h2>
 
-            <hr class="my-5">
 
-            <div class="alert alert-warning" role="alert">
-                <strong> <i class="fas fa-exclamation-triangle mr-2"></i> Visuale Logs in manutenzione
-                </strong>
-                <hr>
-                Stiamo lavorando al codice dell'app, alcune funzionalità (E.G. ordinamento e paginazione
-                tabella)
-                potrebbero non essere disponibili.
-                <br> Se la pagina dovesse risultare inutilizzabile <a href="/contatti"><i
-                        class="fas fa-external-link-alt"></i>contattaci</a>
+
+
+            <div class="js-focus-state input-group input-group-sm mb-4">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <span class="fas fa-search"></span>
+                    </span>
+                </div>
+                <input id="datatableSearch" class="form-control " type="email" placeholder="Ricerca Log"
+                    aria-label="Ricerca Log">
             </div>
+            <!-- End Search -->
 
-            <hr class="my-5">
+            <div class="table-responsive-md u-datatable shadow-lg bg-white">
 
-            <div class="table-responsive-md u-datatable table-striped bg-white shadow-lg rounded">
-                <table id="logsTable"
-                    class="js-datatable table table-bordered u-datatable__striped u-datatable__content"
-                    data-dt-info="#datatableWithPaginationInfo" data-dt-page-length="20" data-dt-is-show-paging="true"
+                <table id="kingPostsTable"
+                    class="js-datatable table table-bordered table-striped u-datatable__striped u-datatable__content u-datatable__trigger mb-5"
+                    data-dt-search="#datatableSearch" data-dt-info="#datatableWithPaginationInfo"
+                    data-dt-entries="#datatableEntries" data-dt-page-length="20" data-dt-is-show-paging="true"
                     data-dt-pagination="datatablePagination" data-dt-pagination-classes="pagination mb-0"
                     data-dt-pagination-items-classes="page-item" data-dt-pagination-links-classes="page-link"
                     data-dt-pagination-next-classes="page-item" data-dt-pagination-next-link-classes="page-link"
                     data-dt-pagination-next-link-markup='<span aria-hidden="true">»</span>'
                     data-dt-pagination-prev-classes="page-item" data-dt-pagination-prev-link-classes="page-link"
-                    data-dt-pagination-prev-link-markup='<span aria-hidden="true">«</span>'>
+                    data-dt-pagination-prev-link-markup='<span aria-hidden="true">«</span>' data-dt-is-responsive>
                     <thead>
                         <tr class="text-uppercase font-size-1">
                             <th scope="col" class="font-weight-medium">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    Utente
+                                    UTENTE
                                     <div class="ml-2">
                                         <span class="fas fa-angle-up u-datatable__thead-icon"></span>
                                         <span class="fas fa-angle-down u-datatable__thead-icon"></span>
@@ -129,7 +130,7 @@
                             </th>
                             <th scope="col" class="font-weight-medium">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    Orario
+                                    ORARIO
                                     <div class="ml-2">
                                         <span class="fas fa-angle-up u-datatable__thead-icon"></span>
                                         <span class="fas fa-angle-down u-datatable__thead-icon"></span>
@@ -138,95 +139,45 @@
                             </th>
                             <th scope="col" class="font-weight-medium">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    Operazione
+                                    OPERAZIONE
                                     <div class="ml-2">
                                         <span class="fas fa-angle-up u-datatable__thead-icon"></span>
                                         <span class="fas fa-angle-down u-datatable__thead-icon"></span>
                                     </div>
                                 </div>
                             </th>
-
 
                         </tr>
                     </thead>
                     <tbody class="font-size-1">
-                        <% logs.sort((a, b) => b.time.getTime - a.time.getTime); %>
-                        <% logs.forEach((log) => { %>
+                        <% logs.forEach(log => { %>
+                        <% let logTime = log.time %>
+                        <% let minuti = ('0'+logTime.getMinutes()).slice(-2) %>
+                        <% logTime = logTime.getFullYear() + '/' + (logTime.getMonth() + 1) + '/' + logTime.getDate() + '@' + logTime.getHours() + ':' + minuti %>
+
                         <tr>
-                            <td class="align-middle">
-                                <%= log.user %>
 
-                            </td>
-                            <td class="align-middle text-secondary">
-                                <% let minuti = ('0'+log.time.getMinutes()).slice(-2) %>
-                                <% let secondi = ('0'+log.time.getSeconds()).slice(-2) %>
-                                <%= log.time.toLocaleDateString("it-IT") %> @
-                                <%= log.time.getHours() %>:<%= minuti %>:<%= secondi %>
+                            <td class="text-secondary"><%= log.user %></td>
+                            <td class="text-secondary"><%= logTime %></td>
 
-                            </td>
+                            <td class="text-primary"><%= log.op %></td>
 
-
-                            <% if(log.op === 1) { %>
-                            <td class="align-middle text-success"> <strong><i class="fas fa-sign-in-alt"></i>
-                                    Login</strong> </td>
-                            <% } else if (log.op === -1) { %>
-                            <td class="align-middle text-danger"> <strong><i class="fas fa-door-open"></i>
-                                    Logout</strong> </td>
-                            <%} else if (log.op === 2) {%>
-                            <td class="align-middle text-primary"> <strong><i class="fas fa-feather-alt"></i>
-                                    Post Creato</strong> </td>
-                            <% } else if (log.op === 3) { %>
-                            <td class="align-middle text-warning"> <strong><i class="fas fa-edit"></i>
-                                    Post Modificato</strong> </td>
-                            <% } else if (log.op === 4) { %>
-                            <td class="align-middle text-secondary"> <strong><i class="fas fa-trash-alt"></i>
-                                    Post Eliminato</strong> </td>
-                            <% } %>
                         </tr>
-                        <% }); %>
 
+                        <% }) %>
                     </tbody>
                 </table>
             </div>
-            <div class="pagination justify-content-center">
-                <div class="d-flex justify-content-between align-items-center">
-                    <nav id="datatablePagination" aria-label="Activity pagination"></nav>
-                    <small id="datatableInfo" class="text-secondary"></small>
-                </div>
+
+            <!-- Pagination -->
+            <div class="d-flex justify-content-between align-items-center">
+                <nav id="datatablePagination" aria-label="Activity pagination"></nav>
+
+                <small id="datatableInfo" class="text-secondary"></small>
             </div>
+            <!-- End Pagination -->
         </div>
     </div>
-    </div>
-    <!-- Modal -->
-    <div id="animationModal" class="js-modal-window u-modal-window" style="width: 500px;">
-        <div class="card">
-            <!-- Header -->
-            <header class="card-header bg-light py-3 px-5">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h3 class="h6 mb-0">Modal title</h3>
 
-                    <button type="button" class="close" aria-label="Close" onclick="Custombox.modal.close();">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-            </header>
-            <!-- End Header -->
-
-            <!-- Body -->
-            <div class="card-body p-5">
-                <p>Modal body text goes here.</p>
-            </div>
-            <!-- End Body -->
-
-            <!-- Footer -->
-            <div class="card-footer d-flex justify-content-end">
-                <button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1">Save Changes</button>
-                <button type="button" class="btn btn-sm btn-soft-secondary transition-3d-hover"
-                    onclick="Custombox.modal.close();">Close</button>
-            </div>
-            <!-- End Footer -->
-        </div>
-    </div>
-    <!-- End Modal -->
 </main>
 <%- include ('partials/footer') %>

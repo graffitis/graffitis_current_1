@@ -218,7 +218,10 @@
           <div class="u-tagsinput">
             <input id="tags" type="text" name="tags" data-role="tagsinput" value="<%= post.tags %>" />
           </div>
-          <small id="tagsHelp" class="form-text text-muted">Grazie a questi tag miglioreremo l'indicizzazione del tuo
+          <small id="tagsHelp" class="form-text text-muted"> <strong><i class="fas fa-exclamation"></i> Separa i tag con
+              una virgola (No invio o tab) |
+            </strong> Grazie a
+            questi tag miglioreremo l'indicizzazione del tuo
             articolo
             nella dashboard dei lettori</small>
           <!-- End Tags Input -->
@@ -254,7 +257,7 @@
           </div>
           <small id="tagsHelp" class="form-text text-muted mb-6">
             SPECIALE > I Post verranno contrassegnati da un badge 'Edizione Speciale' in tutti i loro formati<br>
-            STANDARD > Nessuna modifica ai Post | <strong> default</strong>
+            STANDARD > Nessuna modifica ai Post
           </small>
         </div>
 
@@ -287,10 +290,9 @@
             <% } %>
 
           </div>
-          <small id="tagsHelp" class="form-text text-muted mb-6">ONLINE > L'articolo è subito visibile al pubblico <br>
-            PRONTO > L'articolo è pronto per la pubblicazione <br> BOZZA > L'articolo è in stesura | <strong>
-              default</strong></small>
-
+          <small id="tagsHelp" class="form-text text-muted mb-6">
+            PRONTO > L'articolo è pronto per la pubblicazione <br> BOZZA > L'articolo è in stesura
+          </small>
           <div class="form-group ">
             <label for="status" class="form-label">
               Ordine di Pubblicazione
@@ -305,7 +307,7 @@
 
               <label class="btn btn-sm btn-secondary">
                 <input type="radio" name="updateFlag" id="mantieni" autocomplete="off" value="-1" checked />
-                <i class="fas fa-minus-circle"></i> Mantieni
+                <i class="fas fa-minus-circle"></i> Mantieni | <strong>default</strong>
               </label>
             </div>
             <small id="tagsHelp" class="form-text text-muted mb-6">AGGIORNA > L'articolo comparirà in prima pagina

@@ -10,7 +10,7 @@ const utils = require('./../config/utils');
 exports.dashboard = (req, res) => {
   // Retrieving user data
   res.render('dashboard_admin', {
-    user: req.user
+    user: req.user,
   });
 };
 
@@ -19,12 +19,13 @@ exports.posts = (req, res) => {
     if (err) {
       res.status(400).json({
         status: 'fail',
-        message: 'failed to load posts'
+        message: 'failed to load posts',
       });
     }
+    data.sort((a, b) => b.edited - a.edited);
     res.render('dashboard_posts', {
       posts: data,
-      user: req.user
+      user: req.user,
     });
   });
 };
@@ -35,19 +36,19 @@ exports.editPage = (req, res) => {
       if (err2) {
         res.status(500).json({
           status: 'failed',
-          message: 'failed to retrieve categories'
+          message: 'failed to retrieve categories',
         });
       }
       if (err1) {
         res.status(400).json({
           status: 'fail',
-          message: 'failed to load posts'
+          message: 'failed to load posts',
         });
       }
       res.render('dashboard_edit', {
         post: data,
         user: req.user,
-        cats: cats
+        cats: cats,
       });
     });
   });
@@ -67,7 +68,7 @@ exports.editPost = (req, res) => {
     edited: Date.now(),
     body: req.body.body,
     tags: req.body.tags.replace(/\s+/g, '').split(','),
-    spcial: special
+    spcial: special,
   };
 
   Post.findById(req.params.id, (err, data) => {
@@ -75,7 +76,7 @@ exports.editPost = (req, res) => {
     if (err) {
       return res.status(404).json({
         status: 'fail',
-        message: "Post to be modified doesn't exist | Invalid ID"
+        message: "Post to be modified doesn't exist | Invalid ID",
       });
     }
     console.log('updateFlag --> ' + req.body.updateFlag);
@@ -85,27 +86,29 @@ exports.editPost = (req, res) => {
       dateState = 'Data non aggiornata';
     }
 
-    data.replaceOne(updatedPost, err => {
+    data.replaceOne(updatedPost, (err) => {
       if (err) {
         return res.status(500).json({
           status: 'fail',
-          message: 'Failed to update new post'
+          message: 'Failed to update new post',
         });
       }
       req.flash('success', 'Post Modificato con successo! | ' + dateState);
       res.redirect('/admin/posts');
     });
   });
-  Log.create({
+  Log.create(
+    {
       user: req.user.name,
       time: Date.now(),
-      op: 3
+      op: 3,
     },
     (err, data) => {
       if (err) {
         res.status(500).json({
           status: 'fail',
-          message: 'the post has been edited, but the server failed to save log documents'
+          message:
+            'the post has been edited, but the server failed to save log documents',
         });
       }
     }
@@ -117,11 +120,11 @@ exports.createPage = (req, res) => {
     if (err) {
       res.status(500).json({
         status: 'failed',
-        message: 'failed to retrieve categories'
+        message: 'failed to retrieve categories',
       });
     }
     res.render('dashboard_create', {
-      cats: data
+      cats: data,
     });
   });
 };
@@ -132,7 +135,7 @@ exports.newPost = (req, res) => {
   if (req.body.status * 1 === 1) {
     res.status(403).json({
       staus: 'forbidden',
-      message: 'upper role required to get posts online'
+      message: 'upper role required to get posts online',
     });
   }
 
@@ -147,27 +150,29 @@ exports.newPost = (req, res) => {
     tags: req.body.tags.replace(/\s+/g, '').split(''),
     status: req.body.status * 1,
     edited: Date.now(),
-    special: special
+    special: special,
   });
 
-  newPost.save(err => {
+  newPost.save((err) => {
     if (err) {
       res.status(400).json({
         status: 'fail',
-        message: 'Failed to create new post'
+        message: 'Failed to create new post',
       });
     }
 
-    Log.create({
+    Log.create(
+      {
         user: req.user.name,
         time: Date.now(),
-        op: 2
+        op: 2,
       },
       (err, data) => {
         if (err) {
           res.status(500).json({
             status: 'fail',
-            message: 'the post has been created, but the server failed to save log documents'
+            message:
+              'the post has been created, but the server failed to save log documents',
           });
         }
       }
@@ -181,30 +186,33 @@ exports.newPost = (req, res) => {
 };
 
 exports.deletePost = (req, res) => {
-  Post.deleteOne({
-      _id: req.params.id
+  Post.deleteOne(
+    {
+      _id: req.params.id,
     },
-    err => {
+    (err) => {
       if (err) {
         res.status(500).json({
           status: 'fail',
-          message: 'Failed to delete post'
+          message: 'Failed to delete post',
         });
       }
       res.redirect('/admin/posts');
     }
   );
 
-  Log.create({
+  Log.create(
+    {
       user: req.user.name,
       time: Date.now(),
-      op: 4
+      op: 4,
     },
     (err, data) => {
       if (err) {
         res.status(500).json({
           status: 'fail',
-          message: 'the post has been deleted, but the server failed to save log documents'
+          message:
+            'the post has been deleted, but the server failed to save log documents',
         });
       }
     }
@@ -217,12 +225,12 @@ exports.teamPage = (req, res) => {
     if (err) {
       res.status(500).json({
         status: 'fail',
-        message: 'failed to retrieve admins'
+        message: 'failed to retrieve admins',
       });
     }
     console.log('got here c2');
     res.render('dashboard_team', {
-      admins: data
+      admins: data,
     });
   });
 };
