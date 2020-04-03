@@ -24,6 +24,7 @@ exports.create = (req, res) => {
                 message: 'failed to retrieve user from DB'
             });
         } else {
+            // res.send(upUser);
             data.replaceOne(upUser, (err, data) => {
                 if (err) {
                     res.status(500).json({
