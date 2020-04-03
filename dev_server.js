@@ -9,7 +9,10 @@ app.listen(PORT, () => {
 });
 
 let db = require('./config/keys').MongoURI;
-mongoose.connect(db, { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect(db, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true
+});
 db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
