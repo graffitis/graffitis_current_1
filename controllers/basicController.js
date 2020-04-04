@@ -17,7 +17,6 @@ exports.getHome = (req, res) => {
     });
 
     res.locals.title = 'Prima Pagina | ' + res.locals.title
-    res.locals.desc = "Chi c'è dietro il nostro giornalino? Tanti ragazzi che ogni giorno si cimentano nelle attività più disparate per fornire contenuti nuovi e interessanti."
     res.status(200).render('home', {
       posts: data
     });
