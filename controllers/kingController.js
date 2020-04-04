@@ -9,6 +9,7 @@ exports.main = (req, res) => {
 };
 
 exports.get_dashboard = (req, res) => {
+  res.locals.title = 'Dashboard, King' + ' | ' + res.locals.title
   res.render('dashboard_king');
 };
 
@@ -22,12 +23,15 @@ exports.get_posts = (req, res) => {
     }
 
     data.sort((a, b) => b.edited - a.edited);
+    res.locals.title = 'Articoli, King' + ' | ' + res.locals.title
     res.render('dashboard_king_posts', {
       posts: data,
       user: req.user,
     });
   });
 };
+
+
 
 exports.get_new_post = (req, res) => {
   Category.find((err, data) => {
@@ -37,6 +41,7 @@ exports.get_new_post = (req, res) => {
         message: 'failed to retrieve categories',
       });
     }
+    res.locals.title = 'Nuovo Articolo, King' + ' | ' + res.locals.title
     res.render('dashboard_king_create_post', {
       cats: data,
     });
@@ -105,6 +110,8 @@ exports.get_approve = (req, res) => {
         name: data.author,
         pic: data.authorPic,
       };
+      res.locals.title = 'Approva: ' + data.title + ', King' + ' | ' + res.locals.title
+
       res.render('dashboard_king_posts_approve', {
         post: data,
         user: req.user,
@@ -185,8 +192,7 @@ exports.approve = (req, res) => {
 };
 
 exports.delete_post = (req, res) => {
-  Post.deleteOne(
-    {
+  Post.deleteOne({
       _id: req.params.id,
     },
     (err) => {
@@ -210,6 +216,7 @@ exports.get_users = (req, res) => {
         message: 'failed to retrieve posts from DB',
       });
     }
+    res.locals.title = 'Utenti, King' + ' | ' + res.locals.title
 
     res.render('dashboard_king_users', {
       users: data,
@@ -228,6 +235,7 @@ exports.get_logs = (req, res) => {
 
     data.sort((a, b) => b.time - a.time);
 
+    res.locals.title = 'Logs Operazioni, King' + ' | ' + res.locals.title
     res.render('dashboard_king_logs', {
       logs: data,
     });

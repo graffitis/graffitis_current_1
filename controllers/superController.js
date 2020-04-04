@@ -21,7 +21,7 @@ exports.get_dashboard = (req, res) => {
             return users = data;
         });
     }
-
+    res.locals.title = 'Dashboard, Super' + ' | ' + res.locals.title
     res.render('dashboard_super', {
         cats: getCats(),
         users: getUsers()
@@ -41,6 +41,7 @@ exports.get_users = (req, res) => {
                 message: 'Failed to retrieve users'
             })
         }
+        res.locals.title = 'Utenti, Super' + ' | ' + res.locals.title
         res.render('dashboard_super_users', {
             user: req.user,
             users: data
@@ -56,6 +57,7 @@ exports.get_users_edit = (req, res) => {
                 message: 'failed to load user data'
             })
         }
+        res.locals.title = 'Modifica: ' + data.name + ', Super' + ' | ' + res.locals.title
         res.render('dashboard_super_edit', {
             formUser: data
         });
@@ -115,6 +117,7 @@ exports.get_cats = (req, res) => {
                 message: 'failed to retrieve categories from DB'
             })
         }
+        res.locals.title = 'Categorie, Super' + ' | ' + res.locals.title
         res.render('dashboard_super_cats', {
             cats: data
         });
@@ -122,6 +125,7 @@ exports.get_cats = (req, res) => {
 }
 
 exports.get_new_cat = (req, res) => {
+    res.locals.title = 'Nuova Categoria, Super' + ' | ' + res.locals.title
     res.render('dashboard_super_create_cat');
 }
 
@@ -154,6 +158,7 @@ exports.get_edit_cat = (req, res) => {
                 message: 'failed to retrieve category from DB'
             })
         }
+        res.locals.title = 'Modifica: ' + data.name + ', Super' + ' | ' + res.locals.title
         res.render('dashboard_super_edit_cat', {
             cat: data
         });
@@ -203,7 +208,7 @@ exports.delete_cat = (req, res) => {
 }
 
 exports.get_prima = (req, res) => {
-
+    res.locals.title = 'Prima Pagina, Super' + ' | ' + res.locals.title
     res.render('dashboard_super_prima', {
         postIDs: res.locals.prima
     });

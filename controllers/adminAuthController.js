@@ -4,10 +4,12 @@ const Log = require('./../models/Log');
 const utils = require('./../config/utils');
 
 exports.loginPage = (req, res) => {
+  res.locals.title = 'Accedi, Resp. Tecnico o Giornalista | ' + res.locals.title
   res.render('login_admin');
 };
 
 exports.registerPage = (req, res) => {
+  res.locals.title = 'Registrati Ora | ' + res.locals.title
   res.render('register_admin');
 };
 

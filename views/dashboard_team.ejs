@@ -79,47 +79,18 @@
     <div class="bg-light">
         <div class="container space-2">
             <!-- Services Section -->
-            <!-- Team Section -->
-
-            <h2 class="h2 mb-6">La Redazione</h2>
-            <div class="row mx-n2">
-
-                <!-- TO RENDER -->
-                <% admins.forEach((admin) => { %>
-                <div class="col-sm-6 col-lg-3 px-2 mb-3">
-                    <!-- Team -->
-                    <div class="card shadow transition-3d-hover p-4">
-                        <div class="u-lg-avatar mb-4">
-                            <img class="img-fluid rounded-circle" src="<%= admin.pic %>" alt="Image Description">
-                        </div>
-
-                        <small class="d-block text-secondary text-uppercase mb-1"><% if(admin.role === 2) { %>
-                            <i class="fas fa-laptop-code"></i> SUPER
-                            <% } else { %>
-                            <i class="far fa-minus-square"></i> STANDARD
-                            <% } %></small>
-                        <h4 class="h5 text-lh-sm"><%= admin.name %></h4>
-                        <p class="font-size-1">I am an ambitious workaholic, but apart from that, pretty simple
-                            person.</p>
-
-
-                        <!-- End Team -->
-                    </div>
-
+            <div class="container">
+                <div class="card p-6">
+                    <h1 class="h1">
+                        <!-- <i class="fas fa-exclamation-triangle mr-2"></i> -->Contenuto in via di sviluppo </h1>
+                    <p>Stiamo ancora lavorando a questa funzionalità, ti chiediamo scusa per il disguido.
+                    </p>
+                    <a class="btn btn-primary btn-wide transition-3d-hover mt-3" href="/"><i
+                            class="fas fa-chevron-left mr-2"></i>Torna Alla Prima Pagina</a>
                 </div>
-                <% }) %>
-                <!-- END TO RENDER -->
-
-
-
-
 
             </div>
         </div>
-        <!-- End Team Section -->
-
-    </div>
-    </div>
     </div>
 </main>
 <div class="container space-top-1 pb-3">

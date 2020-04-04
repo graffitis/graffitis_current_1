@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const Admin = require('./../models/Admin');
 
 exports.get = (req, res) => {
+    res.locals.title = 'Profilo: ' + req.user.name + ' | ' + res.locals.title
+
     res.render('profile');
 }
 

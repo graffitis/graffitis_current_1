@@ -9,6 +9,7 @@ const utils = require('./../config/utils');
 
 exports.dashboard = (req, res) => {
   // Retrieving user data
+  res.locals.title = 'Dashboard, Admin |' + res.locals.title
   res.render('dashboard_admin', {
     user: req.user,
   });
@@ -23,6 +24,7 @@ exports.posts = (req, res) => {
       });
     }
     data.sort((a, b) => b.edited - a.edited);
+    res.locals.title = 'Articoli, Admin | ' + res.locals.title
     res.render('dashboard_posts', {
       posts: data,
       user: req.user,
@@ -45,6 +47,7 @@ exports.editPage = (req, res) => {
           message: 'failed to load posts',
         });
       }
+      res.locals.title = 'Modifica:' + data.title + ' | ' + res.locals.title
       res.render('dashboard_edit', {
         post: data,
         user: req.user,
@@ -97,8 +100,7 @@ exports.editPost = (req, res) => {
       res.redirect('/admin/posts');
     });
   });
-  Log.create(
-    {
+  Log.create({
       user: req.user.name,
       time: Date.now(),
       op: 3,
@@ -107,8 +109,7 @@ exports.editPost = (req, res) => {
       if (err) {
         res.status(500).json({
           status: 'fail',
-          message:
-            'the post has been edited, but the server failed to save log documents',
+          message: 'the post has been edited, but the server failed to save log documents',
         });
       }
     }
@@ -123,6 +124,7 @@ exports.createPage = (req, res) => {
         message: 'failed to retrieve categories',
       });
     }
+    res.locals.title = 'Nuovo Articolo, Admin | ' + res.locals.title
     res.render('dashboard_create', {
       cats: data,
     });
@@ -161,8 +163,7 @@ exports.newPost = (req, res) => {
       });
     }
 
-    Log.create(
-      {
+    Log.create({
         user: req.user.name,
         time: Date.now(),
         op: 2,
@@ -171,8 +172,7 @@ exports.newPost = (req, res) => {
         if (err) {
           res.status(500).json({
             status: 'fail',
-            message:
-              'the post has been created, but the server failed to save log documents',
+            message: 'the post has been created, but the server failed to save log documents',
           });
         }
       }
@@ -186,8 +186,7 @@ exports.newPost = (req, res) => {
 };
 
 exports.deletePost = (req, res) => {
-  Post.deleteOne(
-    {
+  Post.deleteOne({
       _id: req.params.id,
     },
     (err) => {
@@ -201,8 +200,7 @@ exports.deletePost = (req, res) => {
     }
   );
 
-  Log.create(
-    {
+  Log.create({
       user: req.user.name,
       time: Date.now(),
       op: 4,
@@ -211,8 +209,7 @@ exports.deletePost = (req, res) => {
       if (err) {
         res.status(500).json({
           status: 'fail',
-          message:
-            'the post has been deleted, but the server failed to save log documents',
+          message: 'the post has been deleted, but the server failed to save log documents',
         });
       }
     }
@@ -229,6 +226,7 @@ exports.teamPage = (req, res) => {
       });
     }
     console.log('got here c2');
+    res.locals.title = 'Redazione, Admin | ' + res.locals.title
     res.render('dashboard_team', {
       admins: data,
     });

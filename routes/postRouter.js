@@ -6,8 +6,6 @@ router
   .route('/')
   .get(postController.getAllPosts)
 
-router.route('/reset').delete(postController.reset);
-
 router.route('/categories').get(postController.get_cats);
 // TODO: Implementare vettore categorie
 // router.route('/categories').get(postController.getAllCategories);

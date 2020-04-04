@@ -2,10 +2,12 @@ const mongoose = require("mongoose");
 const User = require("./../models/User");
 
 exports.loginPage = (req, res) => {
+  res.locals.title = 'Accedi, Utente' + ' | ' + res.locals.title
   res.render("login_user");
 };
 
 exports.registerPage = (req, res) => {
+  res.locals.title = 'Registrati, Utente' + ' | ' + res.locals.title
   res.render("register_user");
 };
 

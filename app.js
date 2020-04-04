@@ -44,8 +44,13 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(methodOverride('_method'));
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.json({
+  limit: '50mb'
+}));
+app.use(bodyParser.urlencoded({
+  limit: '50mb',
+  extended: true
+}));
 
 app.use(
   methodOverride((req, res) => {
@@ -107,6 +112,9 @@ app.use(passport.session());
 // Salvataggio Variabili Globali
 app.use((req, res, next) => {
   res.locals.user = req.user;
+  res.locals.title = 'Graffitis';
+  res.locals.postSuffix = ' | Articolo di Graffitis, il giornalino dell\'ITIS Delpozzo di Cuneo. Riflessioni, notizie, poesie, curiosità... e una giovane redazione.';
+  res.locals.desc = 'Graffitis, il giornalino dell\'ITIS Delpozzo di Cuneo. Riflessioni, notizie, poesie, curiosità... Una redazione giovane che si cimenta ogni giorno in questo nuovo, grande progetto.';
   res.locals.prima = [];
   next();
 });

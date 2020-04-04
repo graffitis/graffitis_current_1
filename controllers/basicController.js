@@ -3,7 +3,9 @@ const Post = require('./../models/Post');
 const Admin = require('./../models/Admin');
 
 exports.getHome = (req, res) => {
-  Post.find({ status: 1 }, (err, data) => {
+  Post.find({
+    status: 1
+  }, (err, data) => {
     if (err) {
       res.status(404).render('404');
     }
@@ -14,16 +16,31 @@ exports.getHome = (req, res) => {
       return a > b ? -1 : a < b ? 1 : 0;
     });
 
-    res.status(200).render('home', { posts: data });
+    res.locals.title = 'Prima Pagina | ' + res.locals.title
+    res.locals.desc = "Chi c'è dietro il nostro giornalino? Tanti ragazzi che ogni giorno si cimentano nelle attività più disparate per fornire contenuti nuovi e interessanti."
+    res.status(200).render('home', {
+      posts: data
+    });
   });
 };
 
 exports.pageNotFound = (req, res) => {
-  res.status(400).render('404', { url: req.originalUrl });
+  res.locals.title = 'Pagina Non Trovata | ' + res.locals.title
+  res.status(400).render('404', {
+    url: req.originalUrl
+  });
 };
 
 exports.get_redazione = (req, res) => {
-  const query = { $or: [{ role: 1 }, { role: 2 }, { role: 3 }] };
+  const query = {
+    $or: [{
+      role: 1
+    }, {
+      role: 2
+    }, {
+      role: 3
+    }]
+  };
   Admin.find(query, (err, data) => {
     if (err) {
       res.status(500).json({
@@ -31,10 +48,14 @@ exports.get_redazione = (req, res) => {
         message: 'failed to retrieve admins from DB'
       })
     }
-    res.render('redazione', { admins: data });
+    res.locals.title = 'Redazione | ' + res.locals.title
+    res.render('redazione', {
+      admins: data
+    });
   })
 }
 
 exports.get_upperRole = (req, res) => {
+  res.locals.title = 'Accesso Negato | ' + res.locals.title
   res.render('upper');
 }
