@@ -77,7 +77,7 @@ exports.getPostByCategory = (req, res) => {
 };
 
 exports.getPostById = (req, res) => {
-  console.log('Got here man');
+
   Post.findOne({
     _id: req.params.id
   }, (err, data) => {
@@ -111,7 +111,7 @@ exports.getPostById = (req, res) => {
       if (authordata[0] != null) {
         console.log('First if branch');
         if (authordata[0].desc != '' && authordata[0].desc) {
-          console.log('I\'m working on the render thing - first if')
+
 
           res
             .status(200)
@@ -120,7 +120,7 @@ exports.getPostById = (req, res) => {
               Adesc: authordata[0].desc
             });
         } else {
-          console.log('Switching to second if branch');
+
           res.status(200).render('show', {
             post: data,
             Adesc: -1,
@@ -128,9 +128,9 @@ exports.getPostById = (req, res) => {
             pageDesc: data.desc
           });
         }
-        console.log('Maybe there\'s something wrong...')
+
       } else {
-        console.log('Second if branch');
+
         res.status(200).render('show', {
           post: data,
           Adesc: -1,
