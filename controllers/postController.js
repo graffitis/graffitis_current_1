@@ -77,6 +77,7 @@ exports.getPostByCategory = (req, res) => {
 };
 
 exports.getPostById = (req, res) => {
+  console.log('Got here man');
   Post.findOne({
     _id: req.params.id
   }, (err, data) => {
@@ -87,11 +88,12 @@ exports.getPostById = (req, res) => {
           '404'
         )
       /* .json({
-             status: 'fail',
-             message: 'Post doesnt exist | Invalid ID'
-           })*/
+        status: 'fail',
+        message: 'Post doesnt exist | Invalid ID'
+      })*/
       ;
     }
+    console.log('Post data retrieved');
 
     Admin.find({
       name: data.author
@@ -102,10 +104,14 @@ exports.getPostById = (req, res) => {
           message: 'error on post render'
         });
       }
+      console.log('Author data retrieved');
       res.locals.title = data.title + ' | ' + res.locals.title
       res.locals.desc = data.title + ', di ' + data.author + res.locals.postSuffix
+      console.log('SEO ok');
       if (authordata[0] != null) {
+        console.log('First if branch');
         if (authordata[0].desc != '' && authordata[0].desc) {
+          console.log('I\'m working on the render thing - first if')
 
           res
             .status(200)
@@ -113,8 +119,18 @@ exports.getPostById = (req, res) => {
               post: data,
               Adesc: authordata[0].desc
             });
+        } else {
+          console.log('Switching to second if branch');
+          res.status(200).render('show', {
+            post: data,
+            Adesc: -1,
+            pageTitle: data.title,
+            pageDesc: data.desc
+          });
         }
+        console.log('Maybe there\'s something wrong...')
       } else {
+        console.log('Second if branch');
         res.status(200).render('show', {
           post: data,
           Adesc: -1,
