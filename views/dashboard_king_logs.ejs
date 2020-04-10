@@ -89,7 +89,7 @@
 
             <%- messages('message', locals) %>
 
-            <h2 class="h2 mb-4">Logs di Accesso </h2>
+            <h2 class="h2 mb-4">Logs di Sistema </h2>
 
 
 
@@ -153,15 +153,28 @@
                         <% logs.forEach(log => { %>
                         <% let logTime = log.time %>
                         <% let minuti = ('0'+logTime.getMinutes()).slice(-2) %>
-                        <% logTime = logTime.getFullYear() + '/' + (logTime.getMonth() + 1) + '/' + logTime.getDate() + '@' + logTime.getHours() + ':' + minuti %>
+                        <% let ore = ('0'+logTime.getHours()).slice(-2) %>
+                        <% let giorno = ('0'+logTime.getDate()).slice(-2) %>
+                        <% let mese = ('0'+(logTime.getMonth() + 1)).slice(-2) %>
+                        <% logTime = logTime.getFullYear() + '/' + mese + '/' + giorno + ' @ ' + ore + ':' + minuti %>
 
                         <tr>
 
                             <td class="text-secondary"><%= log.user %></td>
                             <td class="text-secondary"><%= logTime %></td>
 
-                            <td class="text-primary"><%= log.op %></td>
-
+                            <% if(log.op === 1) { %>
+                            <td class="text-success"><strong><i class="fas fa-sign-in-alt"></i> Login</strong></td>
+                            <% } else if(log.op === -1) { %>
+                            <td class="text-danger"><strong><i class="fas fa-sign-out-alt"></i> Logout</strong></td>
+                            <% } else if(log.op === 2) {  %>
+                            <td class="text-primary"><strong><i class="fas fa-plus-square"></i> Post Creato</strong>
+                            </td>
+                            <% } else if(log.op === 3) { %>
+                            <td class="text-warning"><strong><i class="fas fa-edit"></i> Post Modificato</strong></td>
+                            <% } else { %>
+                            <td class="text-secondary"><strong><i class="fas fa-trash"></i> Post Eliminato</strong></td>
+                            <% } %>
                         </tr>
 
                         <% }) %>
