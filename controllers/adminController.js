@@ -47,7 +47,7 @@ exports.editPage = (req, res) => {
           message: 'failed to load posts',
         });
       }
-      res.locals.title = 'Modifica:' + data.title + ' | ' + res.locals.title
+      res.locals.title = 'Modifica: ' + data.title + ' | ' + res.locals.title
       res.render('dashboard_edit', {
         post: data,
         user: req.user,

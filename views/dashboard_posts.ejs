@@ -84,7 +84,9 @@
       <%- messages('message', locals) %>
 
       <h2 class="h2 mb-4">Articoli</h2>
-
+      <p class="mt-1"> Premi sul <span class="text-primary"> <strong>Titolo</strong> </span> per modificare
+        l'articolo, premi su <a href="" class="link-muted"><i class="fas fa-eye"></i></a> per andare
+        all'articolo lato utente, visibile solo dai giornalisti se non online.</p>
       <div class="js-focus-state input-group input-group-sm mb-4">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -163,7 +165,13 @@
             <% post.title = post.title.substring(0, 30) + '...' %>
             <% } %>
             <tr>
-              <td><a href="/admin/posts/<%= post._id %>" target="_blank"><%= post.title %></a></td>
+              <td class="text-secondary">
+                <strong>
+                  <a href="/admin/posts/<%= post._id %>"><%= post.title %></a>
+                  <span class="opacity-md"> | </span>
+                  <a target="_blank" class="link-muted" href="/posts/<%= post._id %>"><i class="fas fa-eye"></i></a>
+                </strong>
+              </td>
               <td class="text-secondary"><%= post.category %></td>
               <td class="text-secondary"><%= post.author %></td>
               <td class="text-secondary"><%= post.edited.toLocaleDateString() %></td>

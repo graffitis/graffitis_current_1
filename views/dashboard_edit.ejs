@@ -307,7 +307,7 @@
 
               <label class="btn btn-sm btn-secondary">
                 <input type="radio" name="updateFlag" id="mantieni" autocomplete="off" value="-1" checked />
-                <i class="fas fa-minus-circle"></i> Mantieni | <strong>default</strong>
+                <i class="fas fa-minus-circle"></i> Mantieni
               </label>
             </div>
             <small id="tagsHelp" class="form-text text-muted mb-6">AGGIORNA > L'articolo comparirà in prima pagina
@@ -336,11 +336,11 @@
               <i class="fas fa-cloud-upload-alt"></i> Salva e Applica Stato
             </button>
   </form>
-  <!-- #TODO: corregere layout pulsanti azione -->
-  <form action="/admin/posts/<%= post._id %>" method="POST" enctype="application/x-www-form-urlencoded">
+  <span class="mt-2 mr-1 text-secondary"> | </span>
+  <form action="/king/posts/<%= post._id %>" method="POST" enctype="application/x-www-form-urlencoded">
     <input type="hidden" name="_method" value="DELETE">
     <button type="submit" class="btn btn-sm btn-danger transition-3d-hover">
-      <i class="far fa-trash-alt"></i> Elimina Post
+      <i class="far fa-trash-alt"></i> Elimina Post <span class="text-white-50"> | Irreversibile</span>
     </button>
   </form>
   <!-- <a href="/admin/posts1" method="GET" style="margin-left: 0.3em;">

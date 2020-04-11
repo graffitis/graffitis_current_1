@@ -153,7 +153,6 @@
                             <!-- END WORKAROUND -->
                             <label class="custom-control-label" for="stylishRadio<%= i %>">
                               <h6><%= cat.name %></h6>
-                              <small class="card-text text-muted"><%= cat.desc %></small>
                             </label>
                           </div>
                         </div>
@@ -217,7 +216,11 @@
           <div class="u-tagsinput">
             <input id="tags" type="text" name="tags" value="ITIS" data-role="tagsinput" />
           </div>
-          <small id="tagsHelp" class="form-text text-muted">Grazie a questi tag miglioreremo l'indicizzazione del tuo
+          <small id="tagsHelp" class="form-text text-muted"> <strong><i class="fas fa-exclamation"></i> Separa
+              i tag con
+              una virgola (No invio o tab) |
+            </strong> Grazie a
+            questi tag miglioreremo l'indicizzazione del tuo
             articolo
             nella dashboard dei lettori</small>
           <!-- End Tags Input -->
@@ -231,12 +234,12 @@
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
 
             <label class="btn btn-sm btn-secondary">
-              <input type="radio" name="special" id="aggiorna" autocomplete="off" value="true" checked/>
+              <input type="radio" name="special" id="aggiorna" autocomplete="off" value="true" />
               <i class="fas fa-star"></i> Speciale
             </label>
 
             <label class="btn btn-sm btn-secondary active">
-              <input type="radio" name="special" id="mantieni" autocomplete="off" value="false" />
+              <input type="radio" name="special" id="mantieni" autocomplete="off" value="false" checked />
               <i class="far fa-newspaper"></i> Standard
             </label>
           </div>
@@ -263,9 +266,8 @@
             </label>
           </div>
         </div>
-        <small id="tagsHelp" class="form-text text-muted mb-6">ONLINE > L'articolo è subito visibile al pubblico, può
-          essere utilizzato solo dagli ammistratori.<br>
-          PRONTO > L'articolo è pronto per la pubblicazione. <br> BOZZA > L'articolo è in stesura. | <strong>
+        <small id="tagsHelp" class="form-text text-muted mb-6">PRONTO> L'articolo è pronto per la pubblicazione. <br>
+          BOZZA > L'articolo è in stesura. | <strong>
             default</strong> </small>
 
         <hr class="hr mb-6 mt-6">

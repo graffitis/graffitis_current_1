@@ -1,4 +1,7 @@
 <%- include ('partials/header') %>
+
+
+<% if(user && user.role >= 1) { %>
 <div class="container space-1">
   <div class="w-lg-60 mx-lg-auto">
     <div class="container mb-4 p-0">
@@ -15,6 +18,12 @@
           <span class="badge badge-warning text-white ml-1 mt-3"><i class="fas fa-star mr-1"></i>Edizione
             Speciale</span></a>
         <% } %>
+
+        <% if(post.status != 1) { %>
+        <span class="badge badge-danger text-white ml-1 mt-3"><i class="fas fa-exclamation mr-1"></i>Articolo non
+          pubblicato, visualizzazione protetta.</span>
+        <% } %>
+
 
         <% if(user) { %>
         <% if(user.role === 2 || user.role === 3) { %>
@@ -57,25 +66,25 @@
         </div>
         <% } %>
         <!-- <div class="col-md-5">
-          <div class="d-md-flex justify-content-md-end align-items-md-center">
-
-            <div class="col-sm-9">
-              <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle " href="#">
-                <span class="fab fa-facebook-f btn-icon__inner"></span>
-              </a>
-              <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle ml-2" href="#">
-                <span class="fab fa-twitter btn-icon__inner"></span>
-              </a>
-              <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle ml-2" href="#">
-                <span class="fab fa-instagram btn-icon__inner"></span>
-              </a>
-              <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle ml-2" href="#">
-                <span class="fab fa-telegram btn-icon__inner"></span>
-              </a>
-
+            <div class="d-md-flex justify-content-md-end align-items-md-center">
+  
+              <div class="col-sm-9">
+                <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle " href="#">
+                  <span class="fab fa-facebook-f btn-icon__inner"></span>
+                </a>
+                <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle ml-2" href="#">
+                  <span class="fab fa-twitter btn-icon__inner"></span>
+                </a>
+                <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle ml-2" href="#">
+                  <span class="fab fa-instagram btn-icon__inner"></span>
+                </a>
+                <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle ml-2" href="#">
+                  <span class="fab fa-telegram btn-icon__inner"></span>
+                </a>
+  
+              </div>
             </div>
-          </div>
-        </div> -->
+          </div> -->
       </div>
     </div>
     <!-- End Author -->
@@ -188,3 +197,26 @@
 
   <%- include ('partials/footer') %>
 </div>
+<% } else { %>
+<div class="container space-1">
+
+  <div class="container space-2">
+    <!-- Services Section -->
+    <div class="container">
+      <div class="card p-6">
+        <h1 class="h1">
+          Articolo non ancora pubblicato </h1>
+        <p><a href="/admin/auth/login"><i class="fas fa-external-link-alt"></i> Esegui
+            l'accesso </a> con livello
+          giornalista (1) o superiore per procedere...
+        </p>
+        <a class="btn btn-primary btn-wide transition-3d-hover mt-3" href="/"><i
+            class="fas fa-chevron-left mr-2"></i>Torna Alla Prima Pagina</a>
+      </div>
+
+    </div>
+
+  </div>
+  <%- include('./partials/footer') %>
+</div>
+<% } %>
