@@ -1,6 +1,6 @@
 <%- include ('partials/header') %>
 
-
+<% if(post.status != 1) { %>
 <% if(user && user.role >= 1) { %>
 <div class="container space-1">
   <div class="w-lg-60 mx-lg-auto">
@@ -20,8 +20,8 @@
         <% } %>
 
         <% if(post.status != 1) { %>
-        <span class="badge badge-danger text-white ml-1 mt-3"><i class="fas fa-exclamation mr-1"></i>Articolo non
-          pubblicato, visualizzazione protetta.</span>
+        <div class="badge badge-danger text-white ml-1 mt-3"><i class="fas fa-exclamation mr-1"></i>Articolo non
+          pubblicato, visualizzazione protetta.<br></div>
         <% } %>
 
 
@@ -66,25 +66,25 @@
         </div>
         <% } %>
         <!-- <div class="col-md-5">
-            <div class="d-md-flex justify-content-md-end align-items-md-center">
-  
-              <div class="col-sm-9">
-                <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle " href="#">
-                  <span class="fab fa-facebook-f btn-icon__inner"></span>
-                </a>
-                <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle ml-2" href="#">
-                  <span class="fab fa-twitter btn-icon__inner"></span>
-                </a>
-                <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle ml-2" href="#">
-                  <span class="fab fa-instagram btn-icon__inner"></span>
-                </a>
-                <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle ml-2" href="#">
-                  <span class="fab fa-telegram btn-icon__inner"></span>
-                </a>
-  
-              </div>
-            </div>
-          </div> -->
+                <div class="d-md-flex justify-content-md-end align-items-md-center">
+      
+                  <div class="col-sm-9">
+                    <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle " href="#">
+                      <span class="fab fa-facebook-f btn-icon__inner"></span>
+                    </a>
+                    <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle ml-2" href="#">
+                      <span class="fab fa-twitter btn-icon__inner"></span>
+                    </a>
+                    <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle ml-2" href="#">
+                      <span class="fab fa-instagram btn-icon__inner"></span>
+                    </a>
+                    <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle ml-2" href="#">
+                      <span class="fab fa-telegram btn-icon__inner"></span>
+                    </a>
+      
+                  </div>
+                </div>
+              </div> -->
       </div>
     </div>
     <!-- End Author -->
@@ -220,3 +220,174 @@
   <%- include('./partials/footer') %>
 </div>
 <% } %>
+<% } else { %>
+<div class="container space-1">
+  <div class="w-lg-60 mx-lg-auto">
+    <div class="container mb-4 p-0">
+      <a class="d-inline-block text-black-50 text-uppercase my-auto"
+        href="/posts/categories/<%= post.category %>"><strong><%= post.category %></strong> </a>
+      <!-- <div class="row"> -->
+      <span>
+        <h1 class="h2 font-weight-medium">
+          <%= post.title %>
+        </h1>
+
+        <% if (post.special) { %>
+        <a href="/specials">
+          <span class="badge badge-warning text-white ml-1 mt-3"><i class="fas fa-star mr-1"></i>Edizione
+            Speciale</span></a>
+        <% } %>
+
+        <% if(post.status != 1) { %>
+        <span class="badge badge-danger text-white ml-1 mt-3"><i class="fas fa-exclamation mr-1"></i>Articolo non
+          pubblicato, visualizzazione protetta.</span>
+        <% } %>
+
+
+        <% if(user) { %>
+        <% if(user.role >= 2) { %>
+        <a href="/king/posts/<%= post._id %>" class="btn btn-soft-primary mt-3"><i class="far fa-edit"></i>
+          Modifica
+          l'articolo | <strong>Super & King </strong> </a>
+        <% } }%>
+      </span>
+    </div>
+
+    <!-- Author -->
+    <div class="border-top border-bottom py-4 mb-5">
+      <div class="row align-items-md-center">
+        <% if( post.author.charAt(post.author.length - 1) === 'r' &&  post.author.charAt(post.author.length - 2) === '_' &&  post.author.charAt(post.author.length - 3) === '_') { %>
+        <div class="col-md-7 mb-5 mb-md-0">
+          <div class="media align-items-center">
+            <div class="u-avatar">
+              <img class="img-fluid rounded-circle" src="https://i.ibb.co/WsQqqXR/graffiti-SOLOGArtboard-1.png"
+                alt="Image Description" />
+            </div>
+            <div class="media-body font-size-1 ml-3">
+              <span class="h6 font-weight-medium"><a href="#">La Redazione</a>
+              </span>
+              <span class="d-block text-muted"><%= post.edited.toLocaleDateString("it-IT") %></span>
+            </div>
+          </div>
+        </div>
+        <% } else { %>
+        <div class="col-md-7 mb-5 mb-md-0">
+          <div class="media align-items-center">
+            <div class="u-avatar">
+              <img class="img-fluid rounded-circle" src="<%= post.authorPic %>" alt="Image Description" />
+            </div>
+            <div class="media-body font-size-1 ml-3">
+              <span class="h6 font-weight-medium"><a href="#"><%= post.author %></a>
+              </span>
+              <span class="d-block text-muted"><%= post.edited.toLocaleDateString("it-IT") %></span>
+            </div>
+          </div>
+        </div>
+        <% } %>
+        <!-- <div class="col-md-5">
+              <div class="d-md-flex justify-content-md-end align-items-md-center">
+    
+                <div class="col-sm-9">
+                  <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle " href="#">
+                    <span class="fab fa-facebook-f btn-icon__inner"></span>
+                  </a>
+                  <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle ml-2" href="#">
+                    <span class="fab fa-twitter btn-icon__inner"></span>
+                  </a>
+                  <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle ml-2" href="#">
+                    <span class="fab fa-instagram btn-icon__inner"></span>
+                  </a>
+                  <a class="btn btn-sm btn-icon btn-soft-secondary btn-bg-transparent rounded-circle ml-2" href="#">
+                    <span class="fab fa-telegram btn-icon__inner"></span>
+                  </a>
+    
+                </div>
+              </div>
+            </div> -->
+      </div>
+    </div>
+    <!-- End Author -->
+
+    <div class="graffitis-content" style="text-align: justify !important;">
+      <%- post.body %>
+    </div>
+  </div>
+
+  <div class="w-lg-60 mx-lg-auto">
+    <!-- Badges -->
+    <div class="mt-5">
+      <h2 class="text-secondary font-size-1 font-weight-medium text-uppercase mb-2">
+        Tags dell'articolo
+      </h2>
+      <% post.tags.forEach((item) => { %>
+      <span class="d-inline-block mr-1 mb-2"><a class="btn btn-xs btn-soft-secondary"
+          href="/posts/tag/<%= item %>"><%= item %></a></span>
+      <% }) %>
+    </div>
+
+    <div class="card bg-img-hero bg-primary text-white text-center p-5 my-4"
+      style="background-image: url(../../assets/svg/components/abstract-shapes-11.svg);">
+      <h4 class="h5 mb-3">
+        <i class="fas fa-thumbs-up"></i> Ti piace ciò che hai letto?
+      </h4>
+
+      <% if(!user) { %>
+      <!-- Form -->
+      <a class="btn btn-sm btn-white transition-3d-hover" href="/user/auth/google">
+        <i class="fab fa-google" style="margin-right:0.2em;"></i>
+        Registrati con Google
+      </a>
+      <% } %>
+
+      <!-- End Form -->
+      <div class="card mt-3 shadow text-black-50">
+        <div class="card-header">
+          <strong>
+            Graffitis è un progetto della <em>Componente Studenti Consiglio Istituto</em>
+          </strong>
+        </div>
+
+        <div class="card-body">
+
+          I ragazzi della redazione si cimentano ogni giorno nelle attività più disparate per permettere la
+          pubblicazione degli articoli e il
+          mantenimento della piattaforma.
+          <% if(user) { %>
+          <br>
+          Se hai qualche suggerimento o consiglio, scrivici...<br> <a
+            href="mailto:arecco.consiglioistituto@itiscuneo.eu"><i class="fas fa-pen-nib"></i> Alessia Arecco</a> |
+          <a href="mailto:viada.consiglioistituto@itiscuneo.eu"><i class="fas fa-code"></i> Leonardo Viada</a>
+          <% } else { %>
+          <br>Se hai qualche suggerimento/consiglio, esegui l'accesso e contattaci.
+          <% } %>
+        </div>
+      </div>
+
+    </div>
+    <!-- End Badges -->
+
+    <!-- Share -->
+
+    <!-- End Share -->
+
+    <!-- Author -->
+    <% if( post.author.charAt(post.author.length - 1) === 'r' &&  post.author.charAt(post.author.length - 2) === '_' &&  post.author.charAt(post.author.length - 3) === '_') { %>
+    <div class="media align-items-center border-top border-bottom py-5 my-8">
+      <div class="u-lg-avatar">
+        <img class="img-fluid rounded-circle" src="https://i.ibb.co/WsQqqXR/graffiti-SOLOGArtboard-1.png"
+          alt="Image Description" />
+      </div>
+      <div class="media-body ml-3">
+        <small class="d-block text-primary text-uppercase"><strong>SCRITTO DA</strong> </small>
+        <h3 class="h5 font-weight-medium mb-0">
+          La Redazione
+        </h3>
+
+        <p class="mb-0 text-black-50">
+          <i class="fas fa-puzzle-piece"></i> Descrizione della redazione work in progress...
+        </p>
+
+      </div>
+    </div>
+    <% } %>
+    <% } %>
