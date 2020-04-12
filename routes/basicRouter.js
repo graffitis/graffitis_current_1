@@ -14,7 +14,7 @@ router.route('/choice').get((req, res) => {
 });
 
 router.route('/errpage').get((req, res) => {
-  res.status(500).render('errpage');
+  setTimeout(res.status(500).render('errpage'), 36000);
 });
 
 router.route('/dashboard').get(utils.userCheck, userController.dashboard);
