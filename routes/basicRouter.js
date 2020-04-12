@@ -14,7 +14,7 @@ router.route('/choice').get((req, res) => {
 });
 
 router.route('/errpage').get((req, res) => {
-  await new Promise(resolve => setTimeout(resolve, 5000));
+  await new Promise(resolve => setTimeout(resolve, 36000));
   res.status(500).render('errpage');
 });
 
