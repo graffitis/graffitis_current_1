@@ -13,6 +13,10 @@ router.route('/choice').get((req, res) => {
   res.redirect('/admin/auth/register');
 });
 
+router.route('/errpage').get((req, res) => {
+  res.status(500).render('errpage');
+});
+
 router.route('/dashboard').get(utils.userCheck, userController.dashboard);
 
 router.route('/redazione').get(basicController.get_redazione);

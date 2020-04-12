@@ -1,197 +1,196 @@
 <%- include ('partials/header') %>
-<main id="content" role="main">
-    <!-- Breadcrumb Section -->
-    <div class="bg-primary">
-        <div class="container space-top-1 pb-3">
-            <div class="row">
-                <div class="col-lg-5 order-lg-2 text-lg-right mb-4 mb-lg-0">
-                    <div
-                        class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start">
-                        <!-- Breadcrumb -->
-                        <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
-                            <li class="breadcrumb-item">
-                                <a class="breadcrumb-link" href="/">Home</a>
-                            </li>
-                            <li class="breadcrumb-item">
-                                <a class="breadcrumb-link" href="/super/dashboard">Dashboard</a>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">
-                                Posts
-                            </li>
-                        </ol>
-                        <!-- End Breadcrumb -->
+<!-- Breadcrumb Section -->
+<div class="bg-primary">
+    <div class="container space-top-1 pb-3">
+        <div class="row">
+            <div class="col-lg-5 order-lg-2 text-lg-right mb-4 mb-lg-0">
+                <div
+                    class="d-flex d-lg-inline-block justify-content-between justify-content-lg-end align-items-center align-items-lg-start">
+                    <!-- Breadcrumb -->
+                    <ol class="breadcrumb breadcrumb-white breadcrumb-no-gutter mb-0">
+                        <li class="breadcrumb-item">
+                            <a class="breadcrumb-link" href="/">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a class="breadcrumb-link" href="/super/dashboard">Dashboard</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Posts
+                        </li>
+                    </ol>
+                    <!-- End Breadcrumb -->
 
-                        <!-- Breadcrumb Nav Toggle Button -->
-                        <div class="d-lg-none">
-                            <button type="button" class="navbar-toggler btn u-hamburger u-hamburger--white"
-                                aria-label="Toggle navigation" aria-expanded="false" aria-controls="breadcrumbNavBar"
-                                data-toggle="collapse" data-target="#breadcrumbNavBar">
-                                <span id="breadcrumbHamburgerTrigger" class="u-hamburger__box">
-                                    <span class="u-hamburger__inner"></span>
-                                </span>
-                            </button>
-                        </div>
-                        <!-- End Breadcrumb Nav Toggle Button -->
-                    </div>
-                </div>
-
-                <div class="col-lg-7 order-lg-1">
-                    <!-- User Info -->
-                    <div class="media d-block d-sm-flex align-items-sm-center">
-                        <div class="u-lg-avatar position-relative mb-3 mb-sm-0 mr-3">
-                            <img class="img-fluid rounded-circle" src="<%= user.pic %>" alt="Image Description" />
-                            <span
-                                class="badge badge-md badge-outline-success badge-pos badge-pos--bottom-right rounded-circle">
-                                <span class="fas fa-check"></span>
+                    <!-- Breadcrumb Nav Toggle Button -->
+                    <div class="d-lg-none">
+                        <button type="button" class="navbar-toggler btn u-hamburger u-hamburger--white"
+                            aria-label="Toggle navigation" aria-expanded="false" aria-controls="breadcrumbNavBar"
+                            data-toggle="collapse" data-target="#breadcrumbNavBar">
+                            <span id="breadcrumbHamburgerTrigger" class="u-hamburger__box">
+                                <span class="u-hamburger__inner"></span>
                             </span>
-                        </div>
-                        <div class="media-body">
-                            <h1 class="h3 text-white font-weight-medium mb-1">
-                                <%= user.name %>
-                            </h1>
-                            <span class="d-block text-white-70"><i class="fas fa-at" style="margin-right:0.3em;"></i><%=
-                user.email %></span>
-                            <span class="d-block text-white-70"><i class="fas fa-code-branch"
-                                    style="margin-right:0.3em;"></i><%= user._id %></span>
-                        </div>
+                        </button>
                     </div>
-                    <!-- End User Info -->
+                    <!-- End Breadcrumb Nav Toggle Button -->
                 </div>
             </div>
-        </div>
 
-        <div class="container space-bottom-1 space-bottom-lg-0">
-            <div class="d-lg-flex justify-content-lg-between align-items-lg-center">
-                <!-- Navbar -->
-
-                <!-- End Navbar -->
-
-
-                <div class="ml-lg-auto pb-4">
-                    <!-- Button -->
-                    <a class="btn btn-sm btn-white text-nowrap transition-3d-hover" href="/super/cats/new"
-                        data-modal-target="#requestPaymentModal">
-                        <i class="fas fa-plus" style="margin-right:0.4em;"></i>Nuova Categoria
-                    </a>
-                    <!-- End Button -->
+            <div class="col-lg-7 order-lg-1">
+                <!-- User Info -->
+                <div class="media d-block d-sm-flex align-items-sm-center">
+                    <div class="u-lg-avatar position-relative mb-3 mb-sm-0 mr-3">
+                        <img class="img-fluid rounded-circle" src="<%= user.pic %>" alt="Image Description" />
+                        <span
+                            class="badge badge-md badge-outline-success badge-pos badge-pos--bottom-right rounded-circle">
+                            <span class="fas fa-check"></span>
+                        </span>
+                    </div>
+                    <div class="media-body">
+                        <h1 class="h3 text-white font-weight-medium mb-1">
+                            <%= user.name %>
+                        </h1>
+                        <span class="d-block text-white-70"><i class="fas fa-at" style="margin-right:0.3em;"></i><%=
+                user.email %></span>
+                        <span class="d-block text-white-70"><i class="fas fa-code-branch"
+                                style="margin-right:0.3em;"></i><%= user._id %></span>
+                    </div>
                 </div>
+                <!-- End User Info -->
             </div>
         </div>
     </div>
-    <!-- End Breadcrumb Section -->
-    <div class="bg-light">
-        <div class="container space-2">
 
-            <%- messages('message', locals) %>
+    <div class="container space-bottom-1 space-bottom-lg-0">
+        <div class="d-lg-flex justify-content-lg-between align-items-lg-center">
+            <!-- Navbar -->
 
-            <h2 class="h2 mb-4">Categorie</h2>
-            <div class="table-responsive-md u-datatable  bg-white shadow-lg rounded">
-                <table class="js-datatable table table-bordered u-datatable__striped u-datatable__content"
-                    data-dt-info="#datatableWithPaginationInfo" data-dt-page-length="10" data-dt-is-show-paging="true"
-                    data-dt-pagination="datatablePagination" data-dt-pagination-classes="pagination mb-0"
-                    data-dt-pagination-items-classes="page-item" data-dt-pagination-links-classes="page-link"
-                    data-dt-pagination-next-classes="page-item" data-dt-pagination-next-link-classes="page-link"
-                    data-dt-pagination-next-link-markup='<span aria-hidden="true">»</span>'
-                    data-dt-pagination-prev-classes="page-item" data-dt-pagination-prev-link-classes="page-link"
-                    data-dt-pagination-prev-link-markup='<span aria-hidden="true">«</span>'>
-                    <thead>
-                        <tr class="text-uppercase font-size-1">
-                            <th scope="col" class="font-weight-medium">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    Nome
-                                    <div class="ml-2">
-                                        <span class="fas fa-angle-up u-datatable__thead-icon"></span>
-                                        <span class="fas fa-angle-down u-datatable__thead-icon"></span>
-                                    </div>
+            <!-- End Navbar -->
+
+
+            <div class="ml-lg-auto pb-4">
+                <!-- Button -->
+                <a class="btn btn-sm btn-white text-nowrap transition-3d-hover" href="/super/cats/new"
+                    data-modal-target="#requestPaymentModal">
+                    <i class="fas fa-plus" style="margin-right:0.4em;"></i>Nuova Categoria
+                </a>
+                <!-- End Button -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumb Section -->
+<div class="bg-light">
+    <div class="container space-2">
+
+        <%- messages('message', locals) %>
+
+        <h2 class="h2 mb-4">Categorie</h2>
+        <div class="table-responsive-md u-datatable  bg-white shadow-lg rounded">
+            <table class="js-datatable table table-bordered u-datatable__striped u-datatable__content"
+                data-dt-info="#datatableWithPaginationInfo" data-dt-page-length="10" data-dt-is-show-paging="true"
+                data-dt-pagination="datatablePagination" data-dt-pagination-classes="pagination mb-0"
+                data-dt-pagination-items-classes="page-item" data-dt-pagination-links-classes="page-link"
+                data-dt-pagination-next-classes="page-item" data-dt-pagination-next-link-classes="page-link"
+                data-dt-pagination-next-link-markup='<span aria-hidden="true">»</span>'
+                data-dt-pagination-prev-classes="page-item" data-dt-pagination-prev-link-classes="page-link"
+                data-dt-pagination-prev-link-markup='<span aria-hidden="true">«</span>'>
+                <thead>
+                    <tr class="text-uppercase font-size-1">
+                        <th scope="col" class="font-weight-medium">
+                            <div class="d-flex justify-content-between align-items-center">
+                                Nome
+                                <div class="ml-2">
+                                    <span class="fas fa-angle-up u-datatable__thead-icon"></span>
+                                    <span class="fas fa-angle-down u-datatable__thead-icon"></span>
                                 </div>
-                            </th>
-                            <th scope="col" class="font-weight-medium">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    Descrizione
-                                    <div class="ml-2">
-                                        <span class="fas fa-angle-up u-datatable__thead-icon"></span>
-                                        <span class="fas fa-angle-down u-datatable__thead-icon"></span>
-                                    </div>
+                            </div>
+                        </th>
+                        <th scope="col" class="font-weight-medium">
+                            <div class="d-flex justify-content-between align-items-center">
+                                Descrizione
+                                <div class="ml-2">
+                                    <span class="fas fa-angle-up u-datatable__thead-icon"></span>
+                                    <span class="fas fa-angle-down u-datatable__thead-icon"></span>
                                 </div>
-                            </th>
-                            <th scope="col" class="font-weight-medium">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    Stato
-                                    <div class="ml-2">
-                                        <span class="fas fa-angle-up u-datatable__thead-icon"></span>
-                                        <span class="fas fa-angle-down u-datatable__thead-icon"></span>
-                                    </div>
+                            </div>
+                        </th>
+                        <th scope="col" class="font-weight-medium">
+                            <div class="d-flex justify-content-between align-items-center">
+                                Stato
+                                <div class="ml-2">
+                                    <span class="fas fa-angle-up u-datatable__thead-icon"></span>
+                                    <span class="fas fa-angle-down u-datatable__thead-icon"></span>
                                 </div>
-                            </th>
+                            </div>
+                        </th>
 
 
-                        </tr>
-                    </thead>
-                    <tbody class="font-size-1">
-                        <% cats.forEach((cat) => { %>
-                        <tr>
-                            <td class="align-middle" id="userModalTrigger"><span><a
-                                        href="/super/cats/<%= cat._id %>"><%= cat.name %></a>
-                                </span>
-                            </td>
-                            <td class="align-middle text-secondary">
-                                <%= cat.desc %>
-                            </td>
+                    </tr>
+                </thead>
+                <tbody class="font-size-1">
+                    <% cats.forEach((cat) => { %>
+                    <tr>
+                        <td class="align-middle" id="userModalTrigger"><span><a
+                                    href="/super/cats/<%= cat._id %>"><%= cat.name %></a>
+                            </span>
+                        </td>
+                        <td class="align-middle text-secondary">
+                            <%= cat.desc %>
+                        </td>
 
 
-                            <% if(cat.status === 1) { %>
-                            <td class="align-middle text-success"><i class="fas fa-dot-circle"></i> - Online</td>
-                            <% } else if(cat.status === 0) { %>
-                            <td class="align-middle text-warning"><i class="fas fa-dot-circle"></i> - Pronta</td>
-                            <%} else {%>
-                            <td class="align-middle text-warning"><i class="fas fa-dot-circle"></i> - Bozza</td>
-                            <%}%>
+                        <% if(cat.status === 1) { %>
+                        <td class="align-middle text-success"><i class="fas fa-dot-circle"></i> - Online</td>
+                        <% } else if(cat.status === 0) { %>
+                        <td class="align-middle text-warning"><i class="fas fa-dot-circle"></i> - Pronta</td>
+                        <%} else {%>
+                        <td class="align-middle text-warning"><i class="fas fa-dot-circle"></i> - Bozza</td>
+                        <%}%>
                         </tr>
                         <% }); %>
 
-                    </tbody>
-                </table>
-            </div>
-            <div class="pagination justify-content-center">
-                <div class="d-flex justify-content-between align-items-center">
-                    <nav id="datatablePagination" aria-label="Activity pagination"></nav>
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination justify-content-center">
+            <div class="d-flex justify-content-between align-items-center">
+                <nav id="datatablePagination" aria-label="Activity pagination"></nav>
 
-                    <small id="datatableInfo" class="text-secondary"></small>
-                </div>
+                <small id="datatableInfo" class="text-secondary"></small>
             </div>
         </div>
     </div>
-    </div>
-    <!-- Modal -->
-    <div id="animationModal" class="js-modal-window u-modal-window" style="width: 500px;">
-        <div class="card">
-            <!-- Header -->
-            <header class="card-header bg-light py-3 px-5">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h3 class="h6 mb-0">Modal title</h3>
+</div>
+</div>
+<!-- Modal -->
+<div id="animationModal" class="js-modal-window u-modal-window" style="width: 500px;">
+    <div class="card">
+        <!-- Header -->
+        <header class="card-header bg-light py-3 px-5">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="h6 mb-0">Modal title</h3>
 
-                    <button type="button" class="close" aria-label="Close" onclick="Custombox.modal.close();">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-            </header>
-            <!-- End Header -->
-
-            <!-- Body -->
-            <div class="card-body p-5">
-                <p>Modal body text goes here.</p>
+                <button type="button" class="close" aria-label="Close" onclick="Custombox.modal.close();">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
-            <!-- End Body -->
+        </header>
+        <!-- End Header -->
 
-            <!-- Footer -->
-            <div class="card-footer d-flex justify-content-end">
-                <button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1">Save Changes</button>
-                <button type="button" class="btn btn-sm btn-soft-secondary transition-3d-hover"
-                    onclick="Custombox.modal.close();">Close</button>
-            </div>
-            <!-- End Footer -->
+        <!-- Body -->
+        <div class="card-body p-5">
+            <p>Modal body text goes here.</p>
         </div>
+        <!-- End Body -->
+
+        <!-- Footer -->
+        <div class="card-footer d-flex justify-content-end">
+            <button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1">Save Changes</button>
+            <button type="button" class="btn btn-sm btn-soft-secondary transition-3d-hover"
+                onclick="Custombox.modal.close();">Close</button>
+        </div>
+        <!-- End Footer -->
     </div>
-    <!-- End Modal -->
+</div>
+<!-- End Modal -->
 </main>
 <%- include ('partials/footer') %>
