@@ -26,10 +26,10 @@
 
 
         <% if(user) { %>
-        <% if(user.role === 2 || user.role === 3) { %>
-        <a href="/king/posts/<%= post._id %>" class="ml-3 mt-3 text-black-50 link"><i class="far fa-edit"></i>
+        <% if(user.role >= 2) { %>
+        <a href="/king/posts/<%= post._id %>" class="btn btn-soft-primary mt-3"><i class="far fa-edit"></i>
           Modifica
-          l'articolo | <strong>Super & King</strong> </a>
+          l'articolo | <strong>Super & King </strong> </a>
         <% } }%>
       </span>
     </div>
