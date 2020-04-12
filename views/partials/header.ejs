@@ -231,10 +231,19 @@
               <li class="list-inline-item">
                 <!-- Account Sidebar Toggle Button -->
                 <div class="dropdown show">
+
+
                   <a class="btn btn-sm btn-primary dropdown-toggle transition-3d-hover" href="#" role="button"
                     id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <%= user.name %>
+                    <img class="img-fluid rounded-circle mr-2" style="width:2em;" src="<%= user.pic %>"
+                      alt="<%= user.name %>"><%= user.name %>
                   </a>
+
+
+
+
+
+
 
                   <div class=" dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <% if (user.role === 3) { %>

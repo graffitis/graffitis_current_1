@@ -173,7 +173,14 @@
                 </strong>
               </td>
               <td class="text-secondary"><%= post.category %></td>
+              <% if( post.author.charAt(post.author.length - 1) === 'r' &&  post.author.charAt(post.author.length - 2) === '_' &&  post.author.charAt(post.author.length - 3) === '_') { %>
+
+              <td class="text-secondary"><%= post.author.substring(0, (post.author.length - 3)) %> <span
+                  class="badge badge-primary text-white ml-1">Red.</span> </td>
+              <% } else { %>
+
               <td class="text-secondary"><%= post.author %></td>
+              <% } %>
               <td class="text-secondary"><%= post.edited.toLocaleDateString() %></td>
 
               <% if(post.status == 1) { %>
