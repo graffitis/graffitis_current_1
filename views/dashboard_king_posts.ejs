@@ -115,7 +115,8 @@
                     data-dt-pagination-next-classes="page-item" data-dt-pagination-next-link-classes="page-link"
                     data-dt-pagination-next-link-markup='<span aria-hidden="true">»</span>'
                     data-dt-pagination-prev-classes="page-item" data-dt-pagination-prev-link-classes="page-link"
-                    data-dt-pagination-prev-link-markup='<span aria-hidden="true">«</span>' data-dt-is-responsive>
+                    data-dt-pagination-prev-link-markup='<span aria-hidden="true">«</span>' data-dt-is-responsive
+                    data-order='[[ 3, "desc" ]]'>
                     <thead>
                         <tr class="text-uppercase font-size-1">
                             <th scope="col" class="font-weight-medium">
@@ -188,7 +189,13 @@
 
                             <td class="text-secondary"><%= post.author %></td>
                             <% } %>
-                            <td class="text-secondary"><%= post.edited.toLocaleDateString() %></td>
+
+                            <% let logTime = post.edited %>
+
+                            <% let giorno = ('0'+logTime.getDate()).slice(-2) %>
+                            <% let mese = ('0'+(logTime.getMonth() + 1)).slice(-2) %>
+                            <% logTime = logTime.getFullYear() + '/' + mese + '/' + giorno %>
+                            <td class="text-secondary"><%= logTime %></td>
 
                             <% if(post.status == 1) { %>
                             <td class="text-success"><strong><i class="fas fa-dot-circle"></i>

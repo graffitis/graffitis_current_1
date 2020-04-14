@@ -75,13 +75,72 @@
             e sulla
             pagina dell'articolo con un carattere di dimensioni maggiori</small>
         </div>
-        <div class="form-group">
+        <hr class="my-5">
+        <!-- <div class="form-group">
           <label for="cover">Immagine di Copertina</label>
           <input type="text" class="form-control" id="cover" name="cover"
             placeholder="Inserisci un URL di un'immagine" />
           <small id="coverHelp" class="form-text text-muted">L'immagina sarà presente in tutte le visuali
             dell'articolo</small>
+        </div> -->
+        <!-- Dropzone -->
+        <label for="desc">Immagine di Copertina</label>
+        <div class="u-dropzone" data-options='{
+          "url": "/upload/s3/uploadone",
+          "thumbnailWidth": 100,
+          "thumbnailHeight": 100,
+          "previewTemplate": "#dropzoneItemTemplate"
+          }' id="caricaImmagine">
+          <div id="dropzoneItemTemplate" style="display: none;">
+            <div class="col h-100 mb-5">
+              <div class="dz-preview dz-file-preview">
+                <div class="d-flex justify-content-end dz-close-icon">
+                  <small class="fa fa-times" data-dz-remove></small>
+                </div>
+                <div class="dz-details media">
+                  <div class="dz-img">
+                    <img class="img-fluid" data-dz-thumbnail>
+                  </div>
+                  <div class="media-body">
+                    <span class="dz-filename">
+                      <span class="dz-title" data-dz-name></span>
+                    </span>
+                    <div class="dz-size" data-dz-size></div>
+                  </div>
+                </div>
+                <div class="dz-progress progress" style="height: 4px;">
+                  <div class="dz-upload progress-bar bg-success" role="progressbar" style="width: 0" aria-valuenow="0"
+                    aria-valuemin="0" aria-valuemax="100" data-dz-uploadprogress></div>
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class="dz-success-mark">
+                    <span class="fa fa-check-circle"></span>
+                  </div>
+                  <div class="dz-error-mark">
+                    <span class="fa fa-times-circle"></span>
+                  </div>
+                  <div class="dz-error-message">
+                    <small data-dz-errormessage></small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dz-message">
+            <div class="mb-4">
+              <span class="d-block h5 mb-1">Seleziona un'immagine da caricare</span>
+              <span class="d-block text-secondary mb-1">oppure</span>
+              <span class="d-block">Trascinala Qui</span>
+            </div>
+            <span class="btn btn-sm btn-primary">Sfoglia Documenti</span>
+          </div>
         </div>
+        <!-- End Dropzone -->
+        <input type="text" name="cover" id="imgInputField" value="" hidden>
+
+        <hr class="my-5">
+
         <div class="form-group">
           <label for="desc">Descrizione</label>
           <input type="text" class="form-control" id="desc" name="desc"
@@ -91,6 +150,7 @@
             articoli nella pagina Home e della Rubrica</small>
         </div>
 
+        <hr class="my-5">
 
         <div class="form-group" id="category">
           <!-- WORKAROUND -->
@@ -198,15 +258,18 @@
           <!-- End Sidebar Navigation -->
         </div>
 
+        <hr class="my-5">
 
-
-        <div class="form-group space-top-1">
+        <div class="form-group">
           <label for="body">Corpo dell'Articolo</label>
           <div class="u-summernote-editor">
             <textarea id="body" class="js-summernote-editor" data-height="300" name="body"
               form="post_create"></textarea>
           </div>
         </div>
+
+
+
         <div class="form-group mb-6 space-top-1">
           <label for="tags" class="form-label">
             Tags
@@ -214,7 +277,7 @@
 
           <!-- Tags Input -->
           <div class="u-tagsinput">
-            <input id="tags" type="text" name="tags" value="ITIS" data-role="tagsinput" />
+            <input id="tags" type="text" name="tags" data-role="tagsinput" />
           </div>
           <small id="tagsHelp" class="form-text text-muted"> <strong><i class="fas fa-exclamation"></i> Separa
               i tag con
@@ -225,6 +288,8 @@
             nella dashboard dei lettori</small>
           <!-- End Tags Input -->
         </div>
+
+        <hr class="my-5">
 
         <div class="form-group ">
           <label for="status" class="form-label">

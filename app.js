@@ -10,6 +10,25 @@ const mongoose = require('mongoose');
 const favicon = require('serve-favicon');
 const sslRedirect = require('heroku-ssl-redirect');
 
+/* const multer = require("multer");
+
+const ID = function () {
+  return "_" + Math.random().toString(36).substr(2, 5);
+};
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "/tmp/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, "graffIMG" + ID());
+  },
+});
+
+const upload = multer({
+  storage: storage
+}); */
+
 const postRouter = require('./routes/postRouter');
 const basicRouter = require('./routes/basicRouter');
 const userRouter = require('./routes/userRouter');
@@ -22,6 +41,7 @@ const superCatsRouter = require('./routes/superCatsRouter');
 const kingRouter = require('./routes/kingRouter');
 const kingPostsRouter = require('./routes/kingPostsRouter');
 const profileRouter = require('./routes/profileRouter');
+const uploadRouter = require('./routes/uploadRouter');
 
 const passportSetup = require('./config/passport-setup');
 const passport = require('passport');
@@ -51,6 +71,8 @@ app.use(bodyParser.urlencoded({
   limit: '50mb',
   extended: true
 }));
+
+
 
 app.use(
   methodOverride((req, res) => {
@@ -137,6 +159,7 @@ app.use((req, res, next) => {
   res.render('dashboard_edit');
 }); */
 
+app.use('/upload', uploadRouter);
 app.use('/profile', profileRouter);
 app.use('/users', userRouter);
 app.use('/users/auth', userAuthRouter);

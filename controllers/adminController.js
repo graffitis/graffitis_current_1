@@ -125,7 +125,7 @@ exports.createPage = (req, res) => {
       });
     }
     res.locals.title = 'Nuovo Articolo, Admin | ' + res.locals.title
-    res.render('dashboard_create', {
+    res.cookie('imgKey', null).render('dashboard_create', {
       cats: data,
     });
   });

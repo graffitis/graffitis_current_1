@@ -39,6 +39,7 @@
 <script src="../../assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
 <script src="../../assets/vendor/popper.js/dist/umd/popper.min.js"></script>
 <script src="../../assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 
 <!-- JS Implementing Plugins -->
 <script src="../../assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
@@ -46,7 +47,7 @@
 <script src="../../assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="../../assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
 <script src="../../assets/vendor/fancybox/jquery.fancybox.min.js"></script>
-<script src="../../assets/vendor/typed.js/lib/typed.min.js"></script>
+<!-- <script src="../../assets/vendor/typed.js/lib/typed.min.js"></script> -->
 <script src="../../assets/vendor/slick-carousel/slick/slick.js"></script>
 <script src="../../assets/vendor/dzsparallaxer/dzsparallaxer.js"></script>
 <script src="../../assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
@@ -55,6 +56,7 @@
 <script src="../../assets/vendor/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js"></script>
 <script src="../../assets/vendor/custombox/dist/custombox.min.js"></script>
 <script src="../../assets/vendor/custombox/dist/custombox.legacy.min.js"></script>
+<script src="../../assets/vendor/dropzone/dropzone.js"></script>
 
 
 <!-- JS Front -->
@@ -77,13 +79,22 @@
 <script src="../../assets/js/components/hs.sticky-block.js"></script>
 <script src="../../assets/js/components/hs.go-to.js"></script>
 <script src="../../assets/js/components/hs.modal-window.js"></script>
+<script src="../../assets/js/components/hs.dropzone.js"></script>
 
 
 <!-- JS Leo -->
 <script src="../../assets/js/leoStyle.js"></script>
 
 
+
 <!-- JS Plugins Init. -->
+<script>
+  $(document).on('ready', function () {
+    // initialization of dropzone file attach module
+    $.HSCore.components.HSDropzone.init('.u-dropzone');
+
+  });
+</script>
 <script>
   $(document).on('ready', function () {
     // initialization of toggle state
@@ -158,13 +169,13 @@
     $.HSCore.components.HSFancyBox.init('.js-fancybox');
 
     // initialization of text animation (typing)
-    var typed = new Typed('.u-text-animation.u-text-animation--typing', {
+    /* var typed = new Typed('.u-text-animation.u-text-animation--typing', {
       strings: ['more professional.', 'perfect in every way.', 'astonishing.'],
       typeSpeed: 60,
       loop: true,
       backSpeed: 25,
       backDelay: 1500
-    });
+    });*/
 
     // initialization of slick carousel
     $.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');

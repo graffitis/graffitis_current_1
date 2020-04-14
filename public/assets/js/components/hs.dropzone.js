@@ -1,3 +1,5 @@
+// import Cookies from 'js-cookie'
+
 /**
  * Dropzone wrapper.
  *
@@ -17,9 +19,9 @@
      * @var Object _baseConfig
      */
     _baseConfig: {
-      url: "../../assets/vendor/dropzone/upload.html",
-      thumbnailWidth: 300,
-      thumbnailHeight: 300,
+      url: "/upload/s3/uploadone",
+      thumbnailWidth: 100,
+      thumbnailHeight: 100,
       previewTemplate: '<div class="col h-100 mb-5">' +
         '  <div class="dz-preview dz-file-preview">' +
         '    <div class="d-flex justify-content-end dz-close-icon">' +
@@ -52,8 +54,19 @@
         '    </div>' +
         '  </div>' +
         '</div>',
-      addedfile: function() {},
-      removedfile: function() {}
+      addedfile: function () {},
+      removedfile: function (file) {
+
+        var name = file.name;
+        console.log('Chiamata a API Rimozione Upload')
+        var parameters = {
+          key: Cookies.get('imgKey')
+        };
+        $.get('/upload/s3/removeone', parameters, function (data) {
+          $('#results').html(data);
+        })
+
+      }
     },
 
     /**
@@ -105,6 +118,8 @@
 
             $this.on('addedfile', function (file) {
 
+              console.log('Immagine Caricata su Bucket S3! ');
+
               if (String(file.type).slice(0, 6) !== 'image/') {
 
                 $(file.previewElement).find('.dz-img')
@@ -122,7 +137,7 @@
 
               if ($this.files.length <= 0) {
 
-                config.removedfile();
+                config.removedfile(file);
 
                 $message.show();
 

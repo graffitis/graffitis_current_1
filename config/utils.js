@@ -6,8 +6,7 @@ const Log = require('../models/Log');
 const Admin = require('../models/Admin');
 
 function log(user, op) {
-  Log.create(
-    {
+  Log.create({
       user: user,
       time: Date.now(),
       op: op
@@ -21,7 +20,9 @@ function log(user, op) {
 }
 
 function getKings() {
-  Admin.find({ role: 3 }, (err, data) => {
+  Admin.find({
+    role: 3
+  }, (err, data) => {
     if (err) {
       console.log(err);
       return null;
