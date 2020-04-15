@@ -195,7 +195,7 @@
   <% } %>
 
 
-  <%- include ('partials/footer') %>
+
 </div>
 <% } else { %>
 <div class="container space-1">
@@ -389,5 +389,27 @@
 
       </div>
     </div>
-    <% } %>
-    <% } %>
+    <% } else { %>
+    <div class="media align-items-center border-top border-bottom py-5 my-8">
+      <div class="u-lg-avatar">
+        <img class="img-fluid rounded-circle" src="<%= post.authorPic %>" alt="Image Description" />
+      </div>
+      <div class="media-body ml-3">
+        <small class="d-block text-primary text-uppercase"><strong>Scritto da</strong> </small>
+        <h3 class="h5 font-weight-medium mb-0">
+          <%= post.author %>
+        </h3>
+        <% if(Adesc != -1) { %>
+        <p class="mb-0 text-black-50"><%= Adesc %></p>
+        <% } else { %>
+        <p class="mb-0 text-black-50">
+          <i class="fas fa-puzzle-piece"></i> Questo autore non ha ancora caricato la sua descrizione...
+        </p>
+        <% } %>
+      </div>
+    </div>
+    <!-- End Author -->
+  </div>
+  <% } %>
+  <% } %>
+  <%- include ('partials/footer') %>
