@@ -26,7 +26,7 @@
     "passport-google-oauth20": "^2.0.0",
     "postmark": "^2.3.4",
     "serve-favicon": "^2.5.0",
-    "minimist": ">=1.2.3",
+    "minimist": ">=1.2.6",
     "acorn": ">=5.7.4"
   },
   "devDependencies": {},
